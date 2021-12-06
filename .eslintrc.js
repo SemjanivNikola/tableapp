@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2020: true,
   },
-  extends: ["plugin:vue/essential", "standard"],
+  extends: ["plugin:vue/recommended", "standard"],
   parserOptions: {
     ecmaVersion: 12,
     sourceType: "module",
