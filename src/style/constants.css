@@ -1,0 +1,148 @@
+:root {
+    --primary: rgb(103, 58, 183);
+    --secondary: rgb(124, 77, 255);
+    --primary-light: rgb(149, 117, 204);
+    --secondary-light: rgb(179, 136, 255);
+    --primary-dark: rgb(49, 27, 146);
+    --secondary-dark: rgb(69, 38, 160);
+    --text: rgb(205, 200, 228);
+    --text-inactive: rgb(131, 127, 147);
+    --text-inactive-2: rgb(106, 103, 122);
+    --text-dark: rgb(75, 72, 88);
+    --background: rgb(25, 22, 33);
+    --accent: rgb(0, 176, 254);
+    --error: rgb(183, 29, 28);
+    --info: rgb(101, 255, 218);
+    --success: rgb(142, 36, 170);
+    --warning: rgb(249, 168, 36);
+}
+
+/*      MARGIN      */
+.margin-extra-small {
+    margin: 4px;
+}
+.margin-small {
+    margin: 8px;
+}
+.margin-medium {
+    margin: 16px;
+}
+.margin-large {
+    margin: 24px;
+}
+.margin-extra-large {
+    margin: 32px;
+}
+.margin-horizontal-extra-small {
+    margin: 4px;
+}
+.margin-horizontal-small {
+    margin: 8px;
+}
+.margin-horizontal-medium {
+    margin: 16px;
+}
+.margin-horizontal-large {
+    margin: 24px;
+}
+.margin-horizontal-extra-large {
+    margin: 32px;
+}
+.margin-vertical-extra-small {
+    margin: 4px;
+}
+.margin-vertical-small {
+    margin: 8px;
+}
+.margin-vertical-medium {
+    margin: 16px;
+}
+.margin-vertical-large {
+    margin: 24px;
+}
+.margin-vertical-extra-large {
+    margin: 32px;
+}
+
+/*      PADDING      */
+.padding-extra-small {
+    padding: 4px;
+}
+.padding-small {
+    padding: 8px;
+}
+.padding-medium {
+    padding: 16px;
+}
+.padding-large {
+    padding: 24px;
+}
+.padding-extra-large {
+    padding: 32px;
+}
+.padding-horizontal-extra-small {
+    padding: 4px;
+}
+.padding-horizontal-small {
+    padding: 8px;
+}
+.padding-horizontal-medium {
+    padding: 16px;
+}
+.padding-horizontal-large {
+    padding: 24px;
+}
+.padding-horizontal-extra-large {
+    padding: 32px;
+}
+.padding-vertical-extra-small {
+    padding: 4px;
+}
+.padding-vertical-small {
+    padding: 8px;
+}
+.padding-vertical-medium {
+    padding: 16px;
+}
+.padding-vertical-large {
+    padding: 24px;
+}
+.padding-vertical-extra-large {
+    padding: 32px;
+}
+
+/*      DIVIDER      */
+.divider-sm {
+    height: 8px;
+    width: 100%;
+}
+.divider-md {
+    height: 16px;
+    width: 100%;
+}
+.divider-lg {
+    height: 24px;
+    width: 100%;
+}
+.divider-exlg {
+    height: 32px;
+    width: 100%;
+}
+
+/*      SPACER      */
+.spacer-sm {
+    height: 8px;
+    width: 8px;
+}
+.spacer-md {
+    height: 16px;
+    width: 16px;
+}
+.spacer-lg {
+    height: 24px;
+    width: 24px;
+}
+.spacer-exlg {
+    height: 32px;
+    width: 32px;
+}
