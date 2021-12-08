@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="structure-wrapper">
     <h1>WORKSPACE STRUCTURE</h1>
   </div>
 </template>
@@ -9,3 +9,9 @@ export default {
   name: "WorkspaceStructure",
 };
 </script>
+
+<style scoped>
+.structure-wrapper {
+  width: 40%;
+}
+</style>
