@@ -27,6 +27,6 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    justify-content: start;
+    justify-content: flex-start;
 }
 </style>

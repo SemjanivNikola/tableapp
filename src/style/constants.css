@@ -9,9 +9,11 @@
     --text-inactive: rgb(131, 127, 147);
     --text-inactive-2: rgb(106, 103, 122);
     --text-dark: rgb(75, 72, 88);
-    --background: rgb(25, 22, 33);
-    --accent: rgb(0, 176, 254);
-    --error: rgb(183, 29, 28);
+    --background-light-hard: rgba(45, 39, 88, .58);
+    --background-dark: rgb(13, 11, 26);
+    --background-dark-soft: rgba(31, 31, 74, 0.25);
+    --accent: rgba(0, 176, 254, .58);
+    --error: rgba(183, 29, 28, .58);
     --info: rgb(101, 255, 218);
     --success: rgb(142, 36, 170);
     --warning: rgb(249, 168, 36);

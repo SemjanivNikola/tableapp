@@ -1,7 +1,11 @@
 <template>
-  <v-card class="view-wrapper-background">
-    <v-tabs>
-      <v-tab>
+  <v-card id="view-wrapper-background">
+    <v-tabs
+      id="at-tabs"
+
+      color="rgb(255, 255, 255)"
+    >
+      <v-tab class="at-tab">
         <tab-header :title="title" />
       </v-tab>
     </v-tabs>
@@ -22,9 +26,13 @@ export default {
 };
 </script>
 
-<style scoped>
-
-.view-wrapper-background {
-  background-color: var(--primary);
+<style>
+#at-tabs .v-slide-group {
+  background-color: var(--background-light-hard);
 }
+#view-wrapper-background {
+  width: 100%;
+  background-color: var(--background-dark-soft);
+}
+
 </style>
