@@ -12,6 +12,6 @@ export default {
 
 <style scoped>
 .structure-wrapper {
-  width: 40%;
+  width: 18%;
 }
 </style>

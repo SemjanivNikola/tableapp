@@ -148,3 +148,9 @@
     height: 32px;
     width: 32px;
 }
+
+.v-text-field {
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+}

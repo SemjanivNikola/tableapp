@@ -2,22 +2,24 @@
   <v-card id="view-wrapper-background">
     <v-tabs
       id="at-tabs"
-
       color="rgb(255, 255, 255)"
     >
       <v-tab class="at-tab">
         <tab-header :title="title" />
       </v-tab>
     </v-tabs>
+
+    <table-view />
   </v-card>
 </template>
 
 <script>
 import TabHeader from "../../components/TabHeader.vue";
+import TableView from "../table/TableView.vue";
 
 export default {
   name: "WorkspaceView",
-  components: { TabHeader },
+  components: { TabHeader, TableView },
   data () {
     return {
       title: "Naslov",
