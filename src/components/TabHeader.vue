@@ -1,8 +1,10 @@
 <template>
   <div class="header-wrapper">
     <h5>{{ title }}</h5>
-    <span class="close">x</span>
-    <!-- Place icon here instead span -->
+    <icon
+      name="close"
+      :size="16"
+    />
   </div>
 </template>
 

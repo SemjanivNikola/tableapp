@@ -3,6 +3,9 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
+import Icon from "./components/Icon";
+
+Vue.component("Icon", Icon);
 
 Vue.config.productionTip = false;
 
