@@ -5,7 +5,8 @@
             <icon
               name="menu"
               class="menu"
-              :size=16
+              :size="16"
+              :color="white"
       	    />
             <input type="search" class="form-control rounded" placeholder="  Search" aria-label="Search" aria-describedby="search-addon" />
           </div>
@@ -14,14 +15,16 @@
             <icon
               name="add"
               class="add"
-              :size=20
+              :size="20"
+              :color="white"
       	    />
           </div>
           <div id="structure">
             <icon
               name="file"
               class="file"
-              :size=16
+              :size="16"
+              :color="white"
       	    />
           </div>
         </div>
