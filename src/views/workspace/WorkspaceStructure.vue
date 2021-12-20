@@ -2,12 +2,30 @@
   <div class="structure-wrapper">
         <div class="input-group">
           <div id="container">
-            <img src="@/assets/add.svg" alt="">
+            <icon
+              name="menu"
+              class="menu"
+              :size="16"
+              :color="white"
+      	    />
             <input type="search" class="form-control rounded" placeholder="  Search" aria-label="Search" aria-describedby="search-addon" />
           </div>
-          <div id="structure">
+          <div id="bar">
             <p>Structure</p>
-            <img src="@/assets/add.svg" alt="" class="icon">
+            <icon
+              name="add"
+              class="add"
+              :size="20"
+              :color="white"
+      	    />
+          </div>
+          <div id="structure">
+            <icon
+              name="file"
+              class="file"
+              :size="16"
+              :color="white"
+      	    />
           </div>
         </div>
     </div>
@@ -34,7 +52,7 @@ export default {
   display: flex;
   padding: 5px;
 }
-#structure{
+#bar{
   color: white;
   text-decoration: underline;
   text-decoration-color:#6BD1FF; 
@@ -42,8 +60,11 @@ export default {
   align-items: flex-start;
   padding: 10px;
 }
-.icon{
+.add{
   margin-left: auto;
 }
-
+.file{
+  display: flex;
+  margin-right: 180px;
+}
 </style>

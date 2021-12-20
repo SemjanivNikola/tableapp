@@ -32,6 +32,21 @@ export default {
       return `<svg width="${this.size}" height="${this.size}" viewBox="0 0 24 24" fill="none">
         <path fill="${this.color}" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
       </svg>`;
+    },
+    menu () {
+      return `<svg width="${this.size}" height="${this.size}" viewBox="0 0 16 16" fill="none">
+        <path fill="${this.color}" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+      </svg>`;
+    },
+    add () {
+      return `<svg width="${this.size}" height="${this.size}" viewBox="0 0 16 16" fill="none">
+        <path fill="${this.color}" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+      </svg>`;
+    },
+    file () {
+      return `<svg width="${this.size}" height="${this.size}" viewBox="0 0 16 16" fill="none">
+        <path fill="${this.color}" d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+      </svg>`;
     }
   },
   methods: {
@@ -42,6 +57,15 @@ export default {
         }
         case "close": {
           return this.close;
+        }
+        case "menu": {
+          return this.menu;
+        }
+        case "add": {
+          return this.add;
+        }
+        case "file": {
+          return this.file;
         }
       }
     }
