@@ -1,5 +1,8 @@
 <template>
-  <div id="icon-wrapper" v-html="iconName()" />
+  <div
+    id="icon-wrapper"
+    v-html="iconName()"
+  />
 </template>
 
 <script>
@@ -47,29 +50,29 @@ export default {
       return `<svg width="${this.size}" height="${this.size}" viewBox="0 0 16 16" fill="none">
         <path fill="${this.color}" d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
       </svg>`;
-    }
+    },
   },
   methods: {
-    iconName() {
-      switch(this.name) {
-        case "plus": {
-          return this.plus;
-        }
-        case "close": {
-          return this.close;
-        }
-        case "menu": {
-          return this.menu;
-        }
-        case "add": {
-          return this.add;
-        }
-        case "file": {
-          return this.file;
-        }
+    iconName () {
+      switch (this.name) {
+      case "plus": {
+        return this.plus;
       }
-    }
-  }
+      case "close": {
+        return this.close;
+      }
+      case "menu": {
+        return this.menu;
+      }
+      case "add": {
+        return this.add;
+      }
+      case "file": {
+        return this.file;
+      }
+      }
+    },
+  },
 };
 </script>
 
