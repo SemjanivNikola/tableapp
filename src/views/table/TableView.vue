@@ -7,8 +7,9 @@
     <table>
       <thead>
         <tr>
+          <th>Placeholder</th>
           <th
-            v-for="(header, index) in mockData.header"
+            v-for="(header, index) in tableHeader"
             :key="index"
           >
             {{ header.text }}
@@ -20,6 +21,7 @@
           v-for="(row, rowIndex) in mockData.body"
           :key="rowIndex"
         >
+          <td>{{ rowIndex }}</td>
           <td
             v-for="(cell, cellIndex) in row"
             :key="cellIndex"
@@ -46,11 +48,28 @@ export default {
       mockData: tableData,
     };
   },
+  computed: {
+    tableHeader () {
+      if (!this.mockData.options.summary.includes("hide_fileds")) {
+        return this.mockData.header;
+      }
+
+      const clone = [...this.mockData.header];
+      this.mockData.options.hideFields.forEach((field) => {
+        clone.splice(field, 1);
+      }, this);
+      return clone;
+    },
+  },
 };
 </script>
 
 <style scoped>
+table {
+    border-collapse: collapse;
+}
 th, td {
+  border: 1px solid #fff;
   color: white;
 }
 </style>
