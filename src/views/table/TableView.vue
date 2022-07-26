@@ -18,7 +18,7 @@
       </thead>
       <tbody>
         <tr
-          v-for="(row, rowIndex) in mockData.body"
+          v-for="(row, rowIndex) in tableBody"
           :key="rowIndex"
         >
           <td>{{ rowIndex }}</td>
@@ -57,6 +57,20 @@ export default {
       const clone = [...this.mockData.header];
       this.mockData.options.hideFields.forEach((field) => {
         clone.splice(field, 1);
+      }, this);
+      return clone;
+    },
+
+    tableBody () {
+      if (!this.mockData.options.summary.includes("hide_fileds")) {
+        return this.mockData.body;
+      }
+
+      const clone = [...this.mockData.body];
+      this.mockData.options.hideFields.forEach((field) => {
+        clone.forEach((row) => {
+          row.splice(field, 1);
+        });
       }, this);
       return clone;
     },
