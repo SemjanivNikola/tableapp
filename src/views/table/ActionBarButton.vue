@@ -6,35 +6,37 @@
   >
     <!-- <span class="icon-placeholder" /> -->
     {{ title }}
+
+    <slot />
   </button>
 </template>
 
 <script>
 export default {
-  name: "Button",
-  props: {
-    title: {
-      type: String,
-      required: true,
+    name: "Button",
+    props: {
+        title: {
+            type: String,
+            required: true,
+        },
     },
-  },
-  data () {
-    return {
-      isActive: false,
-    };
-  },
-  computed: {
-    getStatus () {
-      return this.isActive ? "active" : "inactive";
+    data () {
+        return {
+            isActive: false,
+        };
     },
-  },
-  methods: {
-    toggleIsActive () {
-      console.log("yiis");
-      this.isActive = !this.isActive;
-      this.$emit("onPress");
+    computed: {
+        getStatus () {
+            return this.isActive ? "active" : "inactive";
+        },
     },
-  },
+    methods: {
+        toggleIsActive () {
+            console.log("yiis");
+            this.isActive = !this.isActive;
+            this.$emit("onPress");
+        },
+    },
 };
 </script>
 
@@ -58,6 +60,7 @@ export default {
   border-color: var(--info)
 }
 .button-wrapper {
+    position: relative;
     padding: 4px 16px;
     border-radius: 4px;
     margin-right: 8px;

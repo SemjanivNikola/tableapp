@@ -4,23 +4,51 @@
       <action-bar-button
         title="Hide fields"
         @onPress="handleHideFields"
-      />
+      >
+        <action-options
+          :is-shown="shouldShowOptions1"
+        />
+      </action-bar-button>
+
       <action-bar-button
         title="Sort"
         @onPress="handleSort"
-      />
+      >
+        <action-options
+          :is-shown="shouldShowOptions2"
+          option-type="dropdown-list"
+        />
+      </action-bar-button>
+
       <action-bar-button
         title="Filter"
         @onPress="handleFilter"
-      />
+      >
+        <action-options
+          :is-shown="shouldShowOptions3"
+          option-type="condition-list"
+        />
+      </action-bar-button>
+
       <action-bar-button
         title="Share View"
         @onPress="handleShareView"
-      />
+      >
+        <action-options
+          :is-shown="shouldShowOptions4"
+          option-type="modal"
+        />
+      </action-bar-button>
+
       <action-bar-button
         title="Trash"
         @onPress="handleTrash"
-      />
+      >
+        <action-options
+          :is-shown="shouldShowOptions5"
+          option-type="modal"
+        />
+      </action-bar-button>
     </div>
     <div>
       <div>
@@ -46,34 +74,58 @@
 </template>
 
 <script>
+import ActionOptions from "@/components/ActionOptions.vue";
 import ActionBarButton from "./ActionBarButton.vue";
 export default {
     name: "Template",
-    components: { ActionBarButton },
+    components: { ActionBarButton, ActionOptions },
     data () {
         return {
             title: "Hide fields",
             isSearching: false,
             searchFiled: "",
+            shouldShowOptions1: false,
+            shouldShowOptions2: false,
+            shouldShowOptions3: false,
+            shouldShowOptions4: false,
+            shouldShowOptions5: false,
         };
     },
     methods: {
+        closeAllOptions () {
+            this.shouldShowOptions1 = false;
+            this.shouldShowOptions2 = false;
+            this.shouldShowOptions3 = false;
+            this.shouldShowOptions4 = false;
+            this.shouldShowOptions5 = false;
+        },
         handleHideFields () {
+            this.closeAllOptions();
+            this.shouldShowOptions1 = !this.shouldShowOptions1;
             console.log("Hide fields");
         },
         handleSort () {
+            this.closeAllOptions();
+            this.shouldShowOptions2 = !this.shouldShowOptions2;
             console.log("Sort");
         },
         handleFilter () {
+            this.closeAllOptions();
+            this.shouldShowOptions3 = !this.shouldShowOptions3;
             console.log("Filter");
         },
         handleShareView () {
+            this.closeAllOptions();
+            this.shouldShowOptions4 = !this.shouldShowOptions4;
             console.log("Sharing view");
         },
         handleTrash () {
+            this.closeAllOptions();
+            this.shouldShowOptions5 = !this.shouldShowOptions5;
             console.log("Trash");
         },
     },
+
 };
 </script>
 
