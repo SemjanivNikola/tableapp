@@ -18,13 +18,13 @@ import TabHeader from "../../components/TabHeader.vue";
 import TableView from "../table/TableView.vue";
 
 export default {
-  name: "WorkspaceView",
-  components: { TabHeader, TableView },
-  data () {
-    return {
-      title: "Naslov",
-    };
-  },
+    name: "WorkspaceView",
+    components: { TabHeader, TableView },
+    data () {
+        return {
+            title: "Naslov",
+        };
+    },
 };
 </script>
 

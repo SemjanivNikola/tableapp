@@ -41,40 +41,40 @@ import tableData from "../../../mock-data/table_one.json";
 import TableActionBar from "./TableActionBar.vue";
 
 export default {
-  name: "TableView",
-  components: { TableActionBar },
-  data () {
-    return {
-      mockData: tableData,
-    };
-  },
-  computed: {
-    tableHeader () {
-      if (!this.mockData.options.summary.includes("hide_fileds")) {
-        return this.mockData.header;
-      }
-
-      const clone = [...this.mockData.header];
-      this.mockData.options.hideFields.forEach((field) => {
-        clone.splice(field, 1);
-      }, this);
-      return clone;
+    name: "TableView",
+    components: { TableActionBar },
+    data () {
+        return {
+            mockData: tableData,
+        };
     },
+    computed: {
+        tableHeader () {
+            if (!this.mockData.options.summary.includes("hide_fileds")) {
+                return this.mockData.header;
+            }
 
-    tableBody () {
-      if (!this.mockData.options.summary.includes("hide_fileds")) {
-        return this.mockData.body;
-      }
+            const clone = [...this.mockData.header];
+            this.mockData.options.hideFields.forEach((field) => {
+                clone.splice(field, 1);
+            }, this);
+            return clone;
+        },
 
-      const clone = [...this.mockData.body];
-      this.mockData.options.hideFields.forEach((field) => {
-        clone.forEach((row) => {
-          row.splice(field, 1);
-        });
-      }, this);
-      return clone;
+        tableBody () {
+            if (!this.mockData.options.summary.includes("hide_fileds")) {
+                return this.mockData.body;
+            }
+
+            const clone = [...this.mockData.body];
+            this.mockData.options.hideFields.forEach((field) => {
+                clone.forEach((row) => {
+                    row.splice(field, 1);
+                });
+            }, this);
+            return clone;
+        },
     },
-  },
 };
 </script>
 

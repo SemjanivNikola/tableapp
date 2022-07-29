@@ -48,32 +48,32 @@
 <script>
 import ActionBarButton from "./ActionBarButton.vue";
 export default {
-  name: "Template",
-  components: { ActionBarButton },
-  data () {
-    return {
-      title: "Hide fields",
-      isSearching: false,
-      searchFiled: "",
-    };
-  },
-  methods: {
-    handleHideFields () {
-      console.log("Hide fields");
+    name: "Template",
+    components: { ActionBarButton },
+    data () {
+        return {
+            title: "Hide fields",
+            isSearching: false,
+            searchFiled: "",
+        };
     },
-    handleSort () {
-      console.log("Sort");
+    methods: {
+        handleHideFields () {
+            console.log("Hide fields");
+        },
+        handleSort () {
+            console.log("Sort");
+        },
+        handleFilter () {
+            console.log("Filter");
+        },
+        handleShareView () {
+            console.log("Sharing view");
+        },
+        handleTrash () {
+            console.log("Trash");
+        },
     },
-    handleFilter () {
-      console.log("Filter");
-    },
-    handleShareView () {
-      console.log("Sharing view");
-    },
-    handleTrash () {
-      console.log("Trash");
-    },
-  },
 };
 </script>
 

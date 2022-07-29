@@ -8,12 +8,12 @@
 import Workspace from "./screens/Workspace.vue";
 
 export default {
-  name: "App",
-  components: { Workspace },
+    name: "App",
+    components: { Workspace },
 
-  data () {
-    return {};
-  },
+    data () {
+        return {};
+    },
 };
 </script>
 

@@ -39,7 +39,7 @@
 
 <script>
 export default {
-  name: "WorkspaceStructure",
+    name: "WorkspaceStructure",
 };
 </script>
 
