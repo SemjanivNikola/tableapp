@@ -10,11 +10,11 @@ import WorkspaceStructure from "../views/workspace/WorkspaceStructure.vue";
 import WorkspaceView from "../views/workspace/WorkspaceView.vue";
 
 export default {
-  name: "Workspace",
-  components: { WorkspaceStructure, WorkspaceView },
-  data () {
-    return {};
-  },
+    name: "Workspace",
+    components: { WorkspaceStructure, WorkspaceView },
+    data () {
+        return {};
+    },
 };
 </script>
 
