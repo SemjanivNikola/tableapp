@@ -14,9 +14,8 @@
         title="Sort"
         @onPress="handleSort"
       >
-        <action-options
+        <sort-option
           :is-shown="shouldShowOptions2"
-          option-type="dropdown-list"
         />
       </action-bar-button>
 
@@ -77,9 +76,10 @@
 import ActionOptions from "@/components/ActionOptions.vue";
 import ActionBarButton from "./ActionBarButton.vue";
 import HideFieldsOption from "@/components/HideFieldsOption.vue";
+import SortOption from "@/components/SortOption.vue";
 export default {
     name: "Template",
-    components: { ActionBarButton, ActionOptions, HideFieldsOption },
+    components: { ActionBarButton, ActionOptions, HideFieldsOption, SortOption },
     data () {
         return {
             title: "Hide fields",
