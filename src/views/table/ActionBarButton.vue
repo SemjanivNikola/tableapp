@@ -1,14 +1,15 @@
 <template>
-  <button
-    class="button-wrapper"
-    :class="getStatus"
-    @click="toggleIsActive"
-  >
-    <!-- <span class="icon-placeholder" /> -->
-    {{ title }}
-
+  <div class="btn-container">
+    <button
+      class="button-wrapper"
+      :class="getStatus"
+      @click="toggleIsActive"
+    >
+      <!-- <span class="icon-placeholder" /> -->
+      {{ title }}
+    </button>
     <slot />
-  </button>
+  </div>
 </template>
 
 <script>
@@ -41,6 +42,9 @@ export default {
 </script>
 
 <style scoped>
+.btn-container {
+    position: relative;
+}
 .icon-placeholder {
     width: 24px;
     height: 24px;
