@@ -5,7 +5,7 @@
         title="Hide fields"
         @onPress="handleHideFields"
       >
-        <hide-fields-options
+        <hide-fields-option
           :is-shown="shouldShowOptions1"
         />
       </action-bar-button>
@@ -76,10 +76,10 @@
 <script>
 import ActionOptions from "@/components/ActionOptions.vue";
 import ActionBarButton from "./ActionBarButton.vue";
-import HideFieldsOptions from "@/components/HideFieldsOptions.vue";
+import HideFieldsOption from "@/components/HideFieldsOption.vue";
 export default {
     name: "Template",
-    components: { ActionBarButton, ActionOptions, HideFieldsOptions },
+    components: { ActionBarButton, ActionOptions, HideFieldsOption },
     data () {
         return {
             title: "Hide fields",
