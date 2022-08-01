@@ -46,10 +46,13 @@ export default {
     data () {
         return {
             mockData: tableData,
+            activeOptions: tableData.options.summary,
+            tableHeader: tableData.header,
+            tableBody: tableData.body,
         };
     },
     computed: {
-        tableHeader () {
+        modifyHeader () {
             if (!this.mockData.options.summary.includes("hide_fileds")) {
                 return this.mockData.header;
             }
@@ -61,7 +64,7 @@ export default {
             return clone;
         },
 
-        tableBody () {
+        modifyBody () {
             if (!this.mockData.options.summary.includes("hide_fileds")) {
                 return this.mockData.body;
             }
@@ -73,6 +76,16 @@ export default {
                 });
             }, this);
             return clone;
+        },
+    },
+    watch: {
+        activeOptions: {
+            handler (val) {
+                console.log(val);
+                this.tableHeader = this.modifyHeader;
+                this.tableBody = this.modifyBody;
+            },
+            deep: true,
         },
     },
 };
