@@ -4,10 +4,16 @@
     :class="getStatus"
   >
     <div
-      v-for="header in mockData.header"
+      v-for="(header, index) in mockData.header"
       :key="header.id"
     >
-      {{ header.text }}
+      <v-switch
+        v-model="header.isHidden"
+        :label="header.text"
+        dense
+        color="green"
+        @change="handleHideFields(index)"
+      />
     </div>
   </div>
 </template>
@@ -16,7 +22,7 @@
 import tableData from "../../mock-data/table_one.json";
 
 /**
- * 1. radio-btn-list
+ * 1. switch-btn-list
  *      hide/show btn
  * 2. dropdown-list
  *      sort btn
@@ -31,7 +37,7 @@ export default {
     props: {
         optionType: {
             type: String,
-            default: "radio-btn-list",
+            default: "switch-btn-list",
             required: false,
         },
         isShown: {
@@ -49,8 +55,28 @@ export default {
             return this.isShown ? "show" : "hidden";
         },
     },
-    mounted () {
-        console.log("PROP >> ", this.optionType);
+    methods: {
+        handleHideFields (index) {
+            if (!this.mockData.header[index].isHidden) {
+                this.mockData.header[index].isHidden = true;
+                this.mockData.options.hideFields.push(index);
+
+                // If it's first field to be hidden add hide_fields option to summary
+                if (!this.mockData.options.summary.includes("hide_fileds")) {
+                    this.mockData.options.summary.push("hide_fileds");
+                }
+            } else this.mockData.header[index].isHidden = false;
+
+            // If the last index is removed, remove the hide_fileds option
+            if (this.mockData.options.hideFields.length === 0) {
+                this.mockData.options.summary.splice(
+                    this.mockData.options.summary.indexOf("hide_fileds"),
+                    1,
+                );
+            }
+
+            console.log("hideFields", this.mockData.options);
+        },
     },
 };
 </script>
