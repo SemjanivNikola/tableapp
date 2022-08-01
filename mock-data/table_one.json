@@ -3,167 +3,200 @@
         {
             "id": 1,
             "type": "text",
-            "text": "Header 1"
+            "text": "Header 1",
+            "isHidden": false
         },
         {
             "id": 2,
             "type": "text",
-            "text": "Header 2"
+            "text": "Header 2",
+            "isHidden": false
         },
         {
             "id": 3,
             "type": "text",
-            "text": "Header 3"
+            "text": "Header 3",
+            "isHidden": false
         },
         {
             "id": 4,
             "type": "text",
-            "text": "Header 4"
+            "text": "Header 4",
+            "isHidden": false
         },
         {
             "id": 5,
             "type": "text",
-            "text": "Header 5"
+            "text": "Header 5",
+            "isHidden": false
         },
         {
             "id": 6,
             "type": "text",
-            "text": "Header 6"
+            "text": "Header 6",
+            "isHidden": false
         },
         {
             "id": 7,
             "type": "text",
-            "text": "Header 7"
+            "text": "Header 7",
+            "isHidden": false
         },
         {
             "id": 8,
             "type": "text",
-            "text": "Header 8"
+            "text": "Header 8",
+            "isHidden": false
         },
         {
             "id": 9,
             "type": "text",
-            "text": "Header 9"
+            "text": "Header 9",
+            "isHidden": false
         },
         {
             "id": 10,
             "type": "text",
-            "text": "Header 10"
+            "text": "Header 10",
+            "isHidden": false
         },
         {
             "id": 11,
             "type": "text",
-            "text": "Header 11"
+            "text": "Header 11",
+            "isHidden": false
         },
         {
             "id": 12,
             "type": "text",
-            "text": "Header 12"
+            "text": "Header 12",
+            "isHidden": false
         },
         {
             "id": 13,
             "type": "text",
-            "text": "Header 13"
+            "text": "Header 13",
+            "isHidden": false
         },
         {
             "id": 14,
             "type": "text",
-            "text": "Header 14"
+            "text": "Header 14",
+            "isHidden": false
         },
         {
             "id": 15,
             "type": "text",
-            "text": "Header 15"
+            "text": "Header 15",
+            "isHidden": false
         },
         {
             "id": 16,
             "type": "text",
-            "text": "Header 16"
+            "text": "Header 16",
+            "isHidden": false
         },
         {
             "id": 17,
             "type": "text",
-            "text": "Header 17"
+            "text": "Header 17",
+            "isHidden": false
         },
         {
             "id": 18,
             "type": "text",
-            "text": "Header 18"
+            "text": "Header 18",
+            "isHidden": false
         },
         {
             "id": 19,
             "type": "text",
-            "text": "Header 19"
+            "text": "Header 19",
+            "isHidden": false
         },
         {
             "id": 20,
             "type": "text",
-            "text": "Header 20"
+            "text": "Header 20",
+            "isHidden": false
         },
         {
             "id": 21,
             "type": "text",
-            "text": "Header 21"
+            "text": "Header 21",
+            "isHidden": false
         },
         {
             "id": 22,
             "type": "text",
-            "text": "Header 22"
+            "text": "Header 22",
+            "isHidden": false
         },
         {
             "id": 23,
             "type": "text",
-            "text": "Header 23"
+            "text": "Header 23",
+            "isHidden": false
         },
         {
             "id": 24,
             "type": "text",
-            "text": "Header 24"
+            "text": "Header 24",
+            "isHidden": false
         },
         {
             "id": 25,
             "type": "text",
-            "text": "Header 25"
+            "text": "Header 25",
+            "isHidden": false
         },
         {
             "id": 26,
             "type": "text",
-            "text": "Header 26"
+            "text": "Header 26",
+            "isHidden": false
         },
         {
             "id": 27,
             "type": "text",
-            "text": "Header 27"
+            "text": "Header 27",
+            "isHidden": false
         },
         {
             "id": 28,
             "type": "text",
-            "text": "Header 28"
+            "text": "Header 28",
+            "isHidden": false
         },
         {
             "id": 29,
             "type": "text",
-            "text": "Header 29"
+            "text": "Header 29",
+            "isHidden": false
         },
         {
             "id": 30,
             "type": "text",
-            "text": "Header 30"
+            "text": "Header 30",
+            "isHidden": false
         },
         {
             "id": 31,
             "type": "text",
-            "text": "Header 31"
+            "text": "Header 31",
+            "isHidden": false
         },
         {
             "id": 32,
             "type": "text",
-            "text": "Header 32"
+            "text": "Header 32",
+            "isHidden": false
         },
         {
             "id": 33,
             "type": "text",
-            "text": "Header 33"
+            "text": "Header 33",
+            "isHidden": false
         }
     ],
     "body": [
