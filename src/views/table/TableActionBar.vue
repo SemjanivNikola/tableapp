@@ -100,28 +100,48 @@ export default {
             this.shouldShowOptions5 = false;
         },
         handleHideFields () {
-            this.closeAllOptions();
-            this.shouldShowOptions1 = !this.shouldShowOptions1;
+            if (!this.shouldShowOptions1) {
+                this.closeAllOptions();
+                this.shouldShowOptions1 = !this.shouldShowOptions1;
+            } else {
+                this.closeAllOptions();
+            }
             console.log("Hide fields");
         },
         handleSort () {
-            this.closeAllOptions();
-            this.shouldShowOptions2 = !this.shouldShowOptions2;
+            if (!this.shouldShowOptions2) {
+                this.closeAllOptions();
+                this.shouldShowOptions2 = !this.shouldShowOptions2;
+            } else {
+                this.closeAllOptions();
+            }
             console.log("Sort");
         },
         handleFilter () {
-            this.closeAllOptions();
-            this.shouldShowOptions3 = !this.shouldShowOptions3;
+            if (!this.shouldShowOptions3) {
+                this.closeAllOptions();
+                this.shouldShowOptions3 = !this.shouldShowOptions3;
+            } else {
+                this.closeAllOptions();
+            }
             console.log("Filter");
         },
         handleShareView () {
-            this.closeAllOptions();
-            this.shouldShowOptions4 = !this.shouldShowOptions4;
+            if (!this.shouldShowOptions4) {
+                this.closeAllOptions();
+                this.shouldShowOptions4 = !this.shouldShowOptions4;
+            } else {
+                this.closeAllOptions();
+            }
             console.log("Sharing view");
         },
         handleTrash () {
-            this.closeAllOptions();
-            this.shouldShowOptions5 = !this.shouldShowOptions5;
+            if (!this.shouldShowOptions5) {
+                this.closeAllOptions();
+                this.shouldShowOptions5 = !this.shouldShowOptions5;
+            } else {
+                this.closeAllOptions();
+            }
             console.log("Trash");
         },
     },
