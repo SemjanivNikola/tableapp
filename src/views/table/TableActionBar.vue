@@ -23,30 +23,29 @@
         title="Filter"
         @onPress="handleFilter"
       >
-        <action-options
+        <!-- <action-options
           :is-shown="shouldShowOptions3"
           option-type="condition-list"
-        />
+        /> -->
       </action-bar-button>
 
       <action-bar-button
         title="Share View"
         @onPress="handleShareView"
       >
-        <action-options
+        <!-- <action-options
           :is-shown="shouldShowOptions4"
           option-type="modal"
-        />
+        /> -->
       </action-bar-button>
 
       <action-bar-button
         title="Trash"
         @onPress="handleTrash"
       >
-        <action-options
-          :is-shown="shouldShowOptions5"
-          option-type="modal"
-        />
+        <modal :is-shown="shouldShowOptions5">
+          <view-trash />
+        </modal>
       </action-bar-button>
     </div>
     <div>
@@ -73,13 +72,15 @@
 </template>
 
 <script>
-import ActionOptions from "@/components/ActionOptions.vue";
 import ActionBarButton from "./ActionBarButton.vue";
 import HideFieldsOption from "@/components/HideFieldsOption.vue";
 import SortOption from "@/components/SortOption.vue";
+import ViewTrash from "@/components/ViewTrash.vue";
+import Modal from "@/components/Modal.vue";
+
 export default {
     name: "Template",
-    components: { ActionBarButton, ActionOptions, HideFieldsOption, SortOption },
+    components: { ActionBarButton, HideFieldsOption, SortOption, ViewTrash, Modal },
     data () {
         return {
             title: "Hide fields",
@@ -143,7 +144,7 @@ export default {
             } else {
                 this.closeAllOptions();
             }
-            console.log("Trash");
+            console.log("Trash >> ", this.shouldShowOptions5);
         },
     },
 
