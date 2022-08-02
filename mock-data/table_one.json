@@ -992,19 +992,19 @@
         "sort": [
             {
                 "field": 2,
-                "direction": "2"
+                "direction": 1
             },
             {
                 "field": 3,
-                "direction": "1"
+                "direction": 0
             },
             {
                 "field": 5,
-                "direction": "1"
+                "direction": 0
             },
             {
                 "field": 9,
-                "direction": "1"
+                "direction": 0
             }
         ],
         "summary": [
