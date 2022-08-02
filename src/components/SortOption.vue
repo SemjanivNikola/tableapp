@@ -71,7 +71,7 @@
 import tableData from "../../mock-data/table_one.json";
 
 export default {
-    name: "ActionOptions",
+    name: "SortOption",
     props: {
         isShown: {
             type: Boolean,
@@ -81,7 +81,7 @@ export default {
     data () {
         return {
             mockData: tableData,
-            fields: tableData.header,
+            fields: [],
             select: null,
             sortSelect: null,
             sortOptions: null,
@@ -113,6 +113,18 @@ export default {
             deep: true,
         },
     },
+    beforeMount () {
+        const tableHead = JSON.parse(JSON.stringify(tableData.header));
+
+        if (tableData.options.sort.length > 0) {
+            let itemsRemoved = 0;
+            tableData.options.sort.forEach(item => {
+                tableHead.splice(item.field - itemsRemoved, 1);
+                itemsRemoved++;
+            });
+        }
+        this.fields = tableHead;
+    },
     methods: {
         handleInitialFieldPick (index) {
             this.select = this.fields[index].id;
@@ -122,25 +134,25 @@ export default {
             console.log(this.select);
         },
         handleHideFields (index) {
-            if (!this.mockData.header[index].isHidden) {
-                this.mockData.header[index].isHidden = true;
-                this.mockData.options.hideFields.push(index);
+            if (!tableData.header[index].isHidden) {
+                tableData.header[index].isHidden = true;
+                tableData.options.hideFields.push(index);
 
                 // If it's first field to be hidden add hide_fields option to summary
-                if (!this.mockData.options.summary.includes("hide_fileds")) {
-                    this.mockData.options.summary.push("hide_fileds");
+                if (!tableData.options.summary.includes("hide_fileds")) {
+                    tableData.options.summary.push("hide_fileds");
                 }
-            } else this.mockData.header[index].isHidden = false;
+            } else tableData.header[index].isHidden = false;
 
             // If the last index is removed, remove the hide_fileds option
-            if (this.mockData.options.hideFields.length === 0) {
-                this.mockData.options.summary.splice(
-                    this.mockData.options.summary.indexOf("hide_fileds"),
+            if (tableData.options.hideFields.length === 0) {
+                tableData.options.summary.splice(
+                    tableData.options.summary.indexOf("hide_fileds"),
                     1,
                 );
             }
 
-            console.log("hideFields", this.mockData.options);
+            console.log("hideFields", tableData.options);
         },
     },
 };
