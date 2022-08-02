@@ -24,9 +24,10 @@
         >
           <div class="flex-row">
             <v-select
-              v-model="select.text"
+              v-model="select"
               :items="fields"
-              label="Field"
+              item-text="text"
+              item-value="id"
             />
           </div>
         </v-col>
@@ -38,7 +39,10 @@
         >
           <div class="flex-row">
             <v-select
+              v-model="sortSelect"
               :items="sortOptions"
+              item-text="text"
+              item-value="value"
               label="Options"
             />
           </div>
@@ -78,11 +82,12 @@ export default {
         return {
             mockData: tableData,
             fields: tableData.header,
+            select: null,
+            sortSelect: null,
+            sortOptions: null,
             textSort: [{ text: "A -> Z", value: 1 }, { text: "Z -> A", value: 2 }],
             numberSort: [{ text: "First -> Last", value: 1 }, { text: "Last -> First", value: 2 }],
             statusSort: [{ text: "1 -> 9", value: 1 }, { text: "9 -> 1", value: 2 }],
-            select: null,
-            sortOptions: null,
         };
     },
     computed: {
@@ -92,17 +97,28 @@ export default {
     },
     watch: {
         select: {
+            // val represents saved obj.id - ID is autoincrement so we can use it to get the correct obj.type
             handler (val) {
-                console.log(val);
+                const item = this.fields[val - 1];
+
+                if (item.type === "text") {
+                    this.sortOptions = this.textSort;
+                } else if (item.type === "number") {
+                    this.sortOptions = this.numberSort;
+                } else if (item.type === "status") {
+                    this.sortOptions = this.statusSort;
+                }
+                this.sortSelect = this.sortOptions[0];
             },
             deep: true,
         },
     },
     methods: {
         handleInitialFieldPick (index) {
-            this.select = this.fields[index];
+            this.select = this.fields[index].id;
         },
         handleSort () {
+            // TODO: sort
             console.log(this.select);
         },
         handleHideFields (index) {
