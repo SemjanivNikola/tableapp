@@ -2,19 +2,19 @@
     "header": [
         {
             "id": 1,
-            "type": "text",
+            "type": "status",
             "text": "Header 1",
             "isHidden": false
         },
         {
             "id": 2,
-            "type": "text",
+            "type": "status",
             "text": "Header 2",
             "isHidden": false
         },
         {
             "id": 3,
-            "type": "text",
+            "type": "number",
             "text": "Header 3",
             "isHidden": false
         },
@@ -989,8 +989,19 @@
         "hideFields": [
             1
         ],
+        "sort": [
+            {
+                "field": 2,
+                "direction": "2"
+            },
+            {
+                "field": 3,
+                "direction": "1"
+            }
+        ],
         "summary": [
-            "hide_fileds"
+            "hide_fileds",
+            "sort"
         ]
     }
 }
