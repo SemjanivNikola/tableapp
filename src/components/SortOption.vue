@@ -5,13 +5,10 @@
   >
     <h6>Sort by</h6>
     <div v-if="select.length === 0">
-      <div
-        v-for="(header, index) in fields"
-        :key="header.id"
-        @click="handleInitialFieldPick(index)"
-      >
-        {{ header.text }}
-      </div>
+      <table-field-picker
+        :fields="fields"
+        :handle-field-pick="handleFieldPick"
+      />
     </div>
 
     <div v-else>
@@ -21,6 +18,21 @@
         :initial="item"
         :fields="fields"
       />
+
+      <div style="position: relative;">
+        <v-btn
+          block
+          @click="showPicker = !showPicker"
+        >
+          Add field
+        </v-btn>
+
+        <table-field-picker
+          v-if="showPicker"
+          :fields="fields"
+          :handle-field-pick="handleFieldPick"
+        />
+      </div>
 
       <v-btn
         block
@@ -36,9 +48,30 @@
 import tableData from "../../mock-data/table_one.json";
 import SortOptionItem from "./SortOptionItem.vue";
 
+const TableFieldPicker = {
+    name: "table-field-picker",
+    props: {
+        fields: {
+            type: Array,
+            required: true,
+        },
+        handleFieldPick: {
+            type: Function,
+            required: true,
+        },
+    },
+    template: `<div><div
+        v-for="(header, index) in fields"
+        :key="header.id"
+        @click="handleFieldPick(index)"
+      >
+        {{ header.text }}
+      </div></div>`,
+};
+
 export default {
     name: "SortOption",
-    components: { SortOptionItem },
+    components: { SortOptionItem, TableFieldPicker },
     props: {
         isShown: {
             type: Boolean,
@@ -49,6 +82,7 @@ export default {
         return {
             fields: tableData.header,
             select: [],
+            showPicker: false,
         };
     },
     computed: {
@@ -62,8 +96,15 @@ export default {
         }, this);
     },
     methods: {
-        handleInitialFieldPick (index) {
-            this.select = this.fields[index].id;
+        handleFieldPick (index) {
+            this.select.push({
+                field: index,
+                sort: 1,
+            });
+
+            if (this.showPicker) {
+                this.showPicker = false;
+            }
         },
         handleSort () {
             // TODO: sort
