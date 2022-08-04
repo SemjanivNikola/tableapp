@@ -60,11 +60,13 @@ export default {
     transition: opacity 0.3s ease;
 }
 .wrapper {
-  display: table-cell;
-  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 .container {
-  width: 300px;
+  max-width: 950px;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
