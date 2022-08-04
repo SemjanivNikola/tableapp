@@ -6,7 +6,7 @@
         "icon": "book",
         "icon_color": "#fff",
         "background_color": "#f80182",
-        "recent_table": null,
+        "recent_table_id": 1,
         "table_list": [
             {
                 "table_id": 1,
@@ -50,7 +50,7 @@
         "icon": "suitcase",
         "icon_color": "#fff",
         "background_color": "#9101f8",
-        "recent_table_id": null,
+        "recent_table_id": 1,
         "table_list": [
             {
                 "table_id": 1,
