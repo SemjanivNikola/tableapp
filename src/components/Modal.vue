@@ -36,7 +36,7 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.26);
     z-index: 999;
     transition: opacity 0.3s ease;
 }
@@ -48,6 +48,7 @@ export default {
 }
 .container {
   max-width: 950px;
+  min-height: 350px;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
