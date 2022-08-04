@@ -51,7 +51,7 @@ export default {
   max-width: 950px;
   min-height: 300px;
   margin: 0px auto;
-  padding: 16px;
+  padding: 16px 0;
   background-color: #fff;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
