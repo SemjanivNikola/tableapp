@@ -22,6 +22,39 @@
       </div>
     </div>
 
+    <!-- BODY -->
+    <div class="body-wrapper">
+      <ul class="item-list">
+        <li
+          v-for="item in tableData.trash"
+          :key="item.id"
+          class="list-item"
+        >
+          <div class="item-content">
+            <h4 class="item-title">
+              You deleted a {{ item.type }} from {{ item.from }}
+            </h4>
+            <div class="item-date">
+              {{ item.deleted_at }}
+            </div>
+            <div class="item-subtitle">
+              {{ item.name }}
+            </div>
+          </div>
+          <div class="item-actions">
+            <button
+              class="btn btn-fill"
+              @click="$emit('restore', item)"
+            >
+              Restore
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-placeholder" />
+
     <!-- FOOTER -->
     <div class="footer">
       <div class="footer-inner">
@@ -42,10 +75,15 @@
 </template>
 
 <script>
-// import tableData from "../../mock-data/table_one.json";
+import tableData from "../../mock-data/table_one.json";
 
 export default {
     name: "ViewTrash",
+    data () {
+        return {
+            tableData,
+        };
+    },
 };
 </script>
 
@@ -63,20 +101,23 @@ p {
 }
 .header {
   justify-content: space-between;
+  margin: 0 16px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #DCDCDC;
+  border-bottom: 2px solid #DCDCDC;
 }
 .footer {
   position: absolute;
   bottom: 0;
   left: 0;
   padding-top: 16px;
-  border-top: 1px solid #DCDCDC;
+  margin: 0 16px;
+  background-color: #fff;
+  border-top: 2px solid #DCDCDC;
 }
 .footer-inner {
   padding: 8px;
-   background-color: #DCDCDC;
-   border-radius: 6px;
+  background-color: #DCDCDC;
+  border-radius: 6px;
 }
 .footer-inner .icon {
   width: 22px;
@@ -86,6 +127,9 @@ p {
 .footer-inner p {
   font-size: 14px;
   color: #696969;
+}
+.footer-placeholder {
+  height: 76px;
 }
 .spacer-md {
   height: 16px;
@@ -97,5 +141,25 @@ p {
 }
 .btn-fill {
   background-color: #DCDCDC;
+}
+
+.body-wrapper {
+  overflow-y: auto;
+  max-height: 350px;
+  padding: 0 16px;
+}
+.item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.item-list .list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid #DCDCDC;
+}
+.item-list .list-item:last-child {
+  border-bottom: none;
 }
 </style>
