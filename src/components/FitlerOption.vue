@@ -3,27 +3,23 @@
     class="wrapper"
     :class="getStatus"
   >
-    <div v-if="!filter">
+    <div v-if="filterList.length === 0">
       <p>No filter conditions are applied to this view</p>
     </div>
 
     <div v-else>
-      <span>Where</span>
-      <v-select
-        v-model="selected"
-        :items="fields"
-        item-value="id"
+      <filter-option-item
+        v-for="(item, index) in filterList"
+        :key="index"
+        :initial="item"
+        :fields="fields"
       />
-      <v-select
-        v-model="condition"
-        :items="CONDITION_LIST"
-        item-value="value"
-        item-text="label"
-      />
-      <v-text-field />
     </div>
 
-    <button class="btn">
+    <button
+      class="btn"
+      @click="addFilter"
+    >
       + Add condition
     </button>
   </div>
@@ -31,19 +27,15 @@
 
 <script>
 import tableData from "../../mock-data/table_one.json";
-
-const CONDITION_LIST = [
-    { value: 1, label: "contains" },
-    { value: 2, label: "does not contain" },
-    { value: 3, label: "is" },
-    { value: 4, label: "is not" },
-    { value: 5, label: "is empty" },
-    { value: 6, label: "is not empty" },
-];
+import FilterOptionItem from "./FilterOptionItem.vue";
 
 export default {
     name: "FilterOption",
+    components: {
+        FilterOptionItem,
+    },
     props: {
+
         isShown: {
             type: Boolean,
             required: true,
@@ -52,14 +44,32 @@ export default {
     data () {
         return {
             fields: tableData.header,
-            selected: this.fields[0].id,
-            condition: CONDITION_LIST[0].value,
+            filterList: [],
             showPicker: false,
         };
     },
     computed: {
         getStatus () {
             return this.isShown ? "show" : "hidden";
+        },
+    },
+    methods: {
+        addFilter () {
+            if (this.filterList.length === 0) {
+                this.filterList.push({
+                    logic: "where",
+                    field: null,
+                    condition: null,
+                    value: "",
+                });
+            } else {
+                this.filterList.push({
+                    logic: "and",
+                    field: null,
+                    condition: null,
+                    value: "",
+                });
+            }
         },
     },
 };
