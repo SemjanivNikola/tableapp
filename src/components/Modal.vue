@@ -5,26 +5,7 @@
   >
     <div class="wrapper">
       <div class="container">
-        <!-- HEADER -->
-        <div class="header">
-          <slot name="header">
-            Default header
-          </slot>
-        </div>
-
-        <!-- BODY -->
-        <div class="body">
-          <slot name="body">
-            Default body
-          </slot>
-        </div>
-
-        <!-- FOOTER -->
-        <div class="footer">
-          <slot name="footer">
-            Default footer
-          </slot>
-        </div>
+        <slot />
       </div>
     </div>
   </div>
