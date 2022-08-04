@@ -1017,6 +1017,38 @@
             "from": "Workspace 1",
             "deleted_at": "2020-01-01 00:00:00",
             "name": "Table test"
+        },
+        {
+            "id": "39",
+            "index": "5",
+            "type": "record",
+            "from": "Table 1",
+            "deleted_at": "2020-01-01 00:00:00",
+            "name": "Record 1"
+        },
+        {
+            "id": "41",
+            "index": "5",
+            "type": "field",
+            "from": "Table 1",
+            "deleted_at": "2020-01-01 00:00:00",
+            "name": "Field/column 1"
+        },
+        {
+            "id": "3",
+            "index": "1",
+            "type": "view",
+            "from": "Table 1",
+            "deleted_at": "2020-01-01 00:00:00",
+            "name": "Test view 1"
+        },
+        {
+            "id": "4",
+            "index": "1",
+            "type": "table",
+            "from": "Workspace 1",
+            "deleted_at": "2020-01-01 00:00:00",
+            "name": "Table test"
         }
     ],
     "options": {
