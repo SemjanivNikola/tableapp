@@ -985,6 +985,32 @@
             }
         ]
     ],
+    "trash": [
+        {
+            "type": "record",
+            "from": "Table 1",
+            "deleted_at": "2020-01-01 00:00:00",
+            "name": "Record 1"
+        },
+        {
+            "type": "field",
+            "from": "Table 1",
+            "deleted_at": "2020-01-01 00:00:00",
+            "name": "Field/column 1"
+        },
+        {
+            "type": "view",
+            "from": "Table 1",
+            "deleted_at": "2020-01-01 00:00:00",
+            "name": "Test view 1"
+        },
+        {
+            "type": "table",
+            "from": "Workspace 1",
+            "deleted_at": "2020-01-01 00:00:00",
+            "name": "Table test"
+        }
+    ],
     "options": {
         "hideFields": [
             1
