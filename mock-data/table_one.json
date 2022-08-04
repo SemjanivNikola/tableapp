@@ -1073,6 +1073,14 @@
                 "direction": 0
             }
         ],
+        "filter": [
+            {
+                "logic": "where",
+                "field": 3,
+                "condition": 4,
+                "value": "Body 11"
+            }
+        ],
         "summary": [
             "hide_fileds",
             "sort"
