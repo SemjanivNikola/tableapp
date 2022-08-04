@@ -26,8 +26,8 @@
     <div class="body-wrapper">
       <ul class="item-list">
         <li
-          v-for="item in tableData.trash"
-          :key="item.id"
+          v-for="(item, index) in tableData.trash"
+          :key="index"
           class="list-item"
         >
           <div class="item-content">
