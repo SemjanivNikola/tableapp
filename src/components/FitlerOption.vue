@@ -53,23 +53,19 @@ export default {
             return this.isShown ? "show" : "hidden";
         },
     },
+    beforeMount () {
+        tableData.options.filter.forEach(item => {
+            this.filterList.push(item);
+        }, this);
+    },
     methods: {
         addFilter () {
-            if (this.filterList.length === 0) {
-                this.filterList.push({
-                    logic: "where",
-                    field: null,
-                    condition: null,
-                    value: "",
-                });
-            } else {
-                this.filterList.push({
-                    logic: "and",
-                    field: null,
-                    condition: null,
-                    value: "",
-                });
-            }
+            this.filterList.push({
+                logic: this.filterList.length === 0 ? "where" : "and",
+                field: null,
+                condition: null,
+                value: "",
+            });
         },
     },
 };
