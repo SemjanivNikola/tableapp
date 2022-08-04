@@ -1,0 +1,71 @@
+[
+    {
+        "id": 1,
+        "title": "Workspace One",
+        "description": "This is workspace description. Apparently for testing. This field is optional.",
+        "icon": "book",
+        "icon_color": "#fff",
+        "background_color": "#f80182",
+        "recent_table_id": 1,
+        "table_list": [
+            {
+                "table_id": 1,
+                "table_name": "Table One"
+            },
+            {
+                "table_id": 2,
+                "table_name": "Table Two"
+            },
+            {
+                "table_id": 3,
+                "table_name": "Table Three"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Workspace Two",
+        "description": "This is workspace description. Apparently for testing. This field is optional.",
+        "icon": "suitcase",
+        "icon_color": "#fff",
+        "background_color": "#9101f8",
+        "recent_table_id": 2,
+        "table_list": [
+            {
+                "table_id": 1,
+                "table_name": "Table Four"
+            },
+            {
+                "table_id": 2,
+                "table_name": "Table Five"
+            },
+            {
+                "table_id": 3,
+                "table_name": "Table Six"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Workspace Three",
+        "description": "This is workspace description. Apparently for testing. This field is optional.",
+        "icon": "pen",
+        "icon_color": "#fff",
+        "background_color": "#f85301",
+        "recent_table_id": 3,
+        "table_list": [
+            {
+                "table_id": 1,
+                "table_name": "Table Seen"
+            },
+            {
+                "table_id": 2,
+                "table_name": "Table Eight"
+            },
+            {
+                "table_id": 3,
+                "table_name": "Table Ten"
+            }
+        ]
+    }
+]
