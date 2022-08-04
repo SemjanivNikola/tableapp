@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="relative">
     <div class="header">
       <div class="flex-row">
         <h3>
@@ -50,6 +50,10 @@ export default {
 </script>
 
 <style scoped>
+.relative {
+    position: relative;
+    min-height: inherit;
+}
 p {
   margin: 0;
 }
@@ -63,8 +67,11 @@ p {
   border-bottom: 1px solid #DCDCDC;
 }
 .footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   padding-top: 16px;
-border-top: 1px solid #DCDCDC;
+  border-top: 1px solid #DCDCDC;
 }
 .footer-inner {
   padding: 8px;
