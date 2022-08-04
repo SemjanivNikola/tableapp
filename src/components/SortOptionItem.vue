@@ -88,12 +88,12 @@ export default {
         this.selectSortOptByType(this.selected.type);
     },
     methods: {
-        selectSortOptByType () {
-            if (this.selected.type === SortOption.TEXT) {
+        selectSortOptByType (type) {
+            if (type === SortOption.TEXT) {
                 this.sortOptions = TEXT_SORT;
-            } else if (this.selected.type === SortOption.NUMBER) {
+            } else if (type === SortOption.NUMBER) {
                 this.sortOptions = NUMBER_SORT;
-            } else if (this.selected.type === SortOption.STATUS) {
+            } else if (type === SortOption.STATUS) {
                 this.sortOptions = STATUS_SORT;
             }
 
