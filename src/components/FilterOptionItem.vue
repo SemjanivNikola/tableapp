@@ -91,9 +91,9 @@ export default {
     data () {
         return {
             logic: this.initial.logic,
-            field: [],
-            condition: [],
-            value: null,
+            field: this.initial.field,
+            condition: this.initial.condition,
+            value: this.initial.value,
             conditionOptions: [],
             LOGIC_CONDITION_OPTIONS,
         };
@@ -110,7 +110,11 @@ export default {
         },
     },
     beforeMount () {
-        this.field = this.fields[0].id;
+        if (!this.initial.field) {
+            this.field = this.fields[0].id;
+        } else {
+            this.selectSortOptByType(this.fields[this.initial.field - 1].type);
+        }
     },
     methods: {
         selectSortOptByType (type) {
