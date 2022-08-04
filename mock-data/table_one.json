@@ -987,24 +987,32 @@
     ],
     "trash": [
         {
+            "id": "38",
+            "index": "5",
             "type": "record",
             "from": "Table 1",
             "deleted_at": "2020-01-01 00:00:00",
             "name": "Record 1"
         },
         {
+            "id": "42",
+            "index": "5",
             "type": "field",
             "from": "Table 1",
             "deleted_at": "2020-01-01 00:00:00",
             "name": "Field/column 1"
         },
         {
+            "id": "2",
+            "index": "1",
             "type": "view",
             "from": "Table 1",
             "deleted_at": "2020-01-01 00:00:00",
             "name": "Test view 1"
         },
         {
+            "id": "3",
+            "index": "1",
             "type": "table",
             "from": "Workspace 1",
             "deleted_at": "2020-01-01 00:00:00",
