@@ -41,10 +41,11 @@ export default {
     transition: opacity 0.3s ease;
 }
 .wrapper {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  padding: 24px;
 }
 .container {
   max-width: 950px;
