@@ -23,10 +23,9 @@
         title="Filter"
         @onPress="handleFilter"
       >
-        <!-- <action-options
+        <fitler-option
           :is-shown="shouldShowOptions3"
-          option-type="condition-list"
-        /> -->
+        />
       </action-bar-button>
 
       <action-bar-button
@@ -77,10 +76,11 @@ import HideFieldsOption from "@/components/HideFieldsOption.vue";
 import SortOption from "@/components/SortOption.vue";
 import ViewTrash from "@/components/ViewTrash.vue";
 import Modal from "@/components/Modal.vue";
+import FitlerOption from "@/components/FitlerOption.vue";
 
 export default {
     name: "Template",
-    components: { ActionBarButton, HideFieldsOption, SortOption, ViewTrash, Modal },
+    components: { ActionBarButton, HideFieldsOption, SortOption, ViewTrash, Modal, FitlerOption },
     data () {
         return {
             title: "Hide fields",
