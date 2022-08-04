@@ -202,111 +202,13 @@
     "body": [
         [
             {
-                "value": "Body 1"
+                "value": "todo"
             },
             {
-                "value": "Body 2"
+                "value": "done"
             },
             {
-                "value": "Body 3"
-            },
-            {
-                "value": "Body 4"
-            },
-            {
-                "value": "Body 5"
-            },
-            {
-                "value": "Body 6"
-            },
-            {
-                "value": "Body 7"
-            },
-            {
-                "value": "Body 8"
-            },
-            {
-                "value": "Body 9"
-            },
-            {
-                "value": "Body 10"
-            },
-            {
-                "value": "Body 11"
-            },
-            {
-                "value": "Body 12"
-            },
-            {
-                "value": "Body 13"
-            },
-            {
-                "value": "Body 14"
-            },
-            {
-                "value": "Body 15"
-            },
-            {
-                "value": "Body 16"
-            },
-            {
-                "value": "Body 17"
-            },
-            {
-                "value": "Body 18"
-            },
-            {
-                "value": "Body 19"
-            },
-            {
-                "value": "Body 20"
-            },
-            {
-                "value": "Body 21"
-            },
-            {
-                "value": "Body 22"
-            },
-            {
-                "value": "Body 23"
-            },
-            {
-                "value": "Body 24"
-            },
-            {
-                "value": "Body 25"
-            },
-            {
-                "value": "Body 26"
-            },
-            {
-                "value": "Body 27"
-            },
-            {
-                "value": "Body 28"
-            },
-            {
-                "value": "Body 29"
-            },
-            {
-                "value": "Body 30"
-            },
-            {
-                "value": "Body 31"
-            },
-            {
-                "value": "Body 32"
-            }
-        ],
-        [
-            {
-                "value": "Body 1"
-            },
-            {
-                "value": "Body 2"
-            },
-            {
-                "value": "Body 3"
+                "value": 3
             },
             {
                 "value": "Body 4"
@@ -398,111 +300,13 @@
         ],
         [
             {
-                "value": "Body 1"
+                "value": "todo"
             },
             {
-                "value": "Body 2"
+                "value": "done"
             },
             {
-                "value": "Body 3"
-            },
-            {
-                "value": "Body 4"
-            },
-            {
-                "value": "Body 5"
-            },
-            {
-                "value": "Body 6"
-            },
-            {
-                "value": "Body 7"
-            },
-            {
-                "value": "Body 8"
-            },
-            {
-                "value": "Body 9"
-            },
-            {
-                "value": "Body 10"
-            },
-            {
-                "value": "Body 11"
-            },
-            {
-                "value": "Body 12"
-            },
-            {
-                "value": "Body 13"
-            },
-            {
-                "value": "Body 14"
-            },
-            {
-                "value": "Body 15"
-            },
-            {
-                "value": "Body 16"
-            },
-            {
-                "value": "Body 17"
-            },
-            {
-                "value": "Body 18"
-            },
-            {
-                "value": "Body 19"
-            },
-            {
-                "value": "Body 20"
-            },
-            {
-                "value": "Body 21"
-            },
-            {
-                "value": "Body 22"
-            },
-            {
-                "value": "Body 23"
-            },
-            {
-                "value": "Body 24"
-            },
-            {
-                "value": "Body 25"
-            },
-            {
-                "value": "Body 26"
-            },
-            {
-                "value": "Body 27"
-            },
-            {
-                "value": "Body 28"
-            },
-            {
-                "value": "Body 29"
-            },
-            {
-                "value": "Body 30"
-            },
-            {
-                "value": "Body 31"
-            },
-            {
-                "value": "Body 32"
-            }
-        ],
-        [
-            {
-                "value": "Body 1"
-            },
-            {
-                "value": "Body 2"
-            },
-            {
-                "value": "Body 3"
+                "value": 3
             },
             {
                 "value": "Body 4"
@@ -594,111 +398,13 @@
         ],
         [
             {
-                "value": "Body 1"
+                "value": "todo"
             },
             {
-                "value": "Body 2"
+                "value": "done"
             },
             {
-                "value": "Body 3"
-            },
-            {
-                "value": "Body 4"
-            },
-            {
-                "value": "Body 5"
-            },
-            {
-                "value": "Body 6"
-            },
-            {
-                "value": "Body 7"
-            },
-            {
-                "value": "Body 8"
-            },
-            {
-                "value": "Body 9"
-            },
-            {
-                "value": "Body 10"
-            },
-            {
-                "value": "Body 11"
-            },
-            {
-                "value": "Body 12"
-            },
-            {
-                "value": "Body 13"
-            },
-            {
-                "value": "Body 14"
-            },
-            {
-                "value": "Body 15"
-            },
-            {
-                "value": "Body 16"
-            },
-            {
-                "value": "Body 17"
-            },
-            {
-                "value": "Body 18"
-            },
-            {
-                "value": "Body 19"
-            },
-            {
-                "value": "Body 20"
-            },
-            {
-                "value": "Body 21"
-            },
-            {
-                "value": "Body 22"
-            },
-            {
-                "value": "Body 23"
-            },
-            {
-                "value": "Body 24"
-            },
-            {
-                "value": "Body 25"
-            },
-            {
-                "value": "Body 26"
-            },
-            {
-                "value": "Body 27"
-            },
-            {
-                "value": "Body 28"
-            },
-            {
-                "value": "Body 29"
-            },
-            {
-                "value": "Body 30"
-            },
-            {
-                "value": "Body 31"
-            },
-            {
-                "value": "Body 32"
-            }
-        ],
-        [
-            {
-                "value": "Body 1"
-            },
-            {
-                "value": "Body 2"
-            },
-            {
-                "value": "Body 3"
+                "value": 3
             },
             {
                 "value": "Body 4"
@@ -790,13 +496,13 @@
         ],
         [
             {
-                "value": "Body 1"
+                "value": "todo"
             },
             {
-                "value": "Body 2"
+                "value": "done"
             },
             {
-                "value": "Body 3"
+                "value": 3
             },
             {
                 "value": "Body 4"
@@ -888,13 +594,307 @@
         ],
         [
             {
-                "value": "Body 1"
+                "value": "todo"
             },
             {
-                "value": "Body 2"
+                "value": "done"
             },
             {
-                "value": "Body 3"
+                "value": 3
+            },
+            {
+                "value": "Body 4"
+            },
+            {
+                "value": "Body 5"
+            },
+            {
+                "value": "Body 6"
+            },
+            {
+                "value": "Body 7"
+            },
+            {
+                "value": "Body 8"
+            },
+            {
+                "value": "Body 9"
+            },
+            {
+                "value": "Body 10"
+            },
+            {
+                "value": "Body 11"
+            },
+            {
+                "value": "Body 12"
+            },
+            {
+                "value": "Body 13"
+            },
+            {
+                "value": "Body 14"
+            },
+            {
+                "value": "Body 15"
+            },
+            {
+                "value": "Body 16"
+            },
+            {
+                "value": "Body 17"
+            },
+            {
+                "value": "Body 18"
+            },
+            {
+                "value": "Body 19"
+            },
+            {
+                "value": "Body 20"
+            },
+            {
+                "value": "Body 21"
+            },
+            {
+                "value": "Body 22"
+            },
+            {
+                "value": "Body 23"
+            },
+            {
+                "value": "Body 24"
+            },
+            {
+                "value": "Body 25"
+            },
+            {
+                "value": "Body 26"
+            },
+            {
+                "value": "Body 27"
+            },
+            {
+                "value": "Body 28"
+            },
+            {
+                "value": "Body 29"
+            },
+            {
+                "value": "Body 30"
+            },
+            {
+                "value": "Body 31"
+            },
+            {
+                "value": "Body 32"
+            }
+        ],
+        [
+            {
+                "value": "todo"
+            },
+            {
+                "value": "done"
+            },
+            {
+                "value": 3
+            },
+            {
+                "value": "Body 4"
+            },
+            {
+                "value": "Body 5"
+            },
+            {
+                "value": "Body 6"
+            },
+            {
+                "value": "Body 7"
+            },
+            {
+                "value": "Body 8"
+            },
+            {
+                "value": "Body 9"
+            },
+            {
+                "value": "Body 10"
+            },
+            {
+                "value": "Body 11"
+            },
+            {
+                "value": "Body 12"
+            },
+            {
+                "value": "Body 13"
+            },
+            {
+                "value": "Body 14"
+            },
+            {
+                "value": "Body 15"
+            },
+            {
+                "value": "Body 16"
+            },
+            {
+                "value": "Body 17"
+            },
+            {
+                "value": "Body 18"
+            },
+            {
+                "value": "Body 19"
+            },
+            {
+                "value": "Body 20"
+            },
+            {
+                "value": "Body 21"
+            },
+            {
+                "value": "Body 22"
+            },
+            {
+                "value": "Body 23"
+            },
+            {
+                "value": "Body 24"
+            },
+            {
+                "value": "Body 25"
+            },
+            {
+                "value": "Body 26"
+            },
+            {
+                "value": "Body 27"
+            },
+            {
+                "value": "Body 28"
+            },
+            {
+                "value": "Body 29"
+            },
+            {
+                "value": "Body 30"
+            },
+            {
+                "value": "Body 31"
+            },
+            {
+                "value": "Body 32"
+            }
+        ],
+        [
+            {
+                "value": "todo"
+            },
+            {
+                "value": "done"
+            },
+            {
+                "value": 3
+            },
+            {
+                "value": "Body 4"
+            },
+            {
+                "value": "Body 5"
+            },
+            {
+                "value": "Body 6"
+            },
+            {
+                "value": "Body 7"
+            },
+            {
+                "value": "Body 8"
+            },
+            {
+                "value": "Body 9"
+            },
+            {
+                "value": "Body 10"
+            },
+            {
+                "value": "Body 11"
+            },
+            {
+                "value": "Body 12"
+            },
+            {
+                "value": "Body 13"
+            },
+            {
+                "value": "Body 14"
+            },
+            {
+                "value": "Body 15"
+            },
+            {
+                "value": "Body 16"
+            },
+            {
+                "value": "Body 17"
+            },
+            {
+                "value": "Body 18"
+            },
+            {
+                "value": "Body 19"
+            },
+            {
+                "value": "Body 20"
+            },
+            {
+                "value": "Body 21"
+            },
+            {
+                "value": "Body 22"
+            },
+            {
+                "value": "Body 23"
+            },
+            {
+                "value": "Body 24"
+            },
+            {
+                "value": "Body 25"
+            },
+            {
+                "value": "Body 26"
+            },
+            {
+                "value": "Body 27"
+            },
+            {
+                "value": "Body 28"
+            },
+            {
+                "value": "Body 29"
+            },
+            {
+                "value": "Body 30"
+            },
+            {
+                "value": "Body 31"
+            },
+            {
+                "value": "Body 32"
+            }
+        ],
+        [
+            {
+                "value": "todo"
+            },
+            {
+                "value": "done"
+            },
+            {
+                "value": 3
             },
             {
                 "value": "Body 4"
@@ -1083,7 +1083,8 @@
         ],
         "summary": [
             "hide_fileds",
-            "sort"
+            "sort",
+            "filter"
         ]
     }
 }
