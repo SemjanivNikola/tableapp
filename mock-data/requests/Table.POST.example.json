@@ -1,0 +1,94 @@
+{
+    "workspace_id": 1,
+    "id": 3,
+    "title": "New Table",
+    "recent_table": 1,
+    "view_list": [
+        {
+            "id": 1,
+            "view_name": "View One"
+        }
+    ],
+    "selected_view_id": 1,
+    "view": {
+        "id": 3,
+        "title": "The Lord of the Rings",
+        "header": [
+            {
+                "id": 1,
+                "type": "text",
+                "text": "Name",
+                "isHidden": false
+            },
+            {
+                "id": 2,
+                "type": "text",
+                "text": "Note",
+                "isHidden": false
+            },
+            {
+                "id": 3,
+                "type": "status",
+                "text": "Status",
+                "isHidden": false
+            },
+            {
+                "id": 4,
+                "type": "text",
+                "text": "Email",
+                "isHidden": false
+            }
+        ],
+        "body": [
+            [
+                {
+                    "value": ""
+                },
+                {
+                    "value": ""
+                },
+                {
+                    "value": ""
+                },
+                {
+                    "value": ""
+                }
+            ],
+            [
+                {
+                    "value": ""
+                },
+                {
+                    "value": ""
+                },
+                {
+                    "value": ""
+                },
+                {
+                    "value": ""
+                }
+            ],
+            [
+                {
+                    "value": ""
+                },
+                {
+                    "value": ""
+                },
+                {
+                    "value": ""
+                },
+                {
+                    "value": ""
+                }
+            ]
+        ],
+        "trash": [],
+        "options": {
+            "hideFields": [],
+            "sort": [],
+            "filter": [],
+            "summary": []
+        }
+    }
+}
