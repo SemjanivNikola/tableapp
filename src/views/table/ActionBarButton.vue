@@ -33,7 +33,8 @@ export default {
     },
     methods: {
         toggleIsActive () {
-            console.log("yiis");
+            // TODO: Connect isActive state to the actual state of the button.
+            // Now it's only a mock by btn clicks.
             this.isActive = !this.isActive;
             this.$emit("onPress");
         },
