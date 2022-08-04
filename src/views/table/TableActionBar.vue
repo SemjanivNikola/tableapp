@@ -44,7 +44,7 @@
         @onPress="handleTrash"
       >
         <modal :is-shown="shouldShowOptions5">
-          <view-trash />
+          <view-trash @close="shouldShowOptions5 = false" />
         </modal>
       </action-bar-button>
     </div>
