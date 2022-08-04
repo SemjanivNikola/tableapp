@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import tableData from "../../mock-data/table_one.json";
+import tableData from "../../mock-data/grid_view_one.json";
 
 export default {
     name: "ActionOptions",
