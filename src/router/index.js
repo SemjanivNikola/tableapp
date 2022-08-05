@@ -1,13 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Workspace from "../screens/Workspace.vue";
-// import Home from "../views/home/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
     {
         path: "/",
+        alias: "/workspace=:id",
         name: "Workspace",
         component: Workspace,
     },
