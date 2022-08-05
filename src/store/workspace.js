@@ -34,6 +34,7 @@ export default {
         get: (state) => (id) => {
             return state.map.find((workspace) => workspace.id === id);
         },
+
     },
     actions: {
         async readWorkspaceList ({ commit }) {
@@ -47,18 +48,18 @@ export default {
                     console.warn(err);
                 });
         },
-        async reateWorkspace ({ commit }, payload) {
-            try {
-                const res = await axios.get("/api/workspace", payload);
+        createWorkspace ({ commit }, payload) {
+            return axios.get("/api/workspace", payload).then((res) => {
                 const { view_list, ...otherProps } = res.data;
 
                 commit("addNewWorkspace", otherProps);
                 commit("view/addNewView", view_list, { root: true });
+
                 return res.data;
-            } catch (err) {
-                console.warn(err);
-                return "error";
-            }
+            }).
+                catch((err) => {
+                    console.warn(err);
+                });
         },
     },
     modules: {

@@ -7,9 +7,8 @@ import axios from "axios";
  */
 export default {
     state: {
-        title: "THIS IS GRID VIEW",
         map: [],
-        selectedView: null,
+        selectedTable: null,
     },
     mutations: {
         setViewList (state, payload) {
@@ -19,14 +18,14 @@ export default {
 
             state.map = payload;
         },
-        addNewView (state, payload) {
+        addNewTable (state, payload) {
             state.map.push(payload);
         },
     },
     actions: {
-        createView ({ commit }, payload) {
-            return axios.post("/api/view", payload).then((res) => {
-                commit("addNewView", res.data);
+        createTable ({ commit }, payload) {
+            return axios.post("/api/table", payload).then((res) => {
+                commit("addNewTable", res.data);
                 return res.data;
             }).
                 catch((err) => {
