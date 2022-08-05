@@ -110,10 +110,10 @@ export default {
         },
     },
     beforeMount () {
-        if (!this.initial.field) {
-            this.field = this.fields[0].id;
-        } else {
+        if (this.initial.field) {
             this.selectSortOptByType(this.fields[this.initial.field - 1].type);
+        } else {
+            this.field = this.fields[0].id;
         }
     },
     methods: {

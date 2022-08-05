@@ -56,21 +56,21 @@ export default {
     methods: {
         iconName () {
             switch (this.name) {
-            case "plus": {
-                return this.plus;
-            }
-            case "close": {
-                return this.close;
-            }
-            case "menu": {
-                return this.menu;
-            }
-            case "add": {
-                return this.add;
-            }
-            case "file": {
-                return this.file;
-            }
+                case "plus": {
+                    return this.plus;
+                }
+                case "close": {
+                    return this.close;
+                }
+                case "menu": {
+                    return this.menu;
+                }
+                case "add": {
+                    return this.add;
+                }
+                default: { // file
+                    return this.file;
+                }
             }
         },
     },

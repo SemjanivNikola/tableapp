@@ -1,5 +1,5 @@
 import axios from "axios";
-import view from "./view";
+import table from "./table";
 
 /**
  * TODO:
@@ -16,6 +16,7 @@ import view from "./view";
 export default {
     state: {
         map: [],
+        selectedWorkspace: null,
     },
     mutations: {
         setMap (state, payload) {
@@ -29,29 +30,41 @@ export default {
             state.map.push(payload);
         },
     },
+    getters: {
+        get: (state) => (id) => {
+            return state.map.find((workspace) => workspace.id === id);
+        },
+    },
     actions: {
         async readWorkspaceList ({ commit }) {
-            await axios.get("/api/workspace").then(res => {
+            await axios.get("/api/workspace").then((res) => {
                 const { view_list, ...otherProps } = res.data;
 
                 commit("setMap", otherProps);
                 commit("view/setViewList", view_list, { root: true });
-            }).catch(err => {
-                console.log(err);
-            });
+            }).
+                catch((err) => {
+                    console.warn(err);
+                });
         },
-        async createWorkspace ({ commit }, payload) {
-            await axios.get("/api/workspace", payload).then(res => {
-                commit("addNewWorkspace", res.data);
-            }).catch(err => {
-                console.log(err);
-            });
+        async reateWorkspace ({ commit }, payload) {
+            try {
+                const res = await axios.get("/api/workspace", payload);
+                const { view_list, ...otherProps } = res.data;
+
+                commit("addNewWorkspace", otherProps);
+                commit("view/addNewView", view_list, { root: true });
+                return res.data;
+            } catch (err) {
+                console.warn(err);
+                return "error";
+            }
         },
     },
     modules: {
-        view: {
+        table: {
             namespaced: true,
-            ...view,
+            ...table,
         },
     },
 };

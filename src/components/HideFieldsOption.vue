@@ -46,7 +46,9 @@ export default {
     },
     methods: {
         handleHideFields (index) {
-            if (!this.mockData.header[index].isHidden) {
+            if (this.mockData.header[index].isHidden) {
+                this.mockData.header[index].isHidden = false;
+            } else {
                 this.mockData.header[index].isHidden = true;
                 this.mockData.options.hideFields.push(index);
 
@@ -54,7 +56,7 @@ export default {
                 if (!this.mockData.options.summary.includes("hide_fileds")) {
                     this.mockData.options.summary.push("hide_fileds");
                 }
-            } else this.mockData.header[index].isHidden = false;
+            }
 
             // If the last index is removed, remove the hide_fileds option
             if (this.mockData.options.hideFields.length === 0) {
@@ -64,7 +66,7 @@ export default {
                 );
             }
 
-            console.log("hideFields", this.mockData.options);
+            console.warn("hideFields", this.mockData.options);
         },
     },
 };

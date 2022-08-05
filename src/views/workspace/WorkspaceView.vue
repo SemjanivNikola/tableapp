@@ -5,7 +5,10 @@
       color="rgb(255, 255, 255)"
     >
       <v-tab class="at-tab">
-        <tab-header :title="title" />
+        <tab-header
+
+          :title="title"
+        />
       </v-tab>
     </v-tabs>
 
@@ -20,9 +23,17 @@ import TableView from "../table/TableView.vue";
 export default {
     name: "WorkspaceView",
     components: { TabHeader, TableView },
+    props: {
+        workspace: {
+            type: Object,
+            required: true,
+        },
+    },
     data () {
         return {
             title: "Naslov",
+            shouldShowHome: true,
+
         };
     },
     mounted () {
@@ -31,7 +42,7 @@ export default {
     methods: {
         async getWorkspace () {
             const test = await this.$store.dispatch("workspace/getWorkspaceList");
-            console.log("TEST >> ", test);
+            console.warn("TEST >> ", test);
         },
     },
 };

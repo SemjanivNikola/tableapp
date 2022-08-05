@@ -64,11 +64,13 @@
           >
             <path
               fill="#696969"
-              d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+              d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,
+              22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
             />
           </svg>
         </div>
-        <p>This is your base trash for deleted records, blocks, fields, view and tables. For deleted bases and workspaces, see your workspace trash.</p>
+        <p>This is your base trash for deleted records, blocks, fields, view and tables.
+          For deleted bases and workspaces, see your workspace trash.</p>
       </div>
     </div>
   </div>

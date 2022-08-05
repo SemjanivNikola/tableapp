@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import tableData from "../../../mock-data/grid_view_one.json";
 import TableActionBar from "./TableActionBar.vue";
+import tableData from "../../../mock-data/grid_view_one.json";
 
 export default {
     name: "TableView",
@@ -81,7 +81,7 @@ export default {
     watch: {
         activeOptions: {
             handler (val) {
-                console.log(val);
+                console.warn(val);
                 this.tableHeader = this.modifyHeader;
                 this.tableBody = this.modifyBody;
             },
