@@ -1,14 +1,15 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/home/Home.vue";
+import Workspace from "../screens/Workspace.vue";
+// import Home from "../views/home/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
     {
         path: "/",
-        name: "Home",
-        component: Home,
+        name: "Workspace",
+        component: Workspace,
     },
     // {
     //   path: "/about",
