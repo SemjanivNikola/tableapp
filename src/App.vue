@@ -1,16 +1,13 @@
 <template>
   <v-app id="app">
-    <workspace />
+    <router-view />
   </v-app>
 </template>
 
 <script>
-import Workspace from "./screens/Workspace.vue";
 
 export default {
     name: "App",
-    components: { Workspace },
-
     data () {
         return {};
     },
