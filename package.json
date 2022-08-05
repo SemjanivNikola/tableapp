@@ -10,11 +10,6 @@
     "lint-fix": "npx eslint . --fix",
     "check-for-errors": "node ./pre-commit.js"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "echo \"[Husky] pre-commit\""
-    }
-  },
   "dependencies": {
     "axios": "0.27.2",
     "core-js": "3.24.1",
@@ -28,15 +23,15 @@
     "@vue/cli-plugin-router": "4.5.0",
     "@vue/cli-plugin-vuex": "4.5.0",
     "@vue/cli-service": "4.5.0",
-    "eslint": "7.32.0",
     "eslint-config-standard": "16.0.3",
     "eslint-plugin-import": "2.25.2",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "5.1.1",
     "eslint-plugin-vue": "7.20.0",
-    "husky": "8.0.1",
-    "sass": "1.32.0",
+    "eslint": "7.32.0",
+    "husky": "8.0.0",
     "sass-loader": "7.1.0",
+    "sass": "1.32.0",
     "vue-cli-plugin-vuetify": "2.5.1",
     "vue-template-compiler": "2.6.11",
     "vuetify-loader": "1.9.2"
