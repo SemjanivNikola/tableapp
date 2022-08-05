@@ -22,5 +22,6 @@ module.exports = {
             "always-multiline",
         ],
         "no-multi-spaces": ["error"],
+        camelcase: ["error", { ignoreDestructuring: true }],
     },
 };
