@@ -1,9 +1,14 @@
+import axios from "axios";
 import Vue from "vue";
 import App from "./App.vue";
+import Icon from "./components/Icon";
+import vuetify from "./plugins/vuetify";
 import router from "./router";
 import store from "./store";
-import vuetify from "./plugins/vuetify";
-import Icon from "./components/Icon";
+
+window.axios = axios.create({
+    baseURL: "http://localhost:3000/",
+});
 
 Vue.component("Icon", Icon);
 
