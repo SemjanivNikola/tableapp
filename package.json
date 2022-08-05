@@ -8,7 +8,8 @@
     "prepare": "husky install",
     "lint": "npx eslint . --ext .vue --ext .js",
     "lint-fix": "npx eslint . --fix",
-    "check-for-errors": "node ./pre-commit.js"
+    "check-for-errors": "node ./pre-commit.js",
+    "remove-nm": "rm -rf node_modules"
   },
   "dependencies": {
     "axios": "0.27.2",
