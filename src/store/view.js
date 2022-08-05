@@ -4,6 +4,7 @@ export default {
     state: {
         title: "THIS IS GRID VIEW",
         map: [],
+        test: "asdas",
     },
     mutations: {
     },
