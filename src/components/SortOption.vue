@@ -91,7 +91,7 @@ export default {
         },
     },
     beforeMount () {
-        tableData.options.sort.forEach(item => {
+        tableData.options.sort.forEach((item) => {
             this.select.push(item);
         }, this);
     },
@@ -108,7 +108,7 @@ export default {
         },
         handleSort () {
             // TODO: sort
-            console.log(this.select);
+            console.warn(this.select);
         },
     },
 };

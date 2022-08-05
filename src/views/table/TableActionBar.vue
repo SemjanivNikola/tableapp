@@ -72,11 +72,11 @@
 
 <script>
 import ActionBarButton from "./ActionBarButton.vue";
+import FitlerOption from "@/components/FitlerOption.vue";
 import HideFieldsOption from "@/components/HideFieldsOption.vue";
+import Modal from "@/components/Modal.vue";
 import SortOption from "@/components/SortOption.vue";
 import ViewTrash from "@/components/ViewTrash.vue";
-import Modal from "@/components/Modal.vue";
-import FitlerOption from "@/components/FitlerOption.vue";
 
 export default {
     name: "Template",
@@ -102,49 +102,47 @@ export default {
             this.shouldShowOptions5 = false;
         },
         handleHideFields () {
-            if (!this.shouldShowOptions1) {
+            if (this.shouldShowOptions1) {
+                this.closeAllOptions();
+            } else {
                 this.closeAllOptions();
                 this.shouldShowOptions1 = !this.shouldShowOptions1;
-            } else {
-                this.closeAllOptions();
             }
-            console.log("Hide fields");
         },
         handleSort () {
-            if (!this.shouldShowOptions2) {
+            if (this.shouldShowOptions2) {
+                this.closeAllOptions();
+            } else {
                 this.closeAllOptions();
                 this.shouldShowOptions2 = !this.shouldShowOptions2;
-            } else {
-                this.closeAllOptions();
             }
-            console.log("Sort");
+
         },
         handleFilter () {
-            if (!this.shouldShowOptions3) {
+            if (this.shouldShowOptions3) {
+                this.closeAllOptions();
+            } else {
                 this.closeAllOptions();
                 this.shouldShowOptions3 = !this.shouldShowOptions3;
-            } else {
-                this.closeAllOptions();
             }
-            console.log("Filter");
+
         },
         handleShareView () {
-            if (!this.shouldShowOptions4) {
+            if (this.shouldShowOptions4) {
+                this.closeAllOptions();
+            } else {
                 this.closeAllOptions();
                 this.shouldShowOptions4 = !this.shouldShowOptions4;
-            } else {
-                this.closeAllOptions();
             }
-            console.log("Sharing view");
+
         },
         handleTrash () {
-            if (!this.shouldShowOptions5) {
+            if (this.shouldShowOptions5) {
                 this.closeAllOptions();
-                this.shouldShowOptions5 = !this.shouldShowOptions5;
             } else {
                 this.closeAllOptions();
+                this.shouldShowOptions5 = !this.shouldShowOptions5;
             }
-            console.log("Trash >> ", this.shouldShowOptions5);
         },
     },
 

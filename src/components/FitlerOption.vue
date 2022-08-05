@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import tableData from "../../mock-data/grid_view_one.json";
 import FilterOptionItem from "./FilterOptionItem.vue";
+import tableData from "../../mock-data/grid_view_one.json";
 
 export default {
     name: "FilterOption",
@@ -54,7 +54,7 @@ export default {
         },
     },
     beforeMount () {
-        tableData.options.filter.forEach(item => {
+        tableData.options.filter.forEach((item) => {
             this.filterList.push(item);
         }, this);
     },
