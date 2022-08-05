@@ -25,6 +25,15 @@ export default {
             title: "Naslov",
         };
     },
+    mounted () {
+        this.getWorkspace();
+    },
+    methods: {
+        async getWorkspace () {
+            const test = await this.$store.dispatch("workspace/getWorkspaceList");
+            console.log("TEST >> ", test);
+        },
+    },
 };
 </script>
 
