@@ -38,39 +38,44 @@
 
 <script>
 import TableActionBar from "./TableActionBar.vue";
-import tableData from "../../../mock-data/grid_view_one.json";
 
 export default {
     name: "TableView",
     components: { TableActionBar },
+    props: {
+        data: {
+            type: Object,
+            required: true,
+        },
+    },
     data () {
         return {
-            mockData: tableData,
-            activeOptions: tableData.options.summary,
-            tableHeader: tableData.header,
-            tableBody: tableData.body,
+            options: this.data.options,
+            activeOptions: this.data.options.summary,
+            tableHeader: this.data.header,
+            tableBody: this.data.body,
         };
     },
     computed: {
         modifyHeader () {
-            if (!this.mockData.options.summary.includes("hide_fileds")) {
-                return this.mockData.header;
+            if (!this.activeOptions.includes("hide_fileds")) {
+                return this.tableHeader;
             }
 
-            const clone = [...this.mockData.header];
-            this.mockData.options.hideFields.forEach((field) => {
+            const clone = [...this.tableHeader];
+            this.options.hideFields.forEach((field) => {
                 clone.splice(field, 1);
             }, this);
             return clone;
         },
 
         modifyBody () {
-            if (!this.mockData.options.summary.includes("hide_fileds")) {
-                return this.mockData.body;
+            if (!this.activeOptions.includes("hide_fileds")) {
+                return this.tableBody;
             }
 
-            const clone = [...this.mockData.body];
-            this.mockData.options.hideFields.forEach((field) => {
+            const clone = [...this.tableBody];
+            this.options.hideFields.forEach((field) => {
                 clone.forEach((row) => {
                     row.splice(field, 1);
                 });

@@ -31,13 +31,14 @@ export default {
         },
     },
     actions: {
-        readView ({ commit }) {
-            return axios.get("/view").then((res) => {
+        readView ({ commit }, payload) {
+            return axios.get(`/view?id=${payload}`).then((res) => {
                 commit("setSelected", res.data);
                 return res.data;
             }).
                 catch((err) => {
                     console.warn("Error > ", err);
+                    throw err;
                 });
         },
         createView ({ commit }, payload) {

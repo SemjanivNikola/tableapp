@@ -12,11 +12,11 @@
         />
       </v-tab>
     </v-tabs>
-    <h1 v-if="isError" style="color: white">ERROR! View id -> {{viewId}} </h1>
+    <h1 v-if="isError" style="color: white">ERROR! View id -> {{errorData}} </h1>
     <div v-else>
       <h1 v-if="isLoading" style="color: white">LOADING</h1>
 
-      <table-view v-else />
+      <table-view v-else :data="viewData" />
     </div>
   </v-card>
 </template>
@@ -33,6 +33,8 @@ export default {
             title: "Naslov",
             shouldShowHome: true,
             tabHeaderList: [],
+            viewData: null,
+            errorData: null,
             isLoading: true,
             isError: false,
         };
@@ -49,9 +51,16 @@ export default {
     methods: {
         readViewById (id) {
             this.isLoading = true;
-            this.$store.dispatch("view/readView", id, { root: true }).then(() => {
+
+            this.$store.dispatch("view/readView", id, { root: true }).then((response) => {
+                this.viewData = response;
                 this.isLoading = false;
-            });
+            }).
+                catch((error) => {
+                    this.isError = true;
+                    this.isLoading = false;
+                    this.errorData = error.message;
+                });
         },
     },
 };
