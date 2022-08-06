@@ -1,7 +1,7 @@
 <template>
   <div id="screen-wrapper">
     <workspace-structure />
-    <workspace-view :workspace="workspace" />
+    <workspace-table />
     <modal :is-shown="shouldShowHome">
       OVO JE HOME MODAL
       <button @click="shouldShowHome = false">
@@ -24,11 +24,11 @@
 <script>
 import Modal from "@/components/Modal.vue";
 import WorkspaceStructure from "../views/workspace/WorkspaceStructure.vue";
-import WorkspaceView from "../views/workspace/WorkspaceView.vue";
+import WorkspaceTable from "../views/workspace/WorkspaceTable.vue";
 
 export default {
     name: "Workspace",
-    components: { WorkspaceStructure, WorkspaceView, Modal },
+    components: { WorkspaceStructure, WorkspaceTable, Modal },
     data () {
         return {
             shouldShowHome: false,
@@ -36,15 +36,18 @@ export default {
         };
     },
     created () {
+        // TODO: Remove when HOME is DONE. Read wont be here. This is only temporary for testing purposes.
+        this.$store.dispatch("workspace/readWorkspaceList");
+
         this.shouldShowHome = false; // TODO: Uncomment this when HOME is done -> !this.$route.params.id;
-        this.$watch(() => this.$route.params.id, this.getWorkspace(this.$route.params.id));
+        this.$watch(() => this.$route.params.id, this.getWorkspace(1));
     },
     methods: {
         getWorkspace (id) {
             if (!id) {
                 return;
             }
-            this.workspace = this.$store.dispatch("workspace/getWorkspace", id);
+            this.$store.dispatch("workspace/process", id);
         },
         navigate () {
             this.$router.push({ path: `/workspace=${1}` });
