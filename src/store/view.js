@@ -1,5 +1,3 @@
-// import axios from "axios";
-
 import axios from "axios";
 
 /**
@@ -7,25 +5,43 @@ import axios from "axios";
  */
 export default {
     state: {
-        title: "THIS IS GRID VIEW",
-        map: [],
-        selectedView: null,
+        view: null,
     },
     mutations: {
-        setViewList (state, payload) {
+        setSelected (state, payload) {
+            state.view = payload;
+        },
+        setMap (state, payload) {
             if (state.length > 0) {
                 state.map.length = 0;
             }
 
             state.map = payload;
         },
-        addNewView (state, payload) {
+        addNew (state, payload) {
             state.map.push(payload);
         },
     },
+    getters: {
+        get: (state) => {
+            return state.view;
+        },
+        isViewSelected: (state) => (id) => {
+            return id === state.view.id;
+        },
+    },
     actions: {
+        readView ({ commit }) {
+            return axios.get("/view").then((res) => {
+                commit("setSelected", res.data);
+                return res.data;
+            }).
+                catch((err) => {
+                    console.warn("Error > ", err);
+                });
+        },
         createView ({ commit }, payload) {
-            return axios.post("/api/view", payload).then((res) => {
+            return axios.post("/view", payload).then((res) => {
                 commit("addNewView", res.data);
                 return res.data;
             }).
