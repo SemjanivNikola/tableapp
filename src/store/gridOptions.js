@@ -8,18 +8,18 @@ export default {
             state.options = payload;
         },
         handleFieldVisibility (state, payload) {
-            if (payload.isHidden) {
+            if (payload.shouldAddIndex) {
+                state.options.hideFields.push(payload.index);
+            } else {
                 const indexToRemove = state.options.hideFields.indexOf(payload.index);
                 state.options.hideFields.splice(indexToRemove, 1);
-            } else {
-                state.options.hideFields.push(payload.index);
             }
         },
         addOptionToSummary (state, payload) {
             state.options.summary.push(payload);
         },
         removeOptionFromSummary (state, payload) {
-            state.options.summary.splice(state.summary.indexOf(payload), 1);
+            state.options.summary.splice(state.options.summary.indexOf(payload), 1);
         },
     },
     getters: {

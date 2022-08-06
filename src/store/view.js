@@ -61,10 +61,10 @@ export default {
         handleHideFields ({ state, commit, dispatch }, payload) {
             if (state.view.header[payload].isHidden) {
                 commit("toggleFieldVisibility", { index: payload, isHidden: false });
-                commit("view/options/handleFieldVisibility", { index: payload, isHidden: false }, { root: true });
+                commit("view/options/handleFieldVisibility", { index: payload, shouldAddIndex: false }, { root: true });
             } else {
                 commit("toggleFieldVisibility", { index: payload, isHidden: true });
-                commit("view/options/handleFieldVisibility", { index: payload, isHidden: false }, { root: true });
+                commit("view/options/handleFieldVisibility", { index: payload, shouldAddIndex: true }, { root: true });
 
                 // If it's first field to be hidden add hide_fields option to summary
                 dispatch("options/firstFieldHidden");
