@@ -1,5 +1,5 @@
 import axios from "axios";
-import table from "./table";
+import tabledata from "../../mock-data/workspace_list.json";
 
 /**
  * TODO:
@@ -16,7 +16,6 @@ import table from "./table";
 export default {
     state: {
         map: [],
-        selectedWorkspace: null,
     },
     mutations: {
         setMap (state, payload) {
@@ -31,29 +30,49 @@ export default {
         },
     },
     getters: {
-        get: (state) => (id) => {
-            return state.map.find((workspace) => workspace.id === id);
+        workspaceById: (state) => (id) => {
+            return state.map.find((item) => {
+                return item.id === id;
+            });
         },
 
     },
     actions: {
-        async readWorkspaceList ({ commit }) {
-            await axios.get("/api/workspace").then((res) => {
-                const { view_list, ...otherProps } = res.data;
+        process ({ dispatch, getters }, payload) {
+            const { table_list, ...otherProps } = getters.workspaceById(payload);
 
-                commit("setMap", otherProps);
-                commit("view/setViewList", view_list, { root: true });
-            }).
-                catch((err) => {
-                    console.warn(err);
-                });
+            dispatch("table/process", { map: table_list, selected: otherProps.selected_table_id },
+                { root: true });
+        },
+        readWorkspaceList ({ commit }) {
+            const map = tabledata;
+            commit("setMap", map);
+
+
+            /*
+             * TODO: Uncoment when backend is deployed
+             * await axios.get("/workspace").then((res) => {
+             *     console.warn("RES >> ", res);
+             *     const { view_list, table_list, ...otherProps } = res.data;
+             */
+
+            /*
+             *     commit("setMap", otherProps);
+             *     commit("setLst1", table_list, { root: false });
+             *     commit("table/view/setList2", view_list, { root: false });
+             * }).
+             *     catch((err) => {
+             *         console.warn(err);
+             *     });
+             */
         },
         createWorkspace ({ commit }, payload) {
             return axios.get("/api/workspace", payload).then((res) => {
-                const { view_list, ...otherProps } = res.data;
+                const { view_list, table_list, ...otherProps } = res.data;
 
                 commit("addNewWorkspace", otherProps);
-                commit("view/addNewView", view_list, { root: true });
+                commit("table/addNew", table_list, { root: true });
+                commit("view/addNew", view_list, { root: true });
 
                 return res.data;
             }).
@@ -63,9 +82,6 @@ export default {
         },
     },
     modules: {
-        table: {
-            namespaced: true,
-            ...table,
-        },
+
     },
 };
