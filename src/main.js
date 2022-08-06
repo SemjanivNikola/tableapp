@@ -6,9 +6,7 @@ import vuetify from "./plugins/vuetify";
 import router from "./router";
 import store from "./store";
 
-window.axios = axios.create({
-    baseURL: "http://localhost:3000/",
-});
+axios.defaults.baseURL = "http://localhost:3000";
 
 Vue.component("Icon", Icon);
 
