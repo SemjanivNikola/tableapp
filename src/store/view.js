@@ -1,4 +1,5 @@
 import axios from "axios";
+import gridOptions from "./gridOptions";
 
 /**
  * NOTE: We don't need to read list from API, because we get it from workspace.
@@ -18,8 +19,12 @@ export default {
 
             state.map = payload;
         },
+        // TODO: Add new view
         addNew (state, payload) {
             state.map.push(payload);
+        },
+        toggleFieldVisibility (state, payload) {
+            state.view.header[payload.index].isHidden = payload.isHidden;
         },
     },
     getters: {
@@ -33,7 +38,10 @@ export default {
     actions: {
         readView ({ commit }, payload) {
             return axios.get(`/view?id=${payload}`).then((res) => {
-                commit("setSelected", res.data);
+                const { options, ...otherprops } = res.data;
+
+                commit("setSelected", otherprops);
+                commit("view/options/set", options, { root: true });
                 return res.data;
             }).
                 catch((err) => {
@@ -50,8 +58,26 @@ export default {
                     console.warn(err);
                 });
         },
+        handleHideFields ({ state, commit, dispatch }, payload) {
+            if (state.view.header[payload].isHidden) {
+                commit("toggleFieldVisibility", { index: payload, isHidden: false });
+                commit("view/options/handleFieldVisibility", { index: payload, isHidden: false }, { root: true });
+            } else {
+                commit("toggleFieldVisibility", { index: payload, isHidden: true });
+                commit("view/options/handleFieldVisibility", { index: payload, isHidden: false }, { root: true });
+
+                // If it's first field to be hidden add hide_fields option to summary
+                dispatch("options/firstFieldHidden");
+            }
+
+            // If the last index is removed, remove the hide_fileds option
+            dispatch("options/lastFieldRemoved");
+        },
     },
     modules: {
-
+        options: {
+            namespaced: true,
+            ...gridOptions,
+        },
     },
 };
