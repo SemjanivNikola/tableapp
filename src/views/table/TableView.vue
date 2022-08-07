@@ -9,7 +9,7 @@
         <tr>
           <th>Placeholder</th>
           <th
-            v-for="(header, index) in modifyHeader"
+            v-for="(header, index) in tableHeader"
             :key="index"
           >
             {{ header.text }}
@@ -18,7 +18,7 @@
       </thead>
       <tbody>
         <tr
-          v-for="(row, rowIndex) in modifyBody"
+          v-for="(row, rowIndex) in tableBody"
           :key="rowIndex"
         >
           <td>{{ rowIndex }}</td>
@@ -50,60 +50,15 @@ export default {
     },
     data () {
         return {
-            options: this.data.options,
-            activeOptions: this.data.options.summary,
-            hideFields: this.data.options.hideFields,
-            hideFieldsHelper: [],
             tableHeader: this.data.header,
             tableBody: this.data.body,
         };
     },
-    computed: {
-        modifyHeader () {
-            if (!this.activeOptions.includes("hide_fields")) {
-                return this.tableHeader;
-            }
-
-            const clone = [...this.tableHeader];
-            // TODO: Fix this
-            // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-            this.hideFieldsHelper = [];
-
-            this.options.hideFields.forEach((field) => {
-                const index = clone.findIndex((item) => item.id === field + 1);
-                clone.splice(index, 1);
-                this.hideFieldsHelper.push(index);
-            }, this);
-            return clone;
-        },
-
-        modifyBody () {
-            if (!this.activeOptions.includes("hide_fields")) {
-                return this.tableBody;
-            }
-
-            const clone = JSON.parse(JSON.stringify(this.tableBody));
-
-            this.hideFieldsHelper.forEach((field) => {
-                clone.forEach((row) => {
-                    row.splice(field, 1);
-                });
-            }, this);
-            return clone;
-        },
-    },
-    watch: {
-        activeOptions: {
-            handler (val) {
-                console.warn("WATCHER VAL >> ", val);
-
-                /*
-                 * this.tableHeader = this.modifyHeader;
-                 * this.tableBody = this.modifyBody;
-                 */
-            },
-            deep: true,
-        },
+    async created () {
+        const { body, header } = await this.$store.dispatch("view/handleBodyModification");
+        this.tableHeader = header;
+        this.tableBody = body;
+        console.warn("bodyClone", body, header);
     },
 };
 </script>

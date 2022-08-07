@@ -7,10 +7,14 @@ import gridOptions from "./gridOptions";
 export default {
     state: {
         view: null,
+        bodyClone: [],
     },
     mutations: {
         setSelected (state, payload) {
             state.view = payload;
+        },
+        setBodyClone (state, payload) {
+            state.bodyClone = payload;
         },
         setMap (state, payload) {
             if (state.length > 0) {
@@ -30,6 +34,12 @@ export default {
     getters: {
         get: (state) => {
             return state.view;
+        },
+        getHeader: (state) => {
+            return state.view.header;
+        },
+        getBodyClone: (state) => {
+            return state.bodyClone;
         },
         isViewSelected: (state) => (id) => {
             return id === state.view.id;
@@ -72,6 +82,11 @@ export default {
 
             // If the last index is removed, remove the hide_fileds option
             dispatch("options/lastFieldRemoved");
+        },
+        async handleBodyModification ({ state, commit, dispatch }) {
+            const body = await dispatch("options/modifyBody", state.view);
+            commit("setBodyClone", body);
+            return body;
         },
     },
     modules: {
