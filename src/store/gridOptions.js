@@ -1,3 +1,4 @@
+import sortByMultipleFields from "@/utils/sort";
 
 export default {
     state: {
@@ -71,17 +72,9 @@ export default {
                 const fieldIndex = payload.header.findIndex((header) => field.id === header.id);
                 fieldIndexList.push({ fieldIndex, direction: field.direction });
             });
-            payload.body.sort((rowA, rowB) => {
-                const itemA = rowA[fieldIndexList[0].fieldIndex].value;
-                const itemB = rowB[fieldIndexList[0].fieldIndex].value;
-                if (itemA < itemB) {
-                    return -1;
-                }
-                if (itemA > itemB) {
-                    return 1;
-                }
-                return 0;
-            });
+
+            const sorted = sortByMultipleFields(payload.body, fieldIndexList);
+            payload.body = sorted;
         },
 
 
