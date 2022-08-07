@@ -14,7 +14,7 @@
 
 <script>
 export default {
-    name: "Button",
+    name: "ActionBarButton",
     props: {
         title: {
             type: String,

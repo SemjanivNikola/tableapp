@@ -42,9 +42,9 @@
         title="Trash"
         @onPress="handleTrash"
       >
-        <modal :is-shown="shouldShowOptions5">
+        <modal-wrapper :is-shown="shouldShowOptions5">
           <view-trash @close="shouldShowOptions5 = false" />
-        </modal>
+        </modal-wrapper>
       </action-bar-button>
     </div>
     <div>
@@ -74,13 +74,13 @@
 import ActionBarButton from "./ActionBarButton.vue";
 import FitlerOption from "@/components/FitlerOption.vue";
 import HideFieldsOption from "@/components/HideFieldsOption.vue";
-import Modal from "@/components/Modal.vue";
+import ModalWrapper from "@/components/ModalWrapper.vue";
 import SortOption from "@/components/SortOption.vue";
 import ViewTrash from "@/components/ViewTrash.vue";
 
 export default {
-    name: "Template",
-    components: { ActionBarButton, HideFieldsOption, SortOption, ViewTrash, Modal, FitlerOption },
+    name: "TableActionBar",
+    components: { ActionBarButton, HideFieldsOption, SortOption, ViewTrash, ModalWrapper, FitlerOption },
     data () {
         return {
             title: "Hide fields",

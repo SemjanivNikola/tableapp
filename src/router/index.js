@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Workspace from "../screens/Workspace.vue";
+import WorkspaceScreen from "../screens/WorkspaceScreen.vue";
 
 Vue.use(VueRouter);
 
@@ -9,7 +9,7 @@ const routes = [
         path: "/",
         alias: "/workspace=:id",
         name: "Workspace",
-        component: Workspace,
+        component: WorkspaceScreen,
     },
     // {
     //   path: "/about",

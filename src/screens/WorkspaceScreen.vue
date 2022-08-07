@@ -2,7 +2,7 @@
   <div id="screen-wrapper">
     <workspace-structure />
     <workspace-table />
-    <modal :is-shown="shouldShowHome">
+    <modal-wrapper :is-shown="shouldShowHome">
       OVO JE HOME MODAL
       <button @click="shouldShowHome = false">
         Zatvori
@@ -17,18 +17,18 @@
           LINK NA 2
         </router-link>
       </div>
-    </modal>
+    </modal-wrapper>
   </div>
 </template>
 
 <script>
-import Modal from "@/components/Modal.vue";
+import ModalWrapper from "@/components/ModalWrapper.vue";
 import WorkspaceStructure from "../views/workspace/WorkspaceStructure.vue";
 import WorkspaceTable from "../views/workspace/WorkspaceTable.vue";
 
 export default {
-    name: "Workspace",
-    components: { WorkspaceStructure, WorkspaceTable, Modal },
+    name: "WorkspaceScreen",
+    components: { WorkspaceStructure, WorkspaceTable, ModalWrapper },
     data () {
         return {
             shouldShowHome: false,

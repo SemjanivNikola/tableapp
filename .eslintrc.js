@@ -239,6 +239,7 @@ module.exports = {
             "never",
         ],
         "vars-on-top": "error",
+        "vue/multi-word-component-names": ["error", { "ignores": ["Icon"] }],
         "wrap-iife": 0,
         "wrap-regex": "error",
         "yield-star-spacing": "error",
