@@ -35,7 +35,6 @@ export default {
     data () {
         return {
             headerList: [],
-            options: null,
         };
     },
     computed: {
@@ -46,7 +45,6 @@ export default {
     created () {
         const { header } = this.$store.getters["view/get"];
         this.headerList = header;
-        this.options = this.$store.getters["view/options/get"];
     },
     methods: {
         handleHideFields (index) {
