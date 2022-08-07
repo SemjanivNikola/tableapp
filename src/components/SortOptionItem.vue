@@ -67,7 +67,7 @@ export default {
     },
     data () {
         return {
-            selected: this.fields[this.initial.field],
+            selected: this.fields[this.initial.id - 1],
             sortSelect: null,
             sortOptions: null,
             initSortDirection: this.initial.direction,
@@ -84,7 +84,7 @@ export default {
             deep: true,
         },
     },
-    beforeMount () {
+    created () {
         this.selectSortOptByType(this.selected.type);
     },
     methods: {

@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import tableData from "../../mock-data/grid_view_one.json";
 import SortOptionItem from "./SortOptionItem.vue";
 
 const TableFieldPicker = {
@@ -80,7 +79,7 @@ export default {
     },
     data () {
         return {
-            fields: tableData.header,
+            fields: [],
             select: [],
             showPicker: false,
         };
@@ -90,10 +89,9 @@ export default {
             return this.isShown ? "show" : "hidden";
         },
     },
-    beforeMount () {
-        tableData.options.sort.forEach((item) => {
-            this.select.push(item);
-        }, this);
+    created () {
+        this.fields = this.$store.getters["view/getHeader"];
+        this.select = this.$store.getters["view/options/sortOptions"];
     },
     methods: {
         handleFieldPick (index) {
