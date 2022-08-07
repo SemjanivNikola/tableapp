@@ -29,7 +29,7 @@ export default {
     },
     actions: {
         firstFieldHidden ({ state, commit }) {
-            if (!state.options.summary.includes("hide_fileds")) {
+            if (!state.options.summary.includes("hide_fields")) {
                 commit("addOptionToSummary", "hide_fields");
             }
         },
@@ -38,6 +38,5 @@ export default {
                 commit("removeOptionFromSummary", "hide_fields");
             }
         },
-
     },
 };

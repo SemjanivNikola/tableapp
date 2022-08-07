@@ -71,7 +71,7 @@ export default {
   background-color: var(--background-light-hard);
 }
 #view-wrapper-background {
-  width: 100%;
+  width: 80%;
   background-color: var(--background-dark-soft);
 }
 

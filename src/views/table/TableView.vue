@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="overflow-x: scroll;">
     <table-action-bar />
     <!-- <table-header :header="mockData.header" />
     <table-body :body="mockData.body" /> -->
@@ -9,7 +9,7 @@
         <tr>
           <th>Placeholder</th>
           <th
-            v-for="(header, index) in tableHeader"
+            v-for="(header, index) in modifyHeader"
             :key="index"
           >
             {{ header.text }}
@@ -18,7 +18,7 @@
       </thead>
       <tbody>
         <tr
-          v-for="(row, rowIndex) in tableBody"
+          v-for="(row, rowIndex) in modifyBody"
           :key="rowIndex"
         >
           <td>{{ rowIndex }}</td>
@@ -52,30 +52,39 @@ export default {
         return {
             options: this.data.options,
             activeOptions: this.data.options.summary,
+            hideFields: this.data.options.hideFields,
+            hideFieldsHelper: [],
             tableHeader: this.data.header,
             tableBody: this.data.body,
         };
     },
     computed: {
         modifyHeader () {
-            if (!this.activeOptions.includes("hide_fileds")) {
+            if (!this.activeOptions.includes("hide_fields")) {
                 return this.tableHeader;
             }
 
             const clone = [...this.tableHeader];
+            // TODO: Fix this
+            // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+            this.hideFieldsHelper = [];
+
             this.options.hideFields.forEach((field) => {
-                clone.splice(field, 1);
+                const index = clone.findIndex((item) => item.id === field + 1);
+                clone.splice(index, 1);
+                this.hideFieldsHelper.push(index);
             }, this);
             return clone;
         },
 
         modifyBody () {
-            if (!this.activeOptions.includes("hide_fileds")) {
+            if (!this.activeOptions.includes("hide_fields")) {
                 return this.tableBody;
             }
 
-            const clone = [...this.tableBody];
-            this.options.hideFields.forEach((field) => {
+            const clone = JSON.parse(JSON.stringify(this.tableBody));
+
+            this.hideFieldsHelper.forEach((field) => {
                 clone.forEach((row) => {
                     row.splice(field, 1);
                 });
@@ -86,9 +95,12 @@ export default {
     watch: {
         activeOptions: {
             handler (val) {
-                console.warn(val);
-                this.tableHeader = this.modifyHeader;
-                this.tableBody = this.modifyBody;
+                console.warn("WATCHER VAL >> ", val);
+
+                /*
+                 * this.tableHeader = this.modifyHeader;
+                 * this.tableBody = this.modifyBody;
+                 */
             },
             deep: true,
         },
