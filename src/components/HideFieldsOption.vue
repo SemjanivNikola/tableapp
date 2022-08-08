@@ -8,7 +8,7 @@
       :key="header.id"
     >
       <v-switch
-        :input-value="header.isHidden"
+        :input-value="header.isShown"
         :label="header.text"
         dense
         color="green"
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-    name: "ActionOptions",
+    name: "HideFieldsOption",
     props: {
         optionType: {
             type: String,

@@ -1,6 +1,11 @@
 import sortByMultipleFields from "@/utils/sort";
 import filterByMultipleFields from "@/utils/filter";
 
+const mathOperation = {
+    "add": (a, b) => a + b,
+    "subtract": (a, b) => a - b,
+};
+
 export default {
     state: {
         options: null,
@@ -13,13 +18,8 @@ export default {
         indexHelperList (state, payload) {
             state.indexHelperList = payload;
         },
-        handleFieldVisibility (state, payload) {
-            if (payload.shouldAddIndex) {
-                state.options.hideFields.push(payload.index);
-            } else {
-                const indexToRemove = state.options.hideFields.indexOf(payload.index);
-                state.options.hideFields.splice(indexToRemove, 1);
-            }
+        setFieldsHidden (state, payload) {
+            state.options.hidden = mathOperation[payload](state.options.hidden, 1);
         },
         addOptionToSummary (state, payload) {
             state.options.summary.push(payload);
@@ -41,35 +41,27 @@ export default {
     },
     actions: {
         firstFieldHidden ({ state, commit }) {
-            if (!state.options.summary.includes("hide_fields")) {
+            // TODO: Talk about this. We need to add summary field at some point, if it doesn't exist.
+            if (!state.options || !state.options.summary.includes("hide_fields")) {
                 commit("addOptionToSummary", "hide_fields");
             }
         },
         lastFieldRemoved ({ state, commit }) {
-            if (state.options.hideFields.length === 0) {
+            if (state.options.hidden === 0) {
                 commit("removeOptionFromSummary", "hide_fields");
             }
         },
-        hideFieldHeader ({ state, commit }, payload) {
-            const indexList = [];
-            state.options.hideFields.forEach((field) => {
-                const index = payload.findIndex((item) => item.id === field + 1);
-                payload.splice(index, 1);
-                indexList.push(index);
-            });
-            commit("indexHelperList", indexList);
-        },
-        hideFiledBody ({ state }, payload) {
-            state.indexHelperList.forEach((field) => {
-                payload.forEach((row) => {
-                    row.splice(field, 1);
-                });
-            });
+        handleFieldVisibility ({ commit, dispatch }, payload) {
+            commit("setFieldsHidden", payload);
+
+            dispatch("firstFieldHidden");
+            dispatch("lastFieldRemoved");
         },
 
         sortFields ({ state }, payload) {
             const fieldIndexList = [];
             state.options.sort.forEach((field) => {
+                // TODO: Talk about this - maybe we can use indexes instead of field id's
                 const fieldIndex = payload.header.findIndex((header) => field.id === header.id);
                 fieldIndexList.push({ fieldIndex, direction: field.direction });
             });
@@ -81,6 +73,7 @@ export default {
         filterRecords ({ state }, payload) {
             const fieldIndexList = [];
             state.options.filter.forEach((field) => {
+                // TODO: Talk about this - maybe we can use indexes instead of field id's
                 const fieldIndex = payload.header.findIndex((header) => field.id === header.id);
                 fieldIndexList.push({ fieldIndex, options: field });
             });
