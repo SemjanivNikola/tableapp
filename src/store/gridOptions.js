@@ -15,6 +15,9 @@ export default {
         set (state, payload) {
             state.options = payload;
         },
+        setSort (state, payload) {
+            state.options.sort = payload;
+        },
         indexHelperList (state, payload) {
             state.indexHelperList = payload;
         },
