@@ -5,18 +5,7 @@
     <table-body :body="mockData.body" /> -->
 
     <table>
-      <thead>
-        <tr>
-          <th>Placeholder</th>
-          <th
-            v-for="header in tableHeader"
-            :key="header.id"
-            :class="{hidden: !header.isShown}"
-          >
-            {{ header.text }}
-          </th>
-        </tr>
-      </thead>
+      <header-list :header="tableHeader" />
       <tbody>
         <tr
           v-for="row in tableBody"
@@ -37,19 +26,20 @@
 </template>
 
 <script>
+import HeaderList from "./HeaderList.vue";
 import TableActionBar from "./TableActionBar.vue";
 
 export default {
     name: "TableView",
-    components: { TableActionBar },
+    components: { TableActionBar, HeaderList },
     data () {
         return {
             tableHeader: [],
             tableBody: [],
         };
     },
-    async created () {
-        const { body, header } = await this.$store.dispatch("view/handleBodyModification");
+    created () {
+        const { header, body } = this.$store.getters["view/get"];
         this.tableHeader = header;
         this.tableBody = body;
     },
