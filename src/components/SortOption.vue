@@ -14,7 +14,8 @@
     <div v-else>
       <sort-option-item
         v-for="(item, index) in select"
-        :key="index"
+        :key="item.id"
+        :index="index"
         :initial="item"
         :fields="fields"
       />

@@ -37,7 +37,7 @@
       cols="2"
       sm="2"
     >
-      x
+    <button @click="removeOption">x</button>
     </v-col>
   </v-row>
 </template>
@@ -62,6 +62,10 @@ export default {
         },
         fields: {
             type: Array,
+            required: true,
+        },
+        index: {
+            type: Number,
             required: true,
         },
     },
@@ -102,6 +106,9 @@ export default {
                 this.initSortDirection = null;
             }
             this.sortSelect = this.sortOptions[0];
+        },
+        removeOption () {
+            this.$store.commit("view/options/removeSortOption", this.index, { root: true });
         },
     },
 };

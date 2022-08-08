@@ -21,6 +21,9 @@ export default {
         addSortOption (state, payload) {
             state.options.sort.push(payload);
         },
+        removeSortOption (state, payload) {
+            state.options.sort.splice(payload, 1);
+        },
         indexHelperList (state, payload) {
             state.indexHelperList = payload;
         },
