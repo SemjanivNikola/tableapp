@@ -1,26 +1,26 @@
 const operaton = {
-    "=": (a, b) => a === b,
-    "≠": (a, b) => a !== b,
-    ">": (a, b) => a > b,
     "<": (a, b) => a < b,
-    "≥": (a, b) => a >= b,
+    "≠": (a, b) => a !== b,
+    "=": (a, b) => a === b,
+    ">": (a, b) => a > b,
     "≤": (a, b) => a <= b,
+    "≥": (a, b) => a >= b,
+    "between": (a, b) => a >= b[0] && a <= b[1],
     "contains": (a, b) => a.toLowerCase().includes(b.toLowerCase()),
     "does not contain": (a, b) => !a.toLowerCase().includes(b.toLowerCase()),
-    "is": (a, b) => a === b,
-    "is not": (a, b) => !b.includes(a),
-    "is empty": (a) => a === "",
-    "is not empty": (a) => a !== "",
-    "between": (a, b) => a >= b[0] && a <= b[1],
     "is any of": (a, b) => b.includes(a),
+    "is empty": (a) => a === "",
     "is none of": (a, b) => !b.includes(a),
+    "is not empty": (a) => a !== "",
+    "is not": (a, b) => !b.includes(a),
+    "is": (a, b) => a === b,
 };
 
 const logicalOperation = {
-    "and": (aA, bB) => aA && bB,
-    "or": (aA, bB) => aA || bB,
-    "not": (aA) => !aA,
-    "where": (aA, bB) => aA || bB,
+    "and": (a, b) => a && b,
+    "not": (a) => !a,
+    "or": (a, b) => a || b,
+    "where": (a, b) => a || b,
 };
 
 const multipleFiltering = (row, fields) => {
