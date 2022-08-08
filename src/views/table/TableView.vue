@@ -33,8 +33,6 @@
         </tr>
       </tbody>
     </table>
-
-    TABLE
   </div>
 </template>
 
@@ -44,12 +42,6 @@ import TableActionBar from "./TableActionBar.vue";
 export default {
     name: "TableView",
     components: { TableActionBar },
-    props: {
-        data: {
-            type: Object,
-            required: true,
-        },
-    },
     data () {
         return {
             tableHeader: [],
