@@ -1,37 +1,22 @@
 <template>
-  <div style="overflow-x: scroll;">
-    <table-action-bar />
-    <!-- <table-header :header="mockData.header" />
-    <table-body :body="mockData.body" /> -->
+    <div style="overflow-x: scroll;">
+      <table-action-bar />
 
-    <table>
-      <header-list :header="tableHeader" />
-      <tbody>
-        <tr
-          v-for="row in tableBody"
-          :key="row.id"
-        >
-          <td>{{ row.id }}</td>
-          <td
-            v-for="(cell, cellIndex) in row.cells"
-            :key="cellIndex"
-            :class="{hidden: !cell.isShown}"
-          >
-            {{ cell.value }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+      <table>
+        <header-list :header="tableHeader" />
+        <table-record-list :record-list="tableBody" />
+      </table>
+    </div>
 </template>
 
 <script>
 import HeaderList from "./HeaderList.vue";
 import TableActionBar from "./TableActionBar.vue";
+import TableRecordList from "./TableRecordList.vue";
 
 export default {
     name: "TableView",
-    components: { TableActionBar, HeaderList },
+    components: { TableActionBar, HeaderList, TableRecordList },
     data () {
         return {
             tableHeader: [],

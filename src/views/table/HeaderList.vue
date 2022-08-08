@@ -1,11 +1,15 @@
 <template>
     <thead>
-        <header-list-item :item="{text: 'Placeholder', isShown: true}" />
-        <header-list-item v-for="item in header" :key="item.id" :item="item" />
-      </thead>
+        <tr>
+            <header-list-item :item="{ text: 'Placeholder', isShown: true }" />
+            <header-list-item v-for="item in header" :key="item.id" :item="item" />
+        </tr>
+    </thead>
 </template>
+
 <script>
 import HeaderListItem from "./HeaderListItem.vue";
+
 export default {
     components: { HeaderListItem },
     name: "HeaderList",
