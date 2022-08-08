@@ -7,7 +7,7 @@ import gridOptions from "./gridOptions";
 export default {
     state: {
         view: null,
-        bodyClone: [],
+        bodyClone: null,
     },
     mutations: {
         setSelected (state, payload) {
@@ -34,17 +34,18 @@ export default {
                 row.cells[payload.index].isShown = payload.isShown;
             });
 
+            state.bodyClone.forEach((row) => {
+                row.cells[payload.index].isShown = payload.isShown;
+            });
+
         },
     },
     getters: {
         get: (state) => {
-            return state.view;
+            return { header: state.view.header, body: state.bodyClone };
         },
         getHeader: (state) => {
             return state.view.header;
-        },
-        getBodyClone: (state) => {
-            return state.bodyClone;
         },
         isViewSelected: (state) => (id) => {
             return id === state.view.id;
@@ -73,6 +74,11 @@ export default {
                     console.warn(err);
                 });
         },
+        async handleBodyModification ({ state, commit, dispatch }) {
+            const viewClone = await dispatch("options/modifyBody", state.view);
+            commit("setBodyClone", viewClone.body);
+            return true;
+        },
         handleHideFields ({ state, commit, dispatch }, payload) {
             if (state.view.header[payload].isShown) {
                 commit("toggleFieldVisibility", { index: payload, isShown: false });
@@ -82,10 +88,9 @@ export default {
                 dispatch("view/options/handleFieldVisibility", "subtract", { root: true });
             }
         },
-        async handleBodyModification ({ state, commit, dispatch }) {
-            const body = await dispatch("options/modifyBody", state.view);
-            commit("setBodyClone", body);
-            return body;
+        handleSort ({ commit, dispatch }, payload) {
+            commit("view/options/setSort", payload, { root: true });
+            dispatch("handleBodyModification");
         },
     },
     modules: {

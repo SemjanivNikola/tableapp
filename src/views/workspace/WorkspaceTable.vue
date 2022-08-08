@@ -50,8 +50,8 @@ export default {
         readViewById (id) {
             this.isLoading = true;
 
-            this.$store.dispatch("view/readView", id, { root: true }).then(() => {
-                this.isLoading = false;
+            this.$store.dispatch("view/readView", id, { root: true }).then(async () => {
+                this.isLoading = !await this.$store.dispatch("view/handleBodyModification");
             }).
                 catch((error) => {
                     this.isError = true;
