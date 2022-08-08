@@ -85,10 +85,11 @@ export default {
         sortFields ({ state }, payload) {
             const fieldIndexList = [];
             state.options.sort.forEach((field) => {
-                // TODO: Talk about this - maybe we can use indexes instead of field id's
-                const fieldIndex = payload.header.findIndex((header) => field.id === header.id);
-                fieldIndexList.push({ fieldIndex, direction: field.direction });
+                fieldIndexList.push({ fieldIndex: field.id, direction: field.direction });
             });
+            // Default sorting is by first field which is row number/id.
+            fieldIndexList.push({ fieldIndex: 0, direction: 1 });
+
             return sortByMultipleFields(payload.body, fieldIndexList);
         },
 

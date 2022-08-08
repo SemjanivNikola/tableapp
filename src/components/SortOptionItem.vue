@@ -109,6 +109,7 @@ export default {
         },
         removeOption () {
             this.$store.commit("view/options/removeSortOption", this.index, { root: true });
+            this.$emit("onFiledRemove");
         },
     },
 };

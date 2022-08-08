@@ -18,6 +18,7 @@
         :index="index"
         :initial="item"
         :fields="fields"
+        @onFiledRemove="handleSort"
       />
 
       <div style="position: relative;">
