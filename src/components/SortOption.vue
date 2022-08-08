@@ -60,9 +60,9 @@ const TableFieldPicker = {
         },
     },
     template: `<div><div
-        v-for="(header, index) in fields"
+        v-for="header in fields"
         :key="header.id"
-        @click="handleFieldPick(index)"
+        @click="handleFieldPick(header.id)"
       >
         {{ header.text }}
       </div></div>`,
@@ -95,18 +95,17 @@ export default {
     },
     methods: {
         handleFieldPick (index) {
-            this.select.push({
-                field: index,
+            this.$store.commit("view/options/addSortOption", {
+                id: index,
                 sort: 1,
-            });
+            }, { root: true });
 
             if (this.showPicker) {
                 this.showPicker = false;
             }
         },
         handleSort () {
-            // TODO: sort
-            console.warn(this.select);
+            this.$store.dispatch("view/handleSort", this.select);
         },
     },
 };

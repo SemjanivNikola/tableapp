@@ -18,6 +18,9 @@ export default {
         setSort (state, payload) {
             state.options.sort = payload;
         },
+        addSortOption (state, payload) {
+            state.options.sort.push(payload);
+        },
         indexHelperList (state, payload) {
             state.indexHelperList = payload;
         },
@@ -68,9 +71,7 @@ export default {
                 const fieldIndex = payload.header.findIndex((header) => field.id === header.id);
                 fieldIndexList.push({ fieldIndex, direction: field.direction });
             });
-
-            const sorted = sortByMultipleFields(payload.body, fieldIndexList);
-            payload.body = sorted;
+            return sortByMultipleFields(payload.body, fieldIndexList);
         },
 
         filterRecords ({ state }, payload) {
@@ -93,12 +94,11 @@ export default {
             const clone = JSON.parse(JSON.stringify(payload));
 
             if (getters.isOptionApplied("sort")) {
-                dispatch("sortFields", { header: clone.header, body: clone.body });
+                clone.body = await dispatch("sortFields", { header: clone.header, body: clone.body });
             }
 
             if (getters.isOptionApplied("filter")) {
-                const filtered = await dispatch("filterRecords", { header: clone.header, body: clone.body });
-                clone.body = filtered;
+                clone.body = await dispatch("filterRecords", { header: clone.header, body: clone.body });
             }
 
             return clone;

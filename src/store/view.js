@@ -88,9 +88,10 @@ export default {
                 dispatch("options/handleFieldVisibility", "subtract", { root: false });
             }
         },
-        handleSort ({ commit, dispatch }, payload) {
+        async handleSort ({ state, commit, dispatch }, payload) {
             commit("options/setSort", payload, { root: false });
-            dispatch("handleBodyModification");
+            await dispatch("options/sortFields", { header: state.view.header, body: state.bodyClone },
+                { root: false });
         },
     },
     modules: {
