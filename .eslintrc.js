@@ -65,7 +65,7 @@ module.exports = {
         "grouped-accessor-pairs": "error",
         "guard-for-in": "error",
         "id-denylist": "error",
-        "id-length": "error",
+        "id-length": ["error", { "exceptions": ["a", "b", "i"] }],
         "id-match": "error",
         "implicit-arrow-linebreak": "error",
         "indent": ["error", 4, { "SwitchCase": 1 }],
