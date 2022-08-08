@@ -57,7 +57,7 @@ export default {
                 const { options, ...otherprops } = res.data;
 
                 commit("setSelected", otherprops);
-                commit("view/options/set", options, { root: true });
+                commit("options/set", options, { root: false });
                 return res.data;
             }).
                 catch((err) => {
@@ -82,14 +82,14 @@ export default {
         handleHideFields ({ state, commit, dispatch }, payload) {
             if (state.view.header[payload].isShown) {
                 commit("toggleFieldVisibility", { index: payload, isShown: false });
-                dispatch("view/options/handleFieldVisibility", "add", { root: true });
+                dispatch("options/handleFieldVisibility", "add", { root: false });
             } else {
                 commit("toggleFieldVisibility", { index: payload, isShown: true });
-                dispatch("view/options/handleFieldVisibility", "subtract", { root: true });
+                dispatch("options/handleFieldVisibility", "subtract", { root: false });
             }
         },
         handleSort ({ commit, dispatch }, payload) {
-            commit("view/options/setSort", payload, { root: true });
+            commit("options/setSort", payload, { root: false });
             dispatch("handleBodyModification");
         },
     },
