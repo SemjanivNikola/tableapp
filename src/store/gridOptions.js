@@ -1,4 +1,5 @@
 import sortByMultipleFields from "@/utils/sort";
+import filterByMultipleFields from "@/utils/filter";
 
 export default {
     state: {
@@ -66,7 +67,7 @@ export default {
             });
         },
 
-        sortBody ({ state }, payload) {
+        sortFields ({ state }, payload) {
             const fieldIndexList = [];
             state.options.sort.forEach((field) => {
                 const fieldIndex = payload.header.findIndex((header) => field.id === header.id);
@@ -77,8 +78,18 @@ export default {
             payload.body = sorted;
         },
 
+        filterRecords ({ state }, payload) {
+            const fieldIndexList = [];
+            state.options.filter.forEach((field) => {
+                const fieldIndex = payload.header.findIndex((header) => field.id === header.id);
+                fieldIndexList.push({ fieldIndex, options: field });
+            });
 
-        modifyBody ({ getters, dispatch }, payload) {
+            return filterByMultipleFields();
+        },
+
+
+        async modifyBody ({ getters, dispatch }, payload) {
             const clone = JSON.parse(JSON.stringify(payload));
 
             /*
@@ -94,13 +105,15 @@ export default {
 
             // SORT
             if (getters.isOptionApplied("sort")) {
-                dispatch("sortBody", { header: clone.header, body: clone.body });
+                dispatch("sortFields", { header: clone.header, body: clone.body });
             }
 
             // FILTER
             if (getters.isOptionApplied("filter")) {
-                // FILTER HERE
+                const filtered = await dispatch("filterRecords", { header: clone.header, body: clone.body });
+                clone.body = filtered;
             }
+
             return clone;
         },
     },

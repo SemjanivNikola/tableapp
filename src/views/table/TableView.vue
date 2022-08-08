@@ -50,15 +50,15 @@ export default {
     },
     data () {
         return {
-            tableHeader: this.data.header,
-            tableBody: this.data.body,
+            tableHeader: [],
+            tableBody: [],
         };
     },
     async created () {
         const { body, header } = await this.$store.dispatch("view/handleBodyModification");
         this.tableHeader = header;
         this.tableBody = body;
-        console.warn("bodyClone", body, header);
+        console.warn("bodyClone", body);
     },
 };
 </script>
