@@ -1,53 +1,46 @@
 <template>
-  <v-row
-    align="center"
-  >
-    <v-col
-      class="d-flex"
-      cols="5"
-      sm="4"
-    >
-      <div
-        class="flex-row"
-      >
+  <v-row align="center">
+    <v-col class="d-flex" cols="5" sm="4">
+      <div class="flex-row">
         <v-select
           v-model="selected"
           :items="fields"
           item-value="id"
-           @change="onChange"
+          @change="onChange"
         />
       </div>
     </v-col>
 
-    <v-col
-      class="d-flex"
-      cols="5"
-      sm="4"
-    >
+    <v-col class="d-flex" cols="5" sm="4">
       <div class="flex-row">
         <v-select
           v-model="sortSelect"
           :items="sortOptions"
           label="Options"
-           @change="onChange"
+          @change="onChange"
         />
       </div>
     </v-col>
 
-    <v-col
-      class="d-flex"
-      cols="2"
-      sm="2"
-    >
-    <button @click="removeOption">x</button>
+    <v-col class="d-flex" cols="2" sm="2">
+      <button @click="removeOption">x</button>
     </v-col>
   </v-row>
 </template>
 
 <script>
-const TEXT_SORT = [{ text: "A -> Z", value: 1 }, { text: "Z -> A", value: 2 }];
-const STATUS_SORT = [{ text: "First -> Last", value: 1 }, { text: "Last -> First", value: 2 }];
-const NUMBER_SORT = [{ text: "1 -> 9", value: 1 }, { text: "9 -> 1", value: 2 }];
+const TEXT_SORT = [
+    { text: "A -> Z", value: 1 },
+    { text: "Z -> A", value: 2 },
+];
+const STATUS_SORT = [
+    { text: "First -> Last", value: 1 },
+    { text: "Last -> First", value: 2 },
+];
+const NUMBER_SORT = [
+    { text: "1 -> 9", value: 1 },
+    { text: "9 -> 1", value: 2 },
+];
 
 const SortOption = Object.freeze({
     TEXT: "text",
@@ -107,11 +100,10 @@ export default {
             this.$emit("onChange", {
                 index: this.index,
                 option: { id: this.selected, direction: this.sortSelect },
-
             });
         },
         removeOption () {
-            this.$store.commit("view/options/removeSortOption", this.index, { root: true });
+            this.$store.dispatch("view/handleSortOptionRemove", this.index);
         },
     },
 };

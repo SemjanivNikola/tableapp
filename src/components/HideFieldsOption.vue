@@ -1,12 +1,6 @@
 <template>
-  <div
-    class="wrapper"
-    :class="getStatus"
-  >
-    <div
-      v-for="(header, index) in headerList"
-      :key="header.id"
-    >
+  <div class="wrapper" :class="getStatus">
+    <div v-for="(header, index) in headerList" :key="header.id">
       <v-switch
         :input-value="header.isShown"
         :label="header.text"
@@ -43,7 +37,7 @@ export default {
         },
     },
     created () {
-        const { header } = this.$store.getters["view/get"];
+        const { header } = this.$store.getters["view/getHeader"];
         this.headerList = header;
     },
     methods: {
@@ -56,20 +50,20 @@ export default {
 
 <style scoped>
 .wrapper {
-    position: absolute;
-    top: 28px;
-    left: 2px;
-    width: 360px;
-    height: 430px;
-    background-color: #fff;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    z-index: 9999;
+  position: absolute;
+  top: 28px;
+  left: 2px;
+  width: 360px;
+  height: 430px;
+  background-color: #fff;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  z-index: 9999;
 }
 .wrapper.show {
-    display: block;
+  display: block;
 }
 .wrapper.hidden {
-    display: none;
+  display: none;
 }
 </style>
