@@ -33,7 +33,7 @@ export default {
             return state.options;
         },
         sortOptions: (state) => {
-            return state.options.sort;
+            return state.options ? state.options.sort : [];
         },
         isOptionApplied: (state) => (payload) => {
             return state.options.summary.includes(payload);
@@ -90,14 +90,16 @@ export default {
 
 
         async modifyBody ({ getters, dispatch }, payload) {
+            if (!getters.get) {
+                return payload;
+            }
+
             const clone = JSON.parse(JSON.stringify(payload));
 
-            // SORT
             if (getters.isOptionApplied("sort")) {
                 dispatch("sortFields", { header: clone.header, body: clone.body });
             }
 
-            // FILTER
             if (getters.isOptionApplied("filter")) {
                 const filtered = await dispatch("filterRecords", { header: clone.header, body: clone.body });
                 clone.body = filtered;
