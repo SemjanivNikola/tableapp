@@ -23,7 +23,7 @@
         title="Filter"
         @onPress="handleFilter"
       >
-        <fitler-option
+        <filter-option
           :is-shown="shouldShowOptions3"
         />
       </action-bar-button>
@@ -72,7 +72,7 @@
 
 <script>
 import ActionBarButton from "./ActionBarButton.vue";
-import FitlerOption from "@/components/FitlerOption.vue";
+import FilterOption from "@/components/FilterOption.vue";
 import HideFieldsOption from "@/components/HideFieldsOption.vue";
 import ModalWrapper from "@/components/ModalWrapper.vue";
 import SortOption from "@/components/SortOption.vue";
@@ -80,7 +80,7 @@ import ViewTrash from "@/components/ViewTrash.vue";
 
 export default {
     name: "TableActionBar",
-    components: { ActionBarButton, HideFieldsOption, SortOption, ViewTrash, ModalWrapper, FitlerOption },
+    components: { ActionBarButton, HideFieldsOption, SortOption, ViewTrash, ModalWrapper, FilterOption },
     data () {
         return {
             title: "Hide fields",
