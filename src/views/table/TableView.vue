@@ -4,12 +4,13 @@
 
       <table>
         <header-list :header="tableHeader" />
-        <table-record-list :record-list="tableBody" />
+        <table-record-list :record-list="getRecordList" />
       </table>
     </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import HeaderList from "./HeaderList.vue";
 import TableActionBar from "./TableActionBar.vue";
 import TableRecordList from "./TableRecordList.vue";
@@ -20,13 +21,16 @@ export default {
     data () {
         return {
             tableHeader: [],
-            tableBody: [],
         };
     },
     created () {
-        const { header, body } = this.$store.getters["view/get"];
-        this.tableHeader = header;
-        this.tableBody = body;
+        this.tableHeader = this.$store.getters["view/getHeader"];
+    },
+    computed: {
+        ...mapState(["view"]),
+        getRecordList () {
+            return this.view.recordList;
+        },
     },
 };
 </script>

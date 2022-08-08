@@ -35,6 +35,9 @@ export default {
         addFilterOption (state, payload) {
             state.options.filter.push(payload);
         },
+        updateFilterOption (state, payload) {
+            state.options.filter[payload.index] = payload.value;
+        },
         removeFilterOption (state, payload) {
             state.options.filter.splice(payload, 1);
         },
@@ -73,10 +76,19 @@ export default {
                 commit("addOptionToSummary", "hide_fields");
             }
         },
-        lastFieldRemoved ({ state, commit }) {
+        lastFieldRemoved ({ state, commit, dispatch }) {
             if (state.options.hidden === 0) {
                 commit("removeOptionFromSummary", "hide_fields");
+                dispatch("sortFields");
             }
+        },
+        sortOptionRemove ({ state, commit }, payload) {
+            commit("removeSortOption", payload);
+            if (state.options.sort.length === 0) {
+                commit("removeOptionFromSummary", "sort");
+                return true;
+            }
+            return false;
         },
         handleFieldVisibility ({ commit, dispatch }, payload) {
             commit("setFieldsHidden", payload);
@@ -98,7 +110,6 @@ export default {
 
         filterRecords ({ state }, payload) {
             const fieldIndexList = [];
-            console.warn("FILTER LIST >> ", state.options.filter);
             state.options.filter.forEach((field) => {
                 fieldIndexList.push({ fieldIndex: field.id, options: field });
             });

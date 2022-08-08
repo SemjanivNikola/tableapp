@@ -43,21 +43,16 @@ const multipleFiltering = (row, fields) => {
 };
 
 const filterByMultipleFields = (payload, fields) => {
-    const filtered = payload.filter((row) => {
+    return payload.filter((row) => {
         if (fields.length > 1) {
 
             return multipleFiltering(row.cells, fields);
         }
 
-        // Compare row value(a) with value from filter list item(b)
-        console.warn("ROW >> ", row);
-        console.warn("FIELDS >> ", fields);
         return operaton[fields[0].options.condition](row.cells[fields[0].fieldIndex].value,
             fields[0].options.value);
 
     });
-
-    return filtered;
 };
 
 export default filterByMultipleFields;

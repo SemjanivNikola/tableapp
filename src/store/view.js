@@ -7,14 +7,14 @@ import gridOptions from "./gridOptions";
 export default {
     state: {
         view: null,
-        bodyClone: null,
+        recordList: [],
     },
     mutations: {
         setSelected (state, payload) {
             state.view = payload;
         },
-        setBodyClone (state, payload) {
-            state.bodyClone = payload;
+        setRecordList (state, payload) {
+            state.recordList = payload;
         },
         setMap (state, payload) {
             if (state.length > 0) {
@@ -34,16 +34,13 @@ export default {
                 row.cells[payload.index].isShown = payload.isShown;
             });
 
-            state.bodyClone.forEach((row) => {
+            state.recordList.forEach((row) => {
                 row.cells[payload.index].isShown = payload.isShown;
             });
 
         },
     },
     getters: {
-        get: (state) => {
-            return { header: state.view.header, body: state.bodyClone };
-        },
         getHeader: (state) => {
             return state.view.header;
         },
@@ -76,7 +73,7 @@ export default {
         },
         async handleBodyModification ({ state, commit, dispatch }) {
             const viewClone = await dispatch("options/modifyBody", state.view);
-            commit("setBodyClone", viewClone.body);
+            commit("setRecordList", viewClone.body);
             return true;
         },
         handleHideFields ({ state, commit, dispatch }, payload) {
@@ -90,14 +87,22 @@ export default {
         },
         async handleSort ({ state, commit, dispatch }, payload) {
             commit("options/setSort", payload, { root: false });
-            await dispatch("options/sortFields", { header: state.view.header, body: state.bodyClone },
+            await dispatch("options/sortFields", { header: state.view.header, body: state.recordList },
                 { root: false });
         },
         async handleFilter ({ state, commit, dispatch }, payload) {
-            console.warn("handleFilter", payload);
             commit("options/setFilter", payload, { root: false });
-            await dispatch("options/filterRecords", { header: state.view.header, body: state.bodyClone },
+            const clone = await dispatch("options/filterRecords", { header: state.view.header, body: state.view.body },
                 { root: false });
+            await dispatch("options/sortFields", { header: state.view.header, body: clone },
+                { root: false });
+            commit("setRecordList", clone);
+        },
+        async handleSortOptionRemove ({ state, dispatch }, payload) {
+            const shouldSort = await dispatch("options/sortOptionRemove", payload, { root: false });
+            if (shouldSort) {
+                dispatch("options/sortFields", { header: state.view.header, body: state.recordList }, { root: false });
+            }
         },
     },
     modules: {

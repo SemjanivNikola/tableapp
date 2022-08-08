@@ -11,6 +11,7 @@
         :index="index"
         :initial="item"
         :fields="fields"
+        @onChange="handleChange"
       />
     </div>
 
@@ -60,8 +61,15 @@ export default {
                 { root: true },
             );
         },
+        handleChange (value) {
+            this.$store.commit("view/options/updateFilterOption", {
+                index: value.index,
+                value: value.option,
+            }, { root: true });
+        },
         handleFilter () {
             this.$store.dispatch("view/handleFilter", this.filterList);
+
         },
     },
 };
