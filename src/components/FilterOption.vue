@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="wrapper"
-    :class="getStatus"
-  >
+  <div class="wrapper" :class="getStatus">
     <div v-if="filterList.length === 0">
       <p>No filter conditions are applied to this view</p>
     </div>
@@ -10,32 +7,25 @@
     <div v-else>
       <filter-option-item
         v-for="(item, index) in filterList"
-        :key="index"
+        :key="item.id"
+        :index="index"
         :initial="item"
         :fields="fields"
       />
     </div>
 
-    <button
-      class="btn"
-      @click="addFilter"
-    >
-      + Add condition
-    </button>
+    <button class="btn" @click="addFilter">+ Add condition</button>
+    <button class="btn" @click="handleFilter">Apply changes</button>
   </div>
 </template>
 
 <script>
 import FilterOptionItem from "./FilterOptionItem.vue";
-import tableData from "../../mock-data/grid_view_one.json";
 
 export default {
     name: "FilterOption",
-    components: {
-        FilterOptionItem,
-    },
+    components: { FilterOptionItem },
     props: {
-
         isShown: {
             type: Boolean,
             required: true,
@@ -43,7 +33,7 @@ export default {
     },
     data () {
         return {
-            fields: tableData.header,
+            fields: [],
             filterList: [],
             showPicker: false,
         };
@@ -53,19 +43,25 @@ export default {
             return this.isShown ? "show" : "hidden";
         },
     },
-    beforeMount () {
-        tableData.options.filter.forEach((item) => {
-            this.filterList.push(item);
-        }, this);
+    created () {
+        this.fields = this.$store.getters["view/getHeader"];
+        this.filterList = this.$store.getters["view/options/filterOptions"];
     },
     methods: {
         addFilter () {
-            this.filterList.push({
-                logic: this.filterList.length === 0 ? "where" : "and",
-                field: null,
-                condition: null,
-                value: "",
-            });
+            this.$store.commit(
+                "view/options/addFilterOption",
+                {
+                    logic: this.filterList.length === 0 ? "where" : "and",
+                    field: null,
+                    condition: null,
+                    value: "",
+                },
+                { root: true },
+            );
+        },
+        handleFilter () {
+            this.$store.dispatch("view/handleFilter", this.filterList);
         },
     },
 };
@@ -73,20 +69,24 @@ export default {
 
 <style scoped>
 .wrapper {
-    position: absolute;
-    top: 28px;
-    left: 2px;
-    width: 360px;
-    padding: 16px;
-    background-color: #fff;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    z-index: 9999;
+  position: absolute;
+  top: 28px;
+  left: 2px;
+  width: 360px;
+  height: 430px;
+  padding: 16px;
+  background-color: #fff;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  z-index: 9999;
 }
 .wrapper.show {
-    display: block;
+  display: block;
 }
 .wrapper.hidden {
-    display: none;
+  display: none;
+}
+.btn {
+  display: block;
 }
 </style>

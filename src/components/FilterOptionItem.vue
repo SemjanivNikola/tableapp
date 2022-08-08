@@ -33,6 +33,7 @@
           v-model="value"
           placeholder="Enter a value"
         />
+        <button @click="removeOption">x</button>
       </div>
     </v-col>
   </v-row>
@@ -87,11 +88,15 @@ export default {
             type: Array,
             required: true,
         },
+        index: {
+            type: Number,
+            required: true,
+        },
     },
     data () {
         return {
             logic: this.initial.logic,
-            field: this.initial.field,
+            field: this.initial.id,
             condition: this.initial.condition,
             value: this.initial.value,
             conditionOptions: [],
@@ -109,9 +114,9 @@ export default {
             deep: true,
         },
     },
-    beforeMount () {
-        if (this.initial.field) {
-            this.selectSortOptByType(this.fields[this.initial.field - 1].type);
+    created () {
+        if (this.initial.id) {
+            this.selectSortOptByType(this.fields[this.initial.id - 1].type);
         } else {
             this.field = this.fields[0].id;
         }
@@ -127,6 +132,10 @@ export default {
             }
 
             this.condition = this.conditionOptions[0];
+        },
+        removeOption () {
+            this.$store.commit("view/options/removeFilterOption", this.index, { root: true });
+
         },
     },
 };

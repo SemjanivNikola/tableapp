@@ -15,6 +15,7 @@ export default {
         set (state, payload) {
             state.options = payload;
         },
+
         setSort (state, payload) {
             state.options.sort = payload;
         },
@@ -24,6 +25,17 @@ export default {
         removeSortOption (state, payload) {
             state.options.sort.splice(payload, 1);
         },
+
+        setFilter (state, payload) {
+            state.options.filter = payload;
+        },
+        addFilterOption (state, payload) {
+            state.options.filter.push(payload);
+        },
+        removeFilterOption (state, payload) {
+            state.options.filter.splice(payload, 1);
+        },
+
         indexHelperList (state, payload) {
             state.indexHelperList = payload;
         },
@@ -43,6 +55,9 @@ export default {
         },
         sortOptions: (state) => {
             return state.options ? state.options.sort : [];
+        },
+        filterOptions: (state) => {
+            return state.options ? state.options.filter : [];
         },
         isOptionApplied: (state) => (payload) => {
             return state.options.summary.includes(payload);
@@ -79,6 +94,7 @@ export default {
 
         filterRecords ({ state }, payload) {
             const fieldIndexList = [];
+            console.warn("FILTER LIST >> ", state.options.filter);
             state.options.filter.forEach((field) => {
                 // TODO: Talk about this - maybe we can use indexes instead of field id's
                 const fieldIndex = payload.header.findIndex((header) => field.id === header.id);

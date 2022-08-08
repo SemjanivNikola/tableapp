@@ -50,6 +50,8 @@ const filterByMultipleFields = (payload, fields) => {
         }
 
         // Compare row value(a) with value from filter list item(b)
+        console.warn("ROW >> ", row);
+        console.warn("FIELDS >> ", fields);
         return operaton[fields[0].options.condition](row.cells[fields[0].fieldIndex].value,
             fields[0].options.value);
 

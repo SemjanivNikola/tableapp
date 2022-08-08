@@ -93,6 +93,12 @@ export default {
             await dispatch("options/sortFields", { header: state.view.header, body: state.bodyClone },
                 { root: false });
         },
+        async handleFilter ({ state, commit, dispatch }, payload) {
+            console.warn("handleFilter", payload);
+            commit("options/setFilter", payload, { root: false });
+            await dispatch("options/filterRecords", { header: state.view.header, body: state.bodyClone },
+                { root: false });
+        },
     },
     modules: {
         options: {
