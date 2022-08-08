@@ -16,7 +16,7 @@
     <div v-else>
       <h1 v-if="isLoading" style="color: white">LOADING</h1>
 
-      <table-view v-else :data="viewData" />
+      <table-view v-else />
     </div>
   </v-card>
 </template>
@@ -30,10 +30,8 @@ export default {
     components: { TabHeader, TableView },
     data () {
         return {
-            title: "Naslov",
             shouldShowHome: true,
             tabHeaderList: [],
-            viewData: null,
             errorData: null,
             isLoading: true,
             isError: false,
@@ -52,8 +50,7 @@ export default {
         readViewById (id) {
             this.isLoading = true;
 
-            this.$store.dispatch("view/readView", id, { root: true }).then((response) => {
-                this.viewData = response;
+            this.$store.dispatch("view/readView", id, { root: true }).then(() => {
                 this.isLoading = false;
             }).
                 catch((error) => {
