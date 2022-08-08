@@ -1,6 +1,5 @@
 <template>
     <tr>
-        <record-cell :cell="{value: record.id, isShown: true}" />
         <record-cell v-for="(cell, index) in record.cells" :key="index" :cell="cell" />
     </tr>
 </template>
