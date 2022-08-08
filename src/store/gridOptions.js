@@ -85,23 +85,12 @@ export default {
                 fieldIndexList.push({ fieldIndex, options: field });
             });
 
-            return filterByMultipleFields();
+            return filterByMultipleFields(payload.body, fieldIndexList);
         },
 
 
         async modifyBody ({ getters, dispatch }, payload) {
             const clone = JSON.parse(JSON.stringify(payload));
-
-            /*
-             * HIDE FIELDS
-             * if (getters.isOptionApplied("hide_fields")) {
-             *     console.log("HIDIMNG FIELDS");
-             *     dispatch("hideFieldHeader", clone.header);
-             *     console.log("HEADER DONE");
-             *     dispatch("hideFiledBody", clone.body);
-             *     console.log("BODY DONE - HIDING FIELDS DONE");
-             * }
-             */
 
             // SORT
             if (getters.isOptionApplied("sort")) {

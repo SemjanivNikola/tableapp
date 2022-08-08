@@ -9,8 +9,9 @@
         <tr>
           <th>Placeholder</th>
           <th
-            v-for="(header, index) in tableHeader"
-            :key="index"
+            v-for="header in tableHeader"
+            :key="header.id"
+            :class="{hidden: !header.isShown}"
           >
             {{ header.text }}
           </th>
@@ -18,13 +19,14 @@
       </thead>
       <tbody>
         <tr
-          v-for="(row, rowIndex) in tableBody"
-          :key="rowIndex"
+          v-for="row in tableBody"
+          :key="row.id"
         >
-          <td>{{ rowIndex }}</td>
+          <td>{{ row.id }}</td>
           <td
-            v-for="(cell, cellIndex) in row"
+            v-for="(cell, cellIndex) in row.cells"
             :key="cellIndex"
+            :class="{hidden: !cell.isShown}"
           >
             {{ cell.value }}
           </td>
@@ -58,7 +60,6 @@ export default {
         const { body, header } = await this.$store.dispatch("view/handleBodyModification");
         this.tableHeader = header;
         this.tableBody = body;
-        console.warn("bodyClone", body);
     },
 };
 </script>
@@ -70,5 +71,8 @@ table {
 th, td {
   border: 1px solid #fff;
   color: white;
+}
+th.hidden, td.hidden {
+  display: none;
 }
 </style>

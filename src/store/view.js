@@ -28,7 +28,7 @@ export default {
             state.map.push(payload);
         },
         toggleFieldVisibility (state, payload) {
-            state.view.header[payload.index].isHidden = payload.isHidden;
+            state.view.header[payload.index].isShown = payload.isShown;
         },
     },
     getters: {
