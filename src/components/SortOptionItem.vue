@@ -14,6 +14,7 @@
           v-model="selected"
           :items="fields"
           item-value="id"
+           @change="onChange"
         />
       </div>
     </v-col>
@@ -28,6 +29,7 @@
           v-model="sortSelect"
           :items="sortOptions"
           label="Options"
+           @change="onChange"
         />
       </div>
     </v-col>
@@ -44,8 +46,8 @@
 
 <script>
 const TEXT_SORT = [{ text: "A -> Z", value: 1 }, { text: "Z -> A", value: 2 }];
-const NUMBER_SORT = [{ text: "First -> Last", value: 1 }, { text: "Last -> First", value: 2 }];
-const STATUS_SORT = [{ text: "1 -> 9", value: 1 }, { text: "9 -> 1", value: 2 }];
+const STATUS_SORT = [{ text: "First -> Last", value: 1 }, { text: "Last -> First", value: 2 }];
+const NUMBER_SORT = [{ text: "1 -> 9", value: 1 }, { text: "9 -> 1", value: 2 }];
 
 const SortOption = Object.freeze({
     TEXT: "text",
@@ -71,8 +73,8 @@ export default {
     },
     data () {
         return {
-            selected: this.fields[this.initial.id - 1],
-            sortSelect: null,
+            selected: this.fields[this.initial.id - 1].id,
+            sortSelect: this.initial.direction,
             sortOptions: null,
             initSortDirection: this.initial.direction,
         };
@@ -89,7 +91,7 @@ export default {
         },
     },
     created () {
-        this.selectSortOptByType(this.selected.type);
+        this.selectSortOptByType(this.fields[this.initial.id - 1].type);
     },
     methods: {
         selectSortOptByType (type) {
@@ -100,16 +102,16 @@ export default {
             } else if (type === SortOption.STATUS) {
                 this.sortOptions = STATUS_SORT;
             }
+        },
+        onChange () {
+            this.$emit("onChange", {
+                index: this.index,
+                option: { id: this.selected, direction: this.sortSelect },
 
-            if (this.initSortDirection) {
-                this.sortSelect = this.sortOptions[this.initSortDirection];
-                this.initSortDirection = null;
-            }
-            this.sortSelect = this.sortOptions[0];
+            });
         },
         removeOption () {
             this.$store.commit("view/options/removeSortOption", this.index, { root: true });
-            this.$emit("onFiledRemove");
         },
     },
 };

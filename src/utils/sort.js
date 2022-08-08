@@ -13,27 +13,12 @@ const compareNumbers = (num1, num2) => {
 };
 
 const comparison = (rowA, rowB, fields) => {
-    const aPrio = rowA[fields[index].fieldIndex].value;
-    const bPrio = rowB[fields[index].fieldIndex].value;
+    const aPrio = fields[index].direction === 1 ? rowA[fields[index].fieldIndex].value :
+        rowB[fields[index].fieldIndex].value;
+    const bPrio = fields[index].direction === 1 ? rowB[fields[index].fieldIndex].value :
+        rowA[fields[index].fieldIndex].value;
 
-
-    const aNext = rowA[fields[index].fieldIndex].value;
-    const bNext = rowB[fields[index].fieldIndex].value;
-
-    if (typeof aPrio === "string") {
-        const result = aPrio.localeCompare(bPrio) || bNext - aNext;
-        if (result === 0 || isNaN(result)) {
-            index += 1;
-            if (fields.length === index) {
-                return 0;
-            }
-            return comparison(rowA, rowB, fields);
-        }
-
-        return result;
-    }
-
-    const result = compareNumbers(aPrio, bPrio) || bNext - aNext;
+    const result = typeof aPrio === "string" ? aPrio.localeCompare(bPrio) : compareNumbers(aPrio, bPrio);
     if (result === 0) {
         index += 1;
         if (fields.length === index) {
@@ -41,8 +26,8 @@ const comparison = (rowA, rowB, fields) => {
         }
         return comparison(rowA, rowB, fields);
     }
-    return result;
 
+    return result;
 };
 
 const sortByMultipleFields = (payload, fields) => {

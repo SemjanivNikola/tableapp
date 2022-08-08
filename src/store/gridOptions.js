@@ -22,6 +22,9 @@ export default {
         addSortOption (state, payload) {
             state.options.sort.push(payload);
         },
+        updateSortOption (state, payload) {
+            state.options.sort[payload.index] = payload.value;
+        },
         removeSortOption (state, payload) {
             state.options.sort.splice(payload, 1);
         },
@@ -97,9 +100,7 @@ export default {
             const fieldIndexList = [];
             console.warn("FILTER LIST >> ", state.options.filter);
             state.options.filter.forEach((field) => {
-                // TODO: Talk about this - maybe we can use indexes instead of field id's
-                const fieldIndex = payload.header.findIndex((header) => field.id === header.id);
-                fieldIndexList.push({ fieldIndex, options: field });
+                fieldIndexList.push({ fieldIndex: field.id, options: field });
             });
 
             return filterByMultipleFields(payload.body, fieldIndexList);

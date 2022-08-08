@@ -4,6 +4,7 @@
     :class="getStatus"
   >
     <h6>Sort by</h6>
+    <p>After every change you make be sure to apply those changes. Otherwise it won't be visible.</p>
     <div v-if="select.length === 0">
       <table-field-picker
         :fields="fields"
@@ -18,7 +19,7 @@
         :index="index"
         :initial="item"
         :fields="fields"
-        @onFiledRemove="handleSort"
+        @onChange="handleChange"
       />
 
       <div style="position: relative;">
@@ -99,12 +100,18 @@ export default {
         handleFieldPick (index) {
             this.$store.commit("view/options/addSortOption", {
                 id: index,
-                sort: 1,
+                direction: 1,
             }, { root: true });
 
             if (this.showPicker) {
                 this.showPicker = false;
             }
+        },
+        handleChange (value) {
+            this.$store.commit("view/options/updateSortOption", {
+                index: value.index,
+                value: value.option,
+            }, { root: true });
         },
         handleSort () {
             this.$store.dispatch("view/handleSort", this.select);
