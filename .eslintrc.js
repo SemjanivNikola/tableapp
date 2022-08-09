@@ -154,7 +154,7 @@ module.exports = {
         "no-self-compare": "error",
         "no-sequences": "error",
         "no-shadow": "error",
-        "no-tabs": "error",
+        "no-tabs": 0,
         "no-template-curly-in-string": "error",
         "no-ternary": "off",
         "no-throw-literal": "error",
