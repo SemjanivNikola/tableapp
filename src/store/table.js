@@ -37,6 +37,9 @@ export default {
         isTableSelected: (state) => (id) => {
             return id === state.selectedTable.id;
         },
+        isViewSelected: (state, getters) => (viewID, tableID) => {
+            return viewID === state.selectedViewId && getters.isTableSelected(tableID);
+        },
     },
     actions: {
         process ({ commit }, payload) {

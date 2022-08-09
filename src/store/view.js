@@ -49,6 +49,11 @@ export default {
         },
     },
     actions: {
+
+        /*
+         * TODO: How to read correct view, if every table within it's own view_list has items id start form 1?
+         * Do we need to pass workspace id and table id as well?
+         */
         readView ({ commit }, payload) {
             return axios.get(`/view?id=${payload}`).then((res) => {
                 const { options, ...otherprops } = res.data;
