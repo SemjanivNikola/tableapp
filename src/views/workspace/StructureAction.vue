@@ -6,9 +6,9 @@
         <icon name="add" :size="20" color="white" />
       </button>
       <div class="dropdown-wrapper" :class="getIsAddNewOpen">
-        <div class="dropdown-item" @click="onCreate('workspace')">+ Add workspace</div>
-        <div class="dropdown-item" @click="onCreate('table')">+ Add table</div>
-        <div class="dropdown-item" @click="onCreate('grid view')">+ Add view</div>
+        <div class="dropdown-item" @click="onClick('workspace')">+ Add workspace</div>
+        <div class="dropdown-item" @click="onClick('table')">+ Add table</div>
+        <div class="dropdown-item" @click="onClick('grid view')">+ Add view</div>
       </div>
     </div>
   </div>
@@ -27,6 +27,12 @@ export default {
         return {
             isAddNewOpen: false,
         };
+    },
+    methods: {
+        onClick (value) {
+            this.isAddNewOpen = false;
+            this.onCreate(value);
+        },
     },
     computed: {
         getIsAddNewOpen () {
