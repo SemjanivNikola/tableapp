@@ -1,18 +1,62 @@
 <template>
   <div class="relative">
     <div class="header">
-       <p>Create {{structure}}</p>
-        <button
-          class="btn"
-          @click="$emit('close')"
-        >
-          X
-        </button>
+      <p>Create {{ structure }}</p>
+      <button class="btn" @click="$emit('close')">X</button>
     </div>
 
     <!-- BODY -->
     <div class="body-wrapper">
+      <v-form v-model="valid">
+        <v-text-field
+          v-model="title"
+          :rules="stringRule"
+          :counter="17"
+          label="Title"
+          requred
+        ></v-text-field>
 
+        <v-textarea
+          v-if="structure === 'workspace'"
+          v-model="description"
+          name="description"
+          label="Description"
+          hint="What is this workspace about?"
+          counter
+          no-resize
+          rows="2"
+        ></v-textarea>
+
+        <v-select
+          v-if="structure !== 'workspace'"
+          v-model="selectedWorkspace"
+          :items="workspaceList"
+          :rules="selectRule"
+          item-value="id"
+          item-text="title"
+        />
+
+        <v-select
+          v-if="structure === 'grid view'"
+          v-model="selectedTable"
+          :items="tableList"
+          :rules="selectRule"
+          item-value="id"
+          item-text="title"
+        />
+
+        <v-text-field
+          v-if="structure === 'table'"
+          v-model="viewTitle"
+          :rules="stringRule"
+          :counter="17"
+          label="View title"
+          :requred="structure === 'table'"
+        ></v-text-field>
+
+        <v-btn class="mr-4" @click="submit" :disabled="!valid"> submit </v-btn>
+        <v-btn @click="clear"> clear </v-btn>
+      </v-form>
     </div>
 
     <div class="footer-placeholder" />
@@ -21,9 +65,7 @@
     <div class="footer">
       <div class="footer-inner">
         <div class="icon">
-          <svg
-            viewBox="0 0 24 24"
-          >
+          <svg viewBox="0 0 24 24">
             <path
               fill="#696969"
               d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,
@@ -31,8 +73,11 @@
             />
           </svg>
         </div>
-        <p>This is your base trash for deleted records, blocks, fields, view and tables.
-          For deleted bases and workspaces, see your workspace trash.</p>
+        <p>
+          When creating new workspace, by default one table and one grid view is
+          added to it. You can add more now or later, as well as change default
+          naming of those data structures.
+        </p>
       </div>
     </div>
   </div>
@@ -50,45 +95,91 @@ export default {
     },
     data () {
         return {
-
+            valid: false,
+            title: "Untitled",
+            viewTitle: "View 1",
+            selectedWorkspace: null,
+            selectedTable: null,
+            workspaceList: [],
+            tableList: [],
+            description: "",
+            stringRule: [
+                (str) => Boolean(str) || "Title is required",
+                (str) => (/^[A-Za-z0-9 ]*$/u).test(str) || "Use only letters and numbers",
+                (str) => str.length <= 17 || "Title must be less than 10 characters",
+            ],
+            selectRule: [(val) => Boolean(val) || "Field is required"],
         };
     },
-    computed: {
-
+    watch: {
+        structure (newStructure) {
+            if (newStructure === "table") {
+                this.fillWorkspaceSelect();
+            } else if (newStructure === "grid view") {
+                this.fillWorkspaceSelect();
+                this.fillTableSelect();
+            }
+        },
+    },
+    methods: {
+        submit () {
+            this.$emit("submit", this.title);
+            this.clear();
+        },
+        clear () {
+            this.valid = false;
+            this.title = "Untitled";
+            this.viewTitle = "View 1";
+            this.selectedWorkspace = null;
+            this.selectedTable = null;
+            this.description = "";
+        },
+        fillWorkspaceSelect () {
+            this.workspaceList = this.$store.getters["workspace/getMap"];
+            const id = this.$store.getters["workspace/getSelectedId"];
+            this.selectedWorkspace = this.workspaceList[id - 1].id;
+        },
+        fillTableSelect () {
+            this.tableList = this.$store.getters["table/getMap"];
+            const id = this.$store.getters["table/getSelectedId"];
+            this.selectedTable = this.tableList[id - 1].id;
+        },
     },
 };
 </script>
 
 <style scoped>
 .relative {
-    position: relative;
-    min-height: inherit;
+  position: relative;
+  min-height: inherit;
 }
 p {
   margin: 0;
 }
-.flex-row, .header, .footer-inner {
+.flex-row,
+.header,
+.footer-inner {
   display: flex;
   align-items: center;
 }
 .header {
   justify-content: space-between;
   margin: 0 16px;
-  padding-bottom: 16px;
-  border-bottom: 2px solid #DCDCDC;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #dcdcdc;
 }
 .footer {
   position: absolute;
   bottom: 0;
   left: 0;
-  padding-top: 16px;
+  padding-top: 8px;
   margin: 0 16px;
   background-color: #fff;
-  border-top: 2px solid #DCDCDC;
+  border-top: 2px solid #dcdcdc;
 }
 .footer-inner {
   padding: 8px;
-  background-color: #DCDCDC;
+  background-color: #dcdcdc;
   border-radius: 6px;
 }
 .footer-inner .icon {
@@ -112,13 +203,13 @@ p {
   cursor: pointer;
 }
 .btn-fill {
-  background-color: #DCDCDC;
+  background-color: #dcdcdc;
 }
 
 .body-wrapper {
   overflow-y: auto;
   max-height: 350px;
-  padding: 0 16px;
+  padding: 8px 16px;
 }
 .item-list {
   list-style: none;
@@ -129,7 +220,7 @@ p {
   display: flex;
   justify-content: space-between;
   padding: 16px 0;
-  border-bottom: 1px solid #DCDCDC;
+  border-bottom: 1px solid #dcdcdc;
 }
 .item-list .list-item:last-child {
   border-bottom: none;
