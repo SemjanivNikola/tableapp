@@ -10,33 +10,33 @@
         "table_list": [
             {
                 "id": 1,
-                "table_name": "Table One",
+                "title": "Table One",
                 "view_list": [
                     {
                         "id": 1,
-                        "view_name": "View One"
+                        "title": "View One"
                     }
                 ],
                 "selected_view_id": 1
             },
             {
                 "id": 2,
-                "table_name": "Table Two",
+                "title": "Table Two",
                 "view_list": [
                     {
                         "id": 1,
-                        "view_name": "View One"
+                        "title": "View One"
                     }
                 ],
                 "selected_view_id": 1
             },
             {
                 "id": 3,
-                "table_name": "Table Three",
+                "title": "Table Three",
                 "view_list": [
                     {
                         "id": 1,
-                        "view_name": "View One"
+                        "title": "View One"
                     }
                 ],
                 "selected_view_id": 1
@@ -54,33 +54,33 @@
         "table_list": [
             {
                 "id": 1,
-                "table_name": "Table Four",
+                "title": "Table Four",
                 "view_list": [
                     {
                         "id": 1,
-                        "view_name": "View One"
+                        "title": "View One"
                     }
                 ],
                 "selected_view_id": 1
             },
             {
                 "id": 2,
-                "table_name": "Table Five",
+                "title": "Table Five",
                 "view_list": [
                     {
                         "id": 1,
-                        "view_name": "View One"
+                        "title": "View One"
                     }
                 ],
                 "selected_view_id": 1
             },
             {
                 "id": 3,
-                "table_name": "Table Six",
+                "title": "Table Six",
                 "view_list": [
                     {
                         "id": 1,
-                        "view_name": "View One"
+                        "title": "View One"
                     }
                 ],
                 "selected_view_id": 1
@@ -98,41 +98,41 @@
         "table_list": [
             {
                 "id": 1,
-                "table_name": "Table Seven",
+                "title": "Table Seven",
                 "view_list": [
                     {
                         "id": 1,
-                        "view_name": "View One"
+                        "title": "View One"
                     }
                 ],
                 "selected_view_id": 1
             },
             {
                 "id": 2,
-                "table_name": "Table Eight",
+                "title": "Table Eight",
                 "view_list": [
                     {
                         "id": 1,
-                        "view_name": "View One"
+                        "title": "View One"
                     }
                 ],
                 "selected_view_id": 1
             },
             {
                 "id": 3,
-                "table_name": "Movies",
+                "title": "Movies",
                 "view_list": [
                     {
                         "id": 1,
-                        "view_name": "Spiderman Homecoming"
+                        "title": "Spiderman Homecoming"
                     },
                     {
                         "id": 2,
-                        "view_name": "The Shawshank Redemption"
+                        "title": "The Shawshank Redemption"
                     },
                     {
                         "id": 3,
-                        "view_name": "The Lord of the Rings"
+                        "title": "The Lord of the Rings"
                     }
                 ],
                 "selected_view_id": 3
