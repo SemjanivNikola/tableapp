@@ -9,7 +9,6 @@ import tabledata from "../../mock-data/workspace_list.json";
  *      3.1. Icon color update
  *      3.2. Icon name update
  *  4. Backgound color update
- *  5. GET workspace by id - from map
  *  6. DELETE workspace by id - do a request then delete from map
  */
 
@@ -34,10 +33,16 @@ export default {
         },
     },
     getters: {
+        getMap: (state) => {
+            return state.map;
+        },
         workspaceById: (state) => (id) => {
             return state.map.find((item) => {
                 return item.id === id;
             });
+        },
+        getSelectedId: (state) => {
+            return state.selected.id;
         },
         getTitle: (state) => {
             return state.selected.title;

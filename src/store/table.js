@@ -34,6 +34,9 @@ export default {
         getSelectedViewId: (state) => {
             return state.selectedViewId;
         },
+        getSelectedId: (state) => {
+            return state.selectedTable.id;
+        },
         isTableSelected: (state) => (id) => {
             return id === state.selectedTable.id;
         },
