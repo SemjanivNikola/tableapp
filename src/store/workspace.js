@@ -44,7 +44,7 @@ export default {
         },
     },
     actions: {
-        process ({ dispatch, getters }, payload) {
+        process ({ dispatch, getters, commit }, payload) {
             const { table_list, ...otherProps } = getters.workspaceById(payload);
 
             commit("setSelected", otherProps);
