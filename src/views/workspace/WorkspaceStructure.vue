@@ -2,7 +2,7 @@
   <div class="structure-wrapper">
     <div class="input-group">
       <div id="container">
-        <icon name="menu" class="menu" :size="16" color="white" />
+        <icon name="menu" :size="16" color="white" />
         <input
           type="search"
           class="form-control rounded"
@@ -13,12 +13,11 @@
       </div>
       <div id="bar">
         <p>Structure</p>
-        <h3 style="color: white">{{ title }}</h3>
-
         <icon name="add" class="add" :size="20" color="white" />
       </div>
       <div id="structure">
-        <icon name="file" class="file" :size="16" color="white" />
+        <icon name="file" :size="16" color="white" />
+        <h3 style="color: white">{{ title }}</h3>
       </div>
     </div>
     <ul>
@@ -85,12 +84,13 @@ export default {
   align-items: flex-start;
   padding: 10px;
 }
+#structure {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
 .add {
   margin-left: auto;
-}
-.file {
-  display: flex;
-  margin-right: 180px;
 }
 a {
   color: white;
