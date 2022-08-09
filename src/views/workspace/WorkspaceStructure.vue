@@ -18,6 +18,8 @@
       </div>
       <div id="bar">
         <p>Structure</p>
+        <h3 style="color: white">{{title}}</h3>
+
         <icon
           name="add"
           class="add"
@@ -34,12 +36,36 @@
         />
       </div>
     </div>
+    <ul>
+          <li v-for="(table, index) in structure" :key="table.id">
+            <a href="#" @click="selectItem(index)">{{table.title}}</a>
+            <ul>
+              <li v-for="(view, index) in table.view_list" :key="view.id">
+                <a href="#" @click="selectItem(index)">{{view.title}}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
     name: "WorkspaceStructure",
+    data () {
+        return {
+            search: "",
+            title: this.$store.getters["workspace/getTitle"],
+        };
+    },
+    computed: {
+        ...mapState(["table"]),
+        structure () {
+            return this.table.map;
+        },
+    },
 };
 </script>
 
@@ -71,5 +97,9 @@ export default {
 .file{
   display: flex;
   margin-right: 180px;
+}
+a {
+  color: white;
+  text-decoration: none;
 }
 </style>

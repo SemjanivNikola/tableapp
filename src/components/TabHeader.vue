@@ -1,6 +1,6 @@
 <template>
   <div class="header-wrapper" :class="isSelected">
-    <h5>{{ header.table_name }}</h5>
+    <h5>{{ header.title }}</h5>
     <icon
       name="close"
       :size="16"
