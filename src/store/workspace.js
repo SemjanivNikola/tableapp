@@ -16,6 +16,7 @@ import tabledata from "../../mock-data/workspace_list.json";
 export default {
     state: {
         map: [],
+        selected: null,
     },
     mutations: {
         setMap (state, payload) {
@@ -24,6 +25,9 @@ export default {
             }
 
             state.map = payload;
+        },
+        setSelected (state, payload) {
+            state.selected = payload;
         },
         addNewWorkspace (state, payload) {
             state.map.push(payload);
@@ -35,12 +39,15 @@ export default {
                 return item.id === id;
             });
         },
-
+        getTitle: (state) => {
+            return state.selected.title;
+        },
     },
     actions: {
         process ({ dispatch, getters }, payload) {
             const { table_list, ...otherProps } = getters.workspaceById(payload);
 
+            commit("setSelected", otherProps);
             dispatch("table/process", { map: table_list, selected: otherProps.selected_table_id },
                 { root: true });
         },
@@ -53,13 +60,8 @@ export default {
              * TODO: Uncoment when backend is deployed
              * await axios.get("/workspace").then((res) => {
              *     console.warn("RES >> ", res);
-             *     const { view_list, table_list, ...otherProps } = res.data;
-             */
-
-            /*
-             *     commit("setMap", otherProps);
-             *     commit("setLst1", table_list, { root: false });
-             *     commit("table/view/setList2", view_list, { root: false });
+             *
+             *     commit("setMap", res.data);
              * }).
              *     catch((err) => {
              *         console.warn(err);
