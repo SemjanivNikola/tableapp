@@ -40,7 +40,7 @@ export default {
         this.$store.dispatch("workspace/readWorkspaceList");
 
         this.shouldShowHome = false; // TODO: Uncomment this when HOME is done -> !this.$route.params.id;
-        this.$watch(() => this.$route.params.id, this.getWorkspace(1));
+        this.$watch(() => this.$route.params.id, this.getWorkspace(3));
     },
     methods: {
         getWorkspace (id) {
