@@ -24,22 +24,22 @@
                 "title": "Table Two",
                 "view_list": [
                     {
-                        "id": 2,
+                        "id": 1,
                         "title": "View One"
                     }
                 ],
-                "selected_view_id": 2
+                "selected_view_id": 1
             },
             {
                 "id": 3,
                 "title": "Table Three",
                 "view_list": [
                     {
-                        "id": 3,
+                        "id": 1,
                         "title": "View One"
                     }
                 ],
-                "selected_view_id": 3
+                "selected_view_id": 1
             }
         ]
     },
@@ -50,40 +50,40 @@
         "icon": "suitcase",
         "icon_color": "#fff",
         "background_color": "#9101f8",
-        "selected_table_id": 4,
+        "selected_table_id": 1,
         "table_list": [
             {
-                "id": 4,
+                "id": 1,
                 "title": "Table Four",
                 "view_list": [
                     {
-                        "id": 4,
+                        "id": 1,
                         "title": "View One"
                     }
                 ],
-                "selected_view_id": 4
+                "selected_view_id": 1
             },
             {
-                "id": 5,
+                "id": 2,
                 "title": "Table Five",
                 "view_list": [
                     {
-                        "id": 5,
+                        "id": 1,
                         "title": "View One"
                     }
                 ],
-                "selected_view_id": 5
+                "selected_view_id": 1
             },
             {
-                "id": 6,
+                "id": 3,
                 "title": "Table Six",
                 "view_list": [
                     {
-                        "id": 6,
+                        "id": 1,
                         "title": "View One"
                     }
                 ],
-                "selected_view_id": 6
+                "selected_view_id": 1
             }
         ]
     },
@@ -94,48 +94,48 @@
         "icon": "pen",
         "icon_color": "#fff",
         "background_color": "#f85301",
-        "selected_table_id": 9,
+        "selected_table_id": 3,
         "table_list": [
             {
-                "id": 7,
+                "id": 1,
                 "title": "Table Seven",
                 "view_list": [
                     {
-                        "id": 7,
+                        "id": 1,
                         "title": "View One"
                     }
                 ],
-                "selected_view_id": 7
+                "selected_view_id": 1
             },
             {
-                "id": 8,
+                "id": 2,
                 "title": "Table Eight",
                 "view_list": [
                     {
-                        "id": 8,
+                        "id": 1,
                         "title": "View One"
                     }
                 ],
-                "selected_view_id": 8
+                "selected_view_id": 1
             },
             {
-                "id": 9,
+                "id": 3,
                 "title": "Movies",
                 "view_list": [
                     {
-                        "id": 9,
+                        "id": 1,
                         "title": "Spiderman Homecoming"
                     },
                     {
-                        "id": 10,
+                        "id": 2,
                         "title": "The Shawshank Redemption"
                     },
                     {
-                        "id": 11,
+                        "id": 3,
                         "title": "The Lord of the Rings"
                     }
                 ],
-                "selected_view_id": 11
+                "selected_view_id": 3
             }
         ]
     }
