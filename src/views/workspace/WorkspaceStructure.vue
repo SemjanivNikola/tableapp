@@ -11,14 +11,7 @@
           aria-describedby="search-addon"
         />
       </div>
-      <div id="bar">
-        <p>Structure</p>
-        <icon name="add" class="add" :size="20" color="white" />
-      </div>
-      <div id="structure">
-        <icon name="file" :size="16" color="white" />
-        <h3 style="color: white">{{ title }}</h3>
-      </div>
+      <structure-action :onCreate="handleCreate" />
     </div>
     <ul>
       <li v-for="(table, index) in structure" :key="table.id">
@@ -34,24 +27,40 @@
         </ul>
       </li>
     </ul>
+    <modal-wrapper :is-shown="isCreateModalShown">
+      <create-structure
+        :structure="createStructure"
+        @close="(isCreateModalShown = false)"
+      />
+    </modal-wrapper>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import CreateStructure from "./CreateStructure.vue";
+import ModalWrapper from "@/components/ModalWrapper.vue";
+import StructureAction from "./StructureAction.vue";
 
 export default {
+    components: { StructureAction, ModalWrapper, CreateStructure },
     name: "WorkspaceStructure",
     data () {
         return {
             search: "",
             title: this.$store.getters["workspace/getTitle"],
+            isCreateModalShown: false,
+            createStructure: null,
         };
     },
     methods: {
         isSelected (viewID, tableID) {
             const isViewSelected = this.$store.getters["table/isViewSelected"];
             return isViewSelected(viewID, tableID);
+        },
+        handleCreate (value) {
+            this.createStructure = value;
+            this.isCreateModalShown = true;
         },
     },
     computed: {
@@ -76,21 +85,10 @@ export default {
   display: flex;
   padding: 5px;
 }
-#bar {
-  color: white;
-  text-decoration: underline;
-  text-decoration-color: #6bd1ff;
-  display: flex;
-  align-items: flex-start;
-  padding: 10px;
-}
 #structure {
   display: flex;
   align-items: center;
   flex-direction: row;
-}
-.add {
-  margin-left: auto;
 }
 a {
   color: white;
