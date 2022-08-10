@@ -33,11 +33,33 @@
         @close="(isCreateModalShown = false)"
       />
     </modal-wrapper>
+
+    <v-snackbar
+      timeout="-1"
+      :value="shouldShowFeedback"
+      absolute
+      left
+      shaped
+      bottom
+      style="z-index: 9999"
+    >
+      {{getAppFeedback}}
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="blue"
+          text
+          v-bind="attrs"
+          @click="close"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import CreateStructure from "./CreateStructure.vue";
 import ModalWrapper from "@/components/ModalWrapper.vue";
 import StructureAction from "./StructureAction.vue";
@@ -62,9 +84,13 @@ export default {
             this.createStructure = value;
             this.isCreateModalShown = true;
         },
+        close () {
+            this.$store.commit("setShowFeedback", false);
+        },
     },
     computed: {
         ...mapState(["table"]),
+        ...mapGetters(["getAppFeedback", "shouldShowFeedback"]),
         structure () {
             return this.table.map;
         },

@@ -8,8 +8,27 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     strict: process.env.NODE_ENV !== "production",
-    state: {},
-    mutations: {},
+    state: {
+        appFeedback: "",
+        showFeedback: false,
+    },
+    mutations: {
+        setAppFeedback: (state, payload) => {
+            state.appFeedback = payload;
+            state.showFeedback = true;
+        },
+        setShowFeedback: (state, payload) => {
+            state.showFeedback = payload;
+        },
+    },
+    getters: {
+        getAppFeedback: (state) => {
+            return state.appFeedback;
+        },
+        shouldShowFeedback: (state) => {
+            return state.showFeedback;
+        },
+    },
     actions: {},
     modules: {
         workspace: {
