@@ -80,15 +80,15 @@ export default {
                 commit("addNewWorkspace", otherProps);
                 commit("table/addNew", table_list, { root: true });
                 commit("view/addNew", view_list, { root: true });
-
-                return res.data;
+                commit("setAppFeedback", "Workspace created successfully", { root: true });
+                return true;
             }).
                 catch((err) => {
                     console.warn(err);
+                    commit("setAppFeedback", `Error: ${err.message}`, { root: true });
+                    return false;
                 });
         },
-    },
-    modules: {
 
     },
 };
