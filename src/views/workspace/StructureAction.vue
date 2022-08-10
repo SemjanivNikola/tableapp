@@ -8,7 +8,7 @@
       <div class="dropdown-wrapper" :class="getIsAddNewOpen">
         <div class="dropdown-item" @click="onClick('workspace')">+ Add workspace</div>
         <div class="dropdown-item" @click="onClick('table')">+ Add table</div>
-        <div class="dropdown-item" @click="onClick('grid view')">+ Add view</div>
+        <div class="dropdown-item" @click="onClick('view')">+ Add view</div>
       </div>
     </div>
   </div>

@@ -8,6 +8,26 @@
     <!-- BODY -->
     <div class="body-wrapper">
       <v-form v-model="valid">
+        <v-select
+          v-if="structure !== 'workspace'"
+          v-model="selectedWorkspace"
+          :items="workspaceList"
+          :rules="selectRule"
+          item-value="id"
+          item-text="title"
+          label="Selected workspace"
+        />
+
+        <v-select
+          v-if="structure === 'view'"
+          v-model="selectedTable"
+          :items="tableList"
+          :rules="selectRule"
+          item-value="id"
+          item-text="title"
+          label="Selected table"
+        />
+
         <v-text-field
           v-model="title"
           :rules="stringRule"
@@ -26,24 +46,6 @@
           no-resize
           rows="2"
         ></v-textarea>
-
-        <v-select
-          v-if="structure !== 'workspace'"
-          v-model="selectedWorkspace"
-          :items="workspaceList"
-          :rules="selectRule"
-          item-value="id"
-          item-text="title"
-        />
-
-        <v-select
-          v-if="structure === 'grid view'"
-          v-model="selectedTable"
-          :items="tableList"
-          :rules="selectRule"
-          item-value="id"
-          item-text="title"
-        />
 
         <v-text-field
           v-if="structure === 'table'"
@@ -89,7 +91,7 @@ export default {
     props: {
         structure: {
             type: String,
-            default: "grid view",
+            default: "view",
             required: false,
         },
     },
@@ -97,7 +99,7 @@ export default {
         return {
             valid: false,
             title: "Untitled",
-            viewTitle: "View 1",
+            viewTitle: "Untitled",
             selectedWorkspace: null,
             selectedTable: null,
             workspaceList: [],
@@ -112,19 +114,25 @@ export default {
         };
     },
     watch: {
-        structure (newStructure) {
-            if (newStructure === "table") {
+        structure (val) {
+            if (val === "table") {
                 this.fillWorkspaceSelect();
-            } else if (newStructure === "grid view") {
+            } else if (val === "view") {
                 this.fillWorkspaceSelect();
                 this.fillTableSelect();
             }
         },
     },
     methods: {
-        submit () {
-            this.$emit("submit", this.title);
-            this.clear();
+        async submit () {
+            // this.$emit("submit", this.title);
+            const newStructure = this.prepareSubmitData;
+
+            const res = await this.$store.dispatch(`${this.structure}/${this.getFnPath}`, newStructure);
+            if (res) {
+                this.$emit("close");
+                this.clear();
+            }
         },
         clear () {
             this.valid = false;
@@ -143,6 +151,38 @@ export default {
             this.tableList = this.$store.getters["table/getMap"];
             const id = this.$store.getters["table/getSelectedId"];
             this.selectedTable = this.tableList[id - 1].id;
+        },
+    },
+    computed: {
+        prepareSubmitData () {
+            if (this.structure === "workspace") {
+                return {
+                    title: this.title,
+                    description: this.description,
+                    icon: "pen",
+                    iconColor: "#fff",
+                    backgroundColor: "#f80182",
+                    tableTitle: "Untitled",
+                    viewTitle: "Untitled",
+                };
+            } else if (this.structure === "table") {
+                return {
+                    workspaceId: this.selectedWorkspace,
+                    title: this.title,
+                    viewTitle: this.viewTitle,
+                };
+            }
+
+            return {
+                workspaceId: this.selectedWorkspace,
+                tableId: this.selectedTable,
+                title: this.title,
+            };
+        },
+        getFnPath () {
+            // eslint-disable-next-line no-nested-ternary
+            return this.strucutre === "workspace" ? "createWorkspace" :
+                this.strucutre === "table" ? "createTable" : "createView";
         },
     },
 };
