@@ -23,10 +23,6 @@ export default {
 
             state.map = payload;
         },
-        // TODO: Add new view
-        addNew (state, payload) {
-            state.map.push(payload);
-        },
         toggleFieldVisibility (state, payload) {
             state.view.header[payload.index].isShown = payload.isShown;
 
@@ -69,11 +65,13 @@ export default {
         },
         createView ({ commit }, payload) {
             return axios.post("/view", payload).then((res) => {
-                commit("addNewView", res.data);
-                return res.data;
+                commit("table/addNewView", res.data, { root: true });
+                commit("setAppFeedback", "View created successfully", { root: true });
+                return true;
             }).
                 catch((err) => {
-                    console.warn(err);
+                    commit("setAppFeedback", `Error:  ${err}`, { root: true });
+                    return true;
                 });
         },
         async handleBodyModification ({ state, commit, dispatch }) {

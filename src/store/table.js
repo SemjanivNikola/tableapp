@@ -26,6 +26,9 @@ export default {
         addNew (state, payload) {
             state.map.push(payload);
         },
+        addNewView (state, payload) {
+            state.selectedTable.view_list.push(payload);
+        },
     },
     getters: {
         getMap: (state) => {
@@ -55,10 +58,12 @@ export default {
         createTable ({ commit }, payload) {
             return axios.post("/api/table", payload).then((res) => {
                 commit("addNew", res.data);
-                return res.data;
+                commit("setAppFeedback", "Table created successfully", { root: true });
+                return true;
             }).
                 catch((err) => {
-                    console.warn(err);
+                    commit("setAppFeedback", `Error: ${err.message}`, { root: true });
+                    return false;
                 });
         },
     },

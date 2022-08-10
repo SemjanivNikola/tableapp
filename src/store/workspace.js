@@ -75,16 +75,15 @@ export default {
         },
         createWorkspace ({ commit }, payload) {
             return axios.get("/api/workspace", payload).then((res) => {
-                const { view_list, table_list, ...otherProps } = res.data;
+                const { table_list, ...otherProps } = res.data;
 
                 commit("addNewWorkspace", otherProps);
                 commit("table/addNew", table_list, { root: true });
-                commit("view/addNew", view_list, { root: true });
+
                 commit("setAppFeedback", "Workspace created successfully", { root: true });
                 return true;
             }).
                 catch((err) => {
-                    console.warn(err);
                     commit("setAppFeedback", `Error: ${err.message}`, { root: true });
                     return false;
                 });
