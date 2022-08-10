@@ -125,7 +125,6 @@ export default {
     },
     methods: {
         async submit () {
-            // this.$emit("submit", this.title);
             const newStructure = this.prepareSubmitData;
 
             const res = await this.$store.dispatch(`${this.structure}/${this.getFnPath}`, newStructure);
