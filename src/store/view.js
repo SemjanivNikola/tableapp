@@ -27,11 +27,11 @@ export default {
             state.view.header[payload.index].isShown = payload.isShown;
 
             state.view.body.forEach((row) => {
-                row.cells[payload.index].isShown = payload.isShown;
+                row.cells[payload.index + 1].isShown = payload.isShown;
             });
 
             state.recordList.forEach((row) => {
-                row.cells[payload.index].isShown = payload.isShown;
+                row.cells[payload.index + 1].isShown = payload.isShown;
             });
 
         },
