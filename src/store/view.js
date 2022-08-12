@@ -33,7 +33,14 @@ export default {
             state.recordList.forEach((row) => {
                 row.cells[payload.index + 1].isShown = payload.isShown;
             });
-
+        },
+        addHeaderField (state, payload) {
+            state.view.header.push(payload);
+        },
+        addRecordCell (state, payload) {
+            state.recordList.forEach((row) => {
+                row.push({ value: "", isShown: true, type: payload });
+            });
         },
     },
     getters: {
@@ -71,8 +78,26 @@ export default {
             }).
                 catch((err) => {
                     commit("setAppFeedback", `Error:  ${err}`, { root: true });
-                    return true;
+                    return false;
                 });
+        },
+        createField ({ state, commit }, payload) {
+            try {
+                const headerLen = state.view.header.length + 1;
+                commit("addHeaderField", { id: headerLen,
+                    type: payload.type,
+                    text: `Field ${headerLen}`,
+                    isShown: true });
+
+                commit("addRecordCell", payload.id);
+                commit("setAppFeedback", "Field created successfully", { root: true });
+                // dispatch("syncView"); // Should we put this here?
+                return true;
+
+            } catch (err) {
+                commit("setAppFeedback", `Error:  ${err}`, { root: true });
+                return false;
+            }
         },
         async handleBodyModification ({ state, commit, dispatch }) {
             const viewClone = await dispatch("options/modifyBody", state.view);
@@ -106,6 +131,23 @@ export default {
             if (shouldSort) {
                 dispatch("options/sortFields", { header: state.view.header, body: state.recordList }, { root: false });
             }
+        },
+        syncView ({ state, commit, rootGetters }) {
+            const sync = {
+                workspace: rootGetters["workspace/getSelectedId"],
+                table: rootGetters["table/getSelectedId"],
+                view: { ...state.view, body: { ...state.recordList } },
+            };
+
+            return axios.post("/sync-view", sync).then(() => {
+                commit("setAppFeedback", "Field created successfully", { root: true });
+                return true;
+            }).
+                catch((err) => {
+                    commit("setAppFeedback", `Error:  ${err}`, { root: true });
+                    return false;
+                });
+
         },
     },
     modules: {

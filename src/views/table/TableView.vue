@@ -1,21 +1,25 @@
 <template>
-  <div style="overflow-x: scroll">
-    <table-action-bar />
+    <div style="overflow-x: scroll">
+        <table-action-bar />
 
-      <table>
-        <header-list :header="tableHeader" />
-        <table-record-list
-          :record-list="getRecordList"
-          @onRecordCreate="onRecordCreate"
-        />
-      </table>
-    <modal-wrapper :is-shown="isRecordExpandShown">
-        <record-expand
-            :fields="tableHeader"
-            @close="isRecordExpandShown = false"
-        />
-    </modal-wrapper>
-  </div>
+        <table>
+            <header-list :header="tableHeader" />
+            <table-record-list
+                :record-list="getRecordList"
+                @onRecordCreate="onRecordCreate"
+            />
+        </table>
+        <!-- <div class="new-col-wrapper">
+        <span>+</span>
+      </div> -->
+
+        <modal-wrapper :is-shown="isRecordExpandShown">
+            <record-expand
+                :fields="tableHeader"
+                @close="isRecordExpandShown = false"
+            />
+        </modal-wrapper>
+    </div>
 </template>
 
 <script>
@@ -28,7 +32,13 @@ import RecordExpand from "./RecordExpand.vue";
 
 export default {
     name: "TableView",
-    components: { TableActionBar, HeaderList, TableRecordList, ModalWrapper, RecordExpand },
+    components: {
+        TableActionBar,
+        HeaderList,
+        TableRecordList,
+        ModalWrapper,
+        RecordExpand,
+    },
     data () {
         return {
             tableHeader: [],
@@ -54,15 +64,13 @@ export default {
 
 <style scoped>
 table {
-  border-collapse: collapse;
+    border-collapse: collapse;
 }
-th,
-td {
-  border: 1px solid #fff;
-  color: white;
-}
-th.hidden,
-td.hidden {
-  display: none;
+.new-col-wrapper {
+    display: inline-block;
+    width: 56px;
+    height: 20px;
+    background-color: gray;
+    color: black;
 }
 </style>
