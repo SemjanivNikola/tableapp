@@ -1,5 +1,3 @@
-/* eslint-disable max-statements */
-// TODO: refactor this function
 let index = 0;
 
 const compareNumbers = (num1, num2) => {
