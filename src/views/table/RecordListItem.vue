@@ -1,6 +1,10 @@
 <template>
     <tr>
-        <record-cell v-for="(cell, index) in record.cells" :key="index" :cell="cell" />
+        <record-cell
+            v-for="(cell, index) in record"
+            :key="index"
+            :cell="cell"
+        />
     </tr>
 </template>
 
@@ -12,7 +16,7 @@ export default {
     name: "RecordListItem",
     props: {
         record: {
-            type: Object,
+            type: Array,
             required: true,
         },
     },

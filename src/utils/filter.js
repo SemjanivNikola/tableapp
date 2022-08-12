@@ -46,10 +46,10 @@ const filterByMultipleFields = (payload, fields) => {
     return payload.filter((row) => {
         if (fields.length > 1) {
 
-            return multipleFiltering(row.cells, fields);
+            return multipleFiltering(row, fields);
         }
 
-        return operaton[fields[0].options.condition](row.cells[fields[0].fieldIndex].value,
+        return operaton[fields[0].options.condition](row[fields[0].fieldIndex].value,
             fields[0].options.value);
 
     });

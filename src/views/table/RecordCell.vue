@@ -16,6 +16,7 @@ export default {
 
 <style scoped>
 td {
+  min-width: 120px;
   border: 1px solid #fff;
   color: white;
 }

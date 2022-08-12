@@ -34,7 +34,7 @@ const sortByMultipleFields = (payload, fields) => {
     payload.sort((rowA, rowB) => {
         index = 0;
 
-        return comparison(rowA.cells, rowB.cells, fields);
+        return comparison(rowA, rowB, fields);
     });
 
     return payload;
