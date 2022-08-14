@@ -49,4 +49,7 @@ th.hidden {
     padding-left: 8px;
     text-align: left;
 }
+.header-input:focus {
+    outline: none;
+}
 </style>
