@@ -1,6 +1,8 @@
 <template>
     <th :class="{ hidden: !item.isShown }">
+        <span v-if="isPlaceholder">{{item.text}}</span>
         <input
+        v-else
             :value="item.text"
             class="header-input"
             @input="onInput"
@@ -15,6 +17,10 @@ export default {
         item: {
             type: Object,
             required: true,
+        },
+        isPlaceholder: {
+            type: Boolean,
+            default: false,
         },
     },
     data () {

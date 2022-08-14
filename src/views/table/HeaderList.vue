@@ -1,7 +1,7 @@
 <template>
     <thead>
         <tr>
-            <header-list-item :item="{ text: 'Placeholder', isShown: true }" />
+            <header-list-item :item="{ text: 'Placeholder', isShown: true }" is-placeholder />
             <header-list-item
                 v-for="item in header"
                 :key="item.id"
