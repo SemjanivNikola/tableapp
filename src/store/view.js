@@ -42,6 +42,15 @@ export default {
                 row.push({ value: "", isShown: true, type: payload });
             });
         },
+        deleteField (state, payload) {
+            state.view.header.splice(payload, 1);
+            state.view.body.forEach((row) => {
+                row.splice(payload + 1, 1);
+            });
+            state.recordList.forEach((row) => {
+                row.splice(payload + 1, 1);
+            });
+        },
     },
     getters: {
         getHeader: (state) => {
@@ -132,6 +141,25 @@ export default {
             if (shouldSort) {
                 dispatch("options/sortFields", { header: state.view.header, body: state.recordList }, { root: false });
             }
+        },
+        handleDeleteField ({ state, commit, dispatch, rootGetters }, payload) {
+            const index = state.view.header.findIndex((field) => field.id === payload);
+            const options = rootGetters["view/options/get"];
+
+            options.sort.forEach((val, sortIndex) => {
+                if (val.id === payload) {
+                    dispatch("options/sortOptionRemove", sortIndex, { root: false });
+                }
+            });
+
+            options.filter.forEach((val, filterIndex) => {
+                if (val.id === payload) {
+                    dispatch("options/filterOptionRemove", filterIndex, { root: false });
+                }
+            });
+
+            commit("deleteField", index);
+            // dispatch("syncView"); // Should we put this here?
         },
         syncView ({ state, commit, rootGetters }) {
             const sync = {

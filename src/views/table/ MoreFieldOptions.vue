@@ -10,7 +10,7 @@
                 >
                     Customize field type
                 </button>
-                <button class="btn" @click="onDelete">Delete field</button>
+                <button class="btn" @click="handleDelete">Delete field</button>
             </div>
 
             <div v-else>
@@ -28,6 +28,26 @@
                 </button>
             </div>
         </div>
+
+        <v-dialog v-model="dialog" persistent max-width="500px">
+            <v-card>
+                <v-card-title>
+                    <span class="headline">Delete field</span>
+                </v-card-title>
+                <v-card-text>
+                    Are you sure you want to delete this field?
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer />
+                    <v-btn color="blue darken-1" text @click="dialog = false">
+                        Cancel
+                    </v-btn>
+                    <v-btn color="blue darken-1" text @click="onDelete">
+                        Delete
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </div>
 </template>
 
@@ -56,6 +76,7 @@ export default {
             name: "",
             selectedType: null,
             shouldCustomizeField: false,
+            dialog: false,
             FIELD_TYPE,
         };
     },
@@ -89,8 +110,14 @@ export default {
             )[0].id;
             this.shouldCustomizeField = false;
         },
+        handleDelete () {
+            this.$store.commit("setActiveFieldOpt", null);
+            this.shouldCustomizeField = false;
+            this.dialog = true;
+        },
         onDelete () {
-            this.$store.dispatch("view/deleteField", this.id);
+            this.dialog = false;
+            this.$store.dispatch("view/handleDeleteField", this.id);
         },
     },
     computed: {

@@ -90,6 +90,14 @@ export default {
             }
             return false;
         },
+        filterOptionRemove ({ state, commit }, payload) {
+            commit("removeFilterOption", payload);
+            if (state.options.filter.length === 0) {
+                commit("removeOptionFromSummary", "filter");
+                return true;
+            }
+            return false;
+        },
         handleFieldVisibility ({ commit, dispatch }, payload) {
             commit("setFieldsHidden", payload);
 
