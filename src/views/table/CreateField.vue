@@ -1,16 +1,19 @@
 <template>
-    <th
+    <th class="field-placeholder">
+        <span @click="toggleShouldShowOptions">+</span>
 
-        class="field-placeholder"
-    >
-    <span @click="toggleShouldShowOptions">+</span>
-
-        <div class="wrapper" :class="{show: shouldShowOptions}">
-            <div v-for="type in FIELD_TYPE" :key="type.id" @click="selectField(type)">
-                <p style="color: black;">{{type.name}}</p>
+        <div class="wrapper" :class="{ show: shouldShowOptions }">
+            <div
+                v-for="type in FIELD_TYPE"
+                :key="type.id"
+                @click="selectField(type)"
+            >
+                <p style="color: black">{{ type.name }}</p>
             </div>
 
-            <button class="btn" @click="createField" :disabled="!selectedType">Create</button>
+            <button class="btn" @click="createField" :disabled="!selectedType">
+                Create
+            </button>
         </div>
     </th>
 </template>
@@ -32,7 +35,10 @@ export default {
             this.selectedType = { id: field.id, type: field.type };
         },
         async createField () {
-            const res = await this.$store.dispatch("view/createField", this.selectedType);
+            const res = await this.$store.dispatch(
+                "view/createField",
+                this.selectedType,
+            );
             if (res) {
                 this.selectedType = null;
                 this.shouldShowOptions = false;
@@ -55,7 +61,7 @@ th.field-placeholder {
     cursor: pointer;
 }
 .wrapper {
-     display: none;
+    display: none;
     position: absolute;
     top: 28px;
     left: 2px;

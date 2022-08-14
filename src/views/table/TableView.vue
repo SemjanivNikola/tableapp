@@ -9,9 +9,6 @@
                 @onRecordCreate="onRecordCreate"
             />
         </table>
-        <!-- <div class="new-col-wrapper">
-        <span>+</span>
-      </div> -->
 
         <modal-wrapper :is-shown="isRecordExpandShown">
             <record-expand
