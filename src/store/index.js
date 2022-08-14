@@ -11,6 +11,7 @@ export default new Vuex.Store({
     state: {
         appFeedback: "",
         showFeedback: false,
+        activeFieldOpt: null,
     },
     mutations: {
         setAppFeedback: (state, payload) => {
@@ -20,6 +21,9 @@ export default new Vuex.Store({
         setShowFeedback: (state, payload) => {
             state.showFeedback = payload;
         },
+        setActiveFieldOpt: (state, payload) => {
+            state.activeFieldOpt = payload;
+        },
     },
     getters: {
         getAppFeedback: (state) => {
@@ -27,6 +31,9 @@ export default new Vuex.Store({
         },
         shouldShowFeedback: (state) => {
             return state.showFeedback;
+        },
+        getActiveFieldOpt: (state) => {
+            return state.activeFieldOpt;
         },
     },
     actions: {},

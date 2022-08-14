@@ -32,7 +32,7 @@ export default {
     },
     methods: {
         selectField (field) {
-            this.selectedType = { id: field.id, type: field.type };
+            this.selectedType = { fieldType: field.id, type: field.type };
         },
         async createField () {
             const res = await this.$store.dispatch(

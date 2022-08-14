@@ -86,6 +86,7 @@ export default {
                 const headerLen = state.view.header.length + 1;
                 commit("addHeaderField", { id: headerLen,
                     type: payload.type,
+                    fieldType: payload.fieldType,
                     text: `Field ${headerLen}`,
                     isShown: true });
 
