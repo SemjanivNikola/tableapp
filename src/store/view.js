@@ -10,7 +10,7 @@ export default {
         recordList: [],
     },
     mutations: {
-        setSelected (state, payload) {
+        setView (state, payload) {
             state.view = payload;
         },
         setRecordList (state, payload) {
@@ -70,7 +70,7 @@ export default {
             return axios.get(`/view?id=${payload}`).then((res) => {
                 const { options, ...otherprops } = res.data;
 
-                commit("setSelected", otherprops);
+                commit("setView", otherprops);
                 commit("options/set", options, { root: false });
                 return res.data;
             }).

@@ -1,61 +1,58 @@
 <template>
-  <div class="structure-wrapper">
-    <div class="input-group">
-      <div id="container">
-        <icon name="menu" :size="16" color="white" />
-        <input
-          type="search"
-          class="form-control rounded"
-          placeholder="  Search"
-          aria-label="Search"
-          aria-describedby="search-addon"
-        />
-      </div>
-      <structure-action :onCreate="handleCreate" />
-    </div>
-    <ul>
-      <li v-for="(table, index) in structure" :key="table.id">
-        <a href="#" @click="selectItem(index)">{{ table.title }}</a>
+    <div class="structure-wrapper">
+        <div class="input-group">
+            <div id="container">
+                <icon name="menu" :size="16" color="white" />
+                <input
+                    type="search"
+                    class="form-control rounded"
+                    placeholder="  Search"
+                    aria-label="Search"
+                    aria-describedby="search-addon"
+                />
+            </div>
+            <structure-action :onCreate="handleCreate" />
+        </div>
         <ul>
-          <li
-            v-for="(view, index) in table.view_list"
-            :key="view.id"
-            :class="{ active: isSelected(view.id, table.id) }"
-          >
-            <a href="#" @click="selectItem(index)">{{ view.title }}</a>
-          </li>
+            <li v-for="table in structure" :key="table.id">
+                <a href="#">{{ table.title }}</a>
+                <ul>
+                    <li
+                        v-for="view in table.view_list"
+                        :key="view.id"
+                        :class="{ active: isSelected(view.id, table.id) }"
+                    >
+                        <a href="#" @click="selectItem(view.id, table.id)">{{
+                            view.title
+                        }}</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
-      </li>
-    </ul>
-    <modal-wrapper :is-shown="isCreateModalShown">
-      <create-structure
-        :structure="createStructure"
-        @close="(isCreateModalShown = false)"
-      />
-    </modal-wrapper>
+        <modal-wrapper :is-shown="isCreateModalShown">
+            <create-structure
+                :structure="createStructure"
+                @close="isCreateModalShown = false"
+            />
+        </modal-wrapper>
 
-    <v-snackbar
-      timeout="-1"
-      :value="shouldShowFeedback"
-      absolute
-      left
-      shaped
-      bottom
-      style="z-index: 9999"
-    >
-      {{getAppFeedback}}
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          color="blue"
-          text
-          v-bind="attrs"
-          @click="close"
+        <v-snackbar
+            timeout="-1"
+            :value="shouldShowFeedback"
+            absolute
+            left
+            shaped
+            bottom
+            style="z-index: 9999"
         >
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
-  </div>
+            {{ getAppFeedback }}
+            <template v-slot:action="{ attrs }">
+                <v-btn color="blue" text v-bind="attrs" @click="close">
+                    Close
+                </v-btn>
+            </template>
+        </v-snackbar>
+    </div>
 </template>
 
 <script>
@@ -87,6 +84,16 @@ export default {
         close () {
             this.$store.commit("setShowFeedback", false);
         },
+        selectItem (viewId, tableId) {
+            const isTableSelected =
+                this.$store.getters["table/isTableSelected"];
+            if (isTableSelected(tableId)) {
+                this.$store.commit("table/setSelectedViewId", viewId);
+            } else {
+                this.$store.commit("table/setSelected", tableId);
+            }
+            this.$store.commit("table/setSelectedViewId", viewId);
+        },
     },
     computed: {
         ...mapState(["table"]),
@@ -100,27 +107,27 @@ export default {
 
 <style scoped>
 .structure-wrapper {
-  width: 18%;
+    width: 18%;
 }
 .form-control {
-  background-color: #211d43;
-  color: white;
-  width: 100%;
+    background-color: #211d43;
+    color: white;
+    width: 100%;
 }
 #container {
-  display: flex;
-  padding: 5px;
+    display: flex;
+    padding: 5px;
 }
 #structure {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
 }
 a {
-  color: white;
-  text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 li.active {
-  background-color: #6bd1ff;
+    background-color: #6bd1ff;
 }
 </style>

@@ -38,10 +38,10 @@ export default {
             return state.selectedViewId;
         },
         getSelectedId: (state) => {
-            return state.selectedTable.id;
+            return state.selectedTable;
         },
         isTableSelected: (state) => (id) => {
-            return id === state.selectedTable.id;
+            return id === state.selectedTable;
         },
         isViewSelected: (state, getters) => (viewID, tableID) => {
             return viewID === state.selectedViewId && getters.isTableSelected(tableID);
@@ -52,7 +52,7 @@ export default {
             commit("setMap", payload.map);
 
             const table = payload.map[payload.selected - 1];
-            commit("setSelected", table);
+            commit("setSelected", table.id);
             commit("setSelectedViewId", table.selected_view_id);
         },
         createTable ({ commit }, payload) {
