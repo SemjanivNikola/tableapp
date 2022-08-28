@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/no-v-html -->
 <template>
   <div
-    id="icon-wrapper"
+    class="icon-wrapper"
     :style="{ width: size + 'px', height: size + 'px' }"
     v-html="iconName()"
   />
@@ -80,7 +80,10 @@ export default {
 </script>
 
 <style scoped>
-#icon-wrapper svg {
+.icon-wrapper {
+    flex-shrink: 0;
+}
+.icon-wrapper svg {
   width: 100%;
   height: 100%;
 }

@@ -58,7 +58,7 @@ export default {
   width: 500px;
   flex-grow: 1;
   flex-shrink: 0;
-  background-color: var(--background-dark-soft);
+  background: inherit;
 }
 
 </style>

@@ -147,6 +147,7 @@ export default {
     display: flex;
     flex-basis: 100%;
     justify-content: flex-start;
+    background-color: 	rgb(245,245,245);
 }
 .menu-wrapper {
     position: absolute;
