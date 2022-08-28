@@ -1,21 +1,16 @@
 <template>
     <div id="bar">
-        <p>Structure</p>
-        <div class="btn-container">
-            <button @click="isAddNewOpen = !isAddNewOpen">
-                <icon name="add" :size="20" color="white" />
-            </button>
-            <div class="dropdown-wrapper" :class="getIsAddNewOpen">
-                <div class="dropdown-item" @click="onClick('workspace')">
-                    + Add workspace
-                </div>
-                <div class="dropdown-item" @click="onClick('table')">
-                    + Add table
-                </div>
-                <div class="dropdown-item" @click="onClick('view')">
-                    + Add view
-                </div>
+        <button @click="isAddNewOpen = !isAddNewOpen">
+            <icon name="add" :size="20" color="white" />
+        </button>
+        <div class="dropdown-wrapper" :class="getIsAddNewOpen">
+            <div class="dropdown-item" @click="onClick('workspace')">
+                + Add workspace
             </div>
+            <div class="dropdown-item" @click="onClick('table')">
+                + Add table
+            </div>
+            <div class="dropdown-item" @click="onClick('view')">+ Add view</div>
         </div>
     </div>
 </template>
@@ -50,6 +45,7 @@ export default {
 
 <style scoped>
 #bar {
+    position: relative;
     color: white;
     text-decoration: underline;
     text-decoration-color: #6bd1ff;
@@ -57,10 +53,6 @@ export default {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
-}
-.btn-container {
-    position: relative;
 }
 .dropdown-wrapper {
     position: absolute;

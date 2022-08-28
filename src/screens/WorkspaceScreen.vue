@@ -1,5 +1,5 @@
 <template>
-    <div id="scree-wrapper">
+    <div id="screen-wrapper">
         <div id="screen-info">
             <div class="hover-action">
                 <icon name="file" :size="28" />
@@ -9,8 +9,11 @@
             </div>
             <div class="spacer-md"></div>
             <h1>Workspace title</h1>
+            <div class="spacer-md"></div>
+            <structure-action :onCreate="handleCreate" />
         </div>
         <table-action-bar />
+
         <div id="screen-content">
             <workspace-structure />
             <workspace-table />
@@ -27,23 +30,60 @@
                 </div>
             </modal-wrapper>
         </div>
+
+        <modal-wrapper :is-shown="isCreateModalShown">
+            <create-structure
+                :structure="createStructure"
+                @close="isCreateModalShown = false"
+            />
+        </modal-wrapper>
+
+        <v-snackbar
+            timeout="-1"
+            :value="shouldShowFeedback"
+            absolute
+            left
+            shaped
+            bottom
+            style="z-index: 9999"
+        >
+            {{ getAppFeedback }}
+            <template v-slot:action="{ attrs }">
+                <v-btn color="blue" text v-bind="attrs" @click="close">
+                    Close
+                </v-btn>
+            </template>
+        </v-snackbar>
     </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import ModalWrapper from "@/components/ModalWrapper.vue";
 import WorkspaceStructure from "../views/workspace/WorkspaceStructure.vue";
+import CreateStructure from "../views/workspace/CreateStructure.vue";
 import WorkspaceTable from "../views/workspace/WorkspaceTable.vue";
 import Icon from "@/components/Icon.vue";
 import TableActionBar from "../views/table/TableActionBar.vue";
+import StructureAction from "../views/workspace/StructureAction.vue";
 
 export default {
     name: "WorkspaceScreen",
-    components: { WorkspaceStructure, WorkspaceTable, ModalWrapper, Icon, TableActionBar },
+    components: {
+        WorkspaceStructure,
+        WorkspaceTable,
+        ModalWrapper,
+        Icon,
+        TableActionBar,
+        StructureAction,
+        CreateStructure,
+    },
     data () {
         return {
             shouldShowHome: false,
             workspace: null,
+            isCreateModalShown: false,
+            createStructure: null,
         };
     },
     created () {
@@ -63,20 +103,31 @@ export default {
         navigate () {
             this.$router.push({ path: `/workspace=${1}` });
         },
+        handleCreate (value) {
+            this.createStructure = value;
+            this.isCreateModalShown = true;
+        },
+        close () {
+            this.$store.commit("setShowFeedback", false);
+        },
+    },
+    computed: {
+        ...mapGetters(["getAppFeedback", "shouldShowFeedback"]),
     },
 };
 </script>
 
 <style scoped>
 #screen-wrapper {
+    display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
 }
 #screen-info {
     display: flex;
-    flex-direction: row;
     align-items: center;
     padding: 16px;
 }
@@ -94,8 +145,7 @@ export default {
     width: inherit;
     height: 100%;
     display: flex;
-    flex-direction: row;
-    align-items: stretch;
+    flex-basis: 100%;
     justify-content: flex-start;
 }
 .menu-wrapper {

@@ -180,8 +180,8 @@ export default {
         },
         getFnPath () {
             // eslint-disable-next-line no-nested-ternary
-            return this.strucutre === "workspace" ? "createWorkspace" :
-                this.strucutre === "table" ? "createTable" : "createView";
+            return this.structure === "workspace" ? "createWorkspace" :
+                this.structure === "table" ? "createTable" : "createView";
         },
     },
 };
