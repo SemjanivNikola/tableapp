@@ -1,9 +1,9 @@
 <template>
     <th :class="{ hidden: !item.isShown, placeholder: isPlaceholder }">
         <span v-if="!isPlaceholder" class="header-text">{{ item.text }}</span>
-    <div class="spacer-md display-inline"></div>
-    <div class="spacer-sm display-inline"></div>
-    <div class="spacer-sm display-inline"></div>
+        <div class="spacer-md display-inline"></div>
+        <div class="spacer-sm display-inline"></div>
+        <div class="spacer-sm display-inline"></div>
         <more-field-options
             v-if="!isPlaceholder"
             :id="item.id"

@@ -1,5 +1,7 @@
 <template>
-    <td :class="{ hidden: !cell.isShown }">{{ cell.value }}</td>
+    <td :class="{ hidden: !cell.isShown }">
+        <input :value="cell.value" type="text" :disabled="disabled" />
+    </td>
 </template>
 
 <script>
@@ -10,6 +12,10 @@ export default {
             type: Object,
             required: true,
         },
+        disabled: {
+            type: Number,
+            required: true,
+        },
     },
 };
 </script>
@@ -17,6 +23,9 @@ export default {
 <style scoped>
 td:first-child {
     border-right: none;
+}
+td:first-child input[type="text"] {
+    pointer-events: none;
 }
 td {
     border-right: 1px solid rgb(229, 229, 229);

@@ -4,6 +4,7 @@
             v-for="(cell, index) in record"
             :key="index"
             :cell="cell"
+            :disabled="index === 0"
         />
     </tr>
 </template>
