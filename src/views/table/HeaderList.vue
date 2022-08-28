@@ -1,7 +1,7 @@
 <template>
     <thead>
         <tr>
-            <header-list-item :item="{ text: 'Placeholder', isShown: true }" is-placeholder />
+            <header-list-item :item="{ isShown: true }" is-placeholder />
             <header-list-item
                 v-for="item in header"
                 :key="item.id"
@@ -27,12 +27,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-th {
-    min-width: 120px;
-    text-align: center;
-    border: 1px solid #fff;
-    color: white;
-}
-</style>

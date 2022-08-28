@@ -1,5 +1,5 @@
 <template>
-    <td :class="{hidden: !cell.isShown}">{{cell.value}}</td>
+    <td :class="{ hidden: !cell.isShown }">{{ cell.value }}</td>
 </template>
 
 <script>
@@ -15,12 +15,15 @@ export default {
 </script>
 
 <style scoped>
+td:first-child {
+    border-right: none;
+}
 td {
-  min-width: 120px;
-  border: 1px solid #fff;
-  color: white;
+    border-right: 1px solid rgb(229, 229, 229);
+    border-bottom: 1px solid rgb(229, 229, 229);
+    color: black;
 }
 td.hidden {
-  display: none;
+    display: none;
 }
 </style>

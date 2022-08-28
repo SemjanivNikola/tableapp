@@ -137,10 +137,12 @@ export default {
 
 <style scoped>
 .container {
+    display: inline-block;
     position: relative;
     width: 22px;
     overflow: visible;
     cursor: pointer;
+    padding: 0;
 }
 .wrapper {
     display: none;
