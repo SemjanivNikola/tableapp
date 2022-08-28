@@ -1,6 +1,8 @@
 <template>
   <div class="action-bar-wrapper padding-small">
     <div class="bar-inner-wrapper">
+        <action-bar-button title="View" @onPress="toggleView" />
+
       <action-bar-button
         title="Hide fields"
         @onPress="handleHideFields"
@@ -28,15 +30,15 @@
         />
       </action-bar-button>
 
-      <action-bar-button
+      <!-- <action-bar-button
         title="Share View"
         @onPress="handleShareView"
       >
-        <!-- <action-options
+        <action-options
           :is-shown="shouldShowOptions4"
           option-type="modal"
-        /> -->
-      </action-bar-button>
+        />
+      </action-bar-button> -->
 
       <action-bar-button
         title="Trash"
@@ -46,26 +48,6 @@
           <view-trash @close="shouldShowOptions5 = false" />
         </modal-wrapper>
       </action-bar-button>
-    </div>
-    <div>
-      <div>
-        <v-text-field
-          v-model="searchFiled"
-          label="Search table"
-          :loading="isSearching"
-          hide-details="true"
-          color="white"
-          dark
-          dense
-        >
-          <v-icon
-            slot="append"
-            color="white"
-          >
-            mdi-plus
-          </v-icon>
-        </v-text-field>
-      </div>
     </div>
   </div>
 </template>
@@ -83,13 +65,10 @@ export default {
     components: { ActionBarButton, HideFieldsOption, SortOption, ViewTrash, ModalWrapper, FilterOption },
     data () {
         return {
-            title: "Hide fields",
-            isSearching: false,
-            searchFiled: "",
             shouldShowOptions1: false,
             shouldShowOptions2: false,
             shouldShowOptions3: false,
-            shouldShowOptions4: false,
+            // shouldShowOptions4: false,
             shouldShowOptions5: false,
         };
     },
@@ -98,7 +77,7 @@ export default {
             this.shouldShowOptions1 = false;
             this.shouldShowOptions2 = false;
             this.shouldShowOptions3 = false;
-            this.shouldShowOptions4 = false;
+            // this.shouldShowOptions4 = false;
             this.shouldShowOptions5 = false;
         },
         handleHideFields () {
@@ -127,15 +106,14 @@ export default {
             }
 
         },
-        handleShareView () {
-            if (this.shouldShowOptions4) {
-                this.closeAllOptions();
-            } else {
-                this.closeAllOptions();
-                this.shouldShowOptions4 = !this.shouldShowOptions4;
-            }
-
-        },
+        // handleShareView () {
+        //     if (this.shouldShowOptions4) {
+        //         this.closeAllOptions();
+        //     } else {
+        //         this.closeAllOptions();
+        //         this.shouldShowOptions4 = !this.shouldShowOptions4;
+        //     }
+        // },
         handleTrash () {
             if (this.shouldShowOptions5) {
                 this.closeAllOptions();
@@ -143,6 +121,9 @@ export default {
                 this.closeAllOptions();
                 this.shouldShowOptions5 = !this.shouldShowOptions5;
             }
+        },
+        toggleView () {
+            this.$store.commit("toggleStructureOpen");
         },
     },
 

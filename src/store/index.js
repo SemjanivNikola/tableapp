@@ -12,6 +12,7 @@ export default new Vuex.Store({
         appFeedback: "",
         showFeedback: false,
         activeFieldOpt: null,
+        structureOpen: true,
     },
     mutations: {
         setAppFeedback: (state, payload) => {
@@ -24,6 +25,9 @@ export default new Vuex.Store({
         setActiveFieldOpt: (state, payload) => {
             state.activeFieldOpt = payload;
         },
+        toggleStructureOpen: (state) => {
+            state.structureOpen = !state.structureOpen;
+        },
     },
     getters: {
         getAppFeedback: (state) => {
@@ -34,6 +38,9 @@ export default new Vuex.Store({
         },
         getActiveFieldOpt: (state) => {
             return state.activeFieldOpt;
+        },
+        isStructureOpen: (state) => {
+            return state.structureOpen;
         },
     },
     actions: {},
