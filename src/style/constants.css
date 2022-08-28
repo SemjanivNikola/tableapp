@@ -9,6 +9,7 @@
     --text-inactive: rgb(131, 127, 147);
     --text-inactive-2: rgb(106, 103, 122);
     --text-dark: rgb(75, 72, 88);
+    --background-default: rgb(1, 35, 65);
     --background-light-hard: rgba(45, 39, 88, .58);
     --background-dark: rgb(13, 11, 26);
     --background-dark-soft: rgba(18, 16, 38, 0.25);

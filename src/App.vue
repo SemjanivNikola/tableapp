@@ -17,6 +17,6 @@ export default {
 <style lasn="css">
 @import "./style/constants.css";
 #app {
-  background-color: var(--background-dark);
+  background-color: var(--background-default);
 }
 </style>
