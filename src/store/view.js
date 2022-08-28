@@ -54,7 +54,7 @@ export default {
     },
     getters: {
         getHeader: (state) => {
-            return state.view.header;
+            return state.view ? state.view.header : [];
         },
         isViewSelected: (state) => (id) => {
             return id === state.view.id;

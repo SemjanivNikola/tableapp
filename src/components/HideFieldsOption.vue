@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper" :class="getStatus">
-        <div v-for="(header, index) in headerList" :key="header.id">
+        <div v-for="(header, index) in getHeader" :key="header.id">
             <v-switch
                 :input-value="header.isShown"
                 :label="header.text"
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
     name: "HideFieldsOption",
     props: {
@@ -26,18 +28,11 @@ export default {
             required: true,
         },
     },
-    data () {
-        return {
-            headerList: [],
-        };
-    },
     computed: {
+        ...mapGetters("view", ["getHeader"]),
         getStatus () {
             return this.isShown ? "show" : "hidden";
         },
-    },
-    created () {
-        this.headerList = this.$store.getters["view/getHeader"];
     },
     methods: {
         handleHideFields (index) {

@@ -7,7 +7,7 @@
     <p>After every change you make be sure to apply those changes. Otherwise it won't be visible.</p>
     <div v-if="select.length === 0">
       <table-field-picker
-        :fields="fields"
+        :fields="getHeader"
         :handle-field-pick="handleFieldPick"
       />
     </div>
@@ -18,7 +18,7 @@
         :key="item.id"
         :index="index"
         :initial="item"
-        :fields="fields"
+        :fields="getHeader"
         @onChange="handleChange"
       />
 
@@ -32,7 +32,7 @@
 
         <table-field-picker
           v-if="showPicker"
-          :fields="fields"
+          :fields="getHeader"
           :handle-field-pick="handleFieldPick"
         />
       </div>
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import SortOptionItem from "./SortOptionItem.vue";
 
 const TableFieldPicker = {
@@ -82,19 +83,24 @@ export default {
     },
     data () {
         return {
-            fields: [],
             select: [],
             showPicker: false,
         };
     },
     computed: {
+        ...mapGetters("view", ["getHeader"]),
+        ...mapGetters({ optionList: "view/options/sortOptions" }),
         getStatus () {
             return this.isShown ? "show" : "hidden";
         },
     },
-    created () {
-        this.fields = this.$store.getters["view/getHeader"];
-        this.select = this.$store.getters["view/options/sortOptions"];
+    watch: {
+        optionList: {
+            handler (val) {
+                this.select = val;
+            },
+            deep: true,
+        },
     },
     methods: {
         handleFieldPick (index) {

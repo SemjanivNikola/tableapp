@@ -10,7 +10,7 @@
         :key="item.id"
         :index="index"
         :initial="item"
-        :fields="fields"
+        :fields="getHeader"
         @onChange="handleChange"
       />
     </div>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import FilterOptionItem from "./FilterOptionItem.vue";
 
 export default {
@@ -34,19 +35,24 @@ export default {
     },
     data () {
         return {
-            fields: [],
             filterList: [],
             showPicker: false,
         };
     },
     computed: {
+        ...mapGetters("view", ["getHeader"]),
+        ...mapGetters({ optionList: "view/options/filterOptions" }),
         getStatus () {
             return this.isShown ? "show" : "hidden";
         },
     },
-    created () {
-        this.fields = this.$store.getters["view/getHeader"];
-        this.filterList = this.$store.getters["view/options/filterOptions"];
+    watch: {
+        optionList: {
+            handler (val) {
+                this.filterList = val;
+            },
+            deep: true,
+        },
     },
     methods: {
         addFilter () {
@@ -69,7 +75,6 @@ export default {
         },
         handleFilter () {
             this.$store.dispatch("view/handleFilter", this.filterList);
-
         },
     },
 };
