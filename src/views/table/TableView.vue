@@ -1,7 +1,5 @@
 <template>
     <div style="overflow-x: scroll">
-        <table-action-bar />
-
         <table>
             <header-list :header="tableHeader" />
             <table-record-list
@@ -23,14 +21,12 @@
 import ModalWrapper from "@/components/ModalWrapper.vue";
 import { mapState } from "vuex";
 import HeaderList from "./HeaderList.vue";
-import TableActionBar from "./TableActionBar.vue";
 import TableRecordList from "./TableRecordList.vue";
 import RecordExpand from "./RecordExpand.vue";
 
 export default {
     name: "TableView",
     components: {
-        TableActionBar,
         HeaderList,
         TableRecordList,
         ModalWrapper,

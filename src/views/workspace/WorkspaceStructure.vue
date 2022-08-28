@@ -1,16 +1,6 @@
 <template>
-    <div class="structure-wrapper">
+    <div class="structure-wrapper" :style="{maxWidth: isStructureOpen ? `${210}px` : 0}">
         <div class="input-group">
-            <div id="container">
-                <icon name="menu" :size="16" color="white" />
-                <input
-                    type="search"
-                    class="form-control rounded"
-                    placeholder="  Search"
-                    aria-label="Search"
-                    aria-describedby="search-addon"
-                />
-            </div>
             <structure-action :onCreate="handleCreate" />
         </div>
         <ul>
@@ -66,7 +56,6 @@ export default {
     name: "WorkspaceStructure",
     data () {
         return {
-            search: "",
             title: this.$store.getters["workspace/getTitle"],
             isCreateModalShown: false,
             createStructure: null,
@@ -97,7 +86,7 @@ export default {
     },
     computed: {
         ...mapState(["table"]),
-        ...mapGetters(["getAppFeedback", "shouldShowFeedback"]),
+        ...mapGetters(["getAppFeedback", "shouldShowFeedback", "isStructureOpen"]),
         structure () {
             return this.table.map;
         },
@@ -107,7 +96,7 @@ export default {
 
 <style scoped>
 .structure-wrapper {
-    width: 18%;
+    overflow: hidden;
 }
 .form-control {
     background-color: #211d43;
