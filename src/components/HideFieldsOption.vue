@@ -19,8 +19,12 @@
 
         <div class="bottom-action">
             <v-row align="center" justify="space-between">
-                <v-btn class="btn" @click="handleAllToggle(true)">Show all</v-btn>
-                <v-btn class="btn" @click="handleAllToggle(false)"> Hide all </v-btn>
+                <v-btn class="btn" @click="handleAllToggle(true)"
+                    >Show all</v-btn
+                >
+                <v-btn class="btn" @click="handleAllToggle(false)">
+                    Hide all
+                </v-btn>
             </v-row>
         </div>
     </div>

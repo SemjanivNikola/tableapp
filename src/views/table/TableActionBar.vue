@@ -1,36 +1,27 @@
 <template>
-  <div class="action-bar-wrapper padding-small">
-    <div class="bar-inner-wrapper">
-        <action-bar-button title="View" @onPress="toggleView" />
+    <div class="action-bar-wrapper padding-small">
+        <div class="bar-inner-wrapper">
+            <action-bar-button title="View" @onPress="toggleView" />
 
-      <action-bar-button
-        title="Hide fields"
-        @onPress="handleHideFields"
-      >
-        <hide-fields-option
-          :is-shown="shouldShowOptions1"
-        />
-      </action-bar-button>
+            <action-bar-button
+                title="Hide fields"
+                @onPress="handleHideFields"
+            >
+                <hide-fields-option :is-shown="shouldShowOptions1" />
+            </action-bar-button>
 
-      <action-bar-button
-        title="Sort"
-        @onPress="handleSort"
-      >
-        <sort-option
-          :is-shown="shouldShowOptions2"
-        />
-      </action-bar-button>
+            <action-bar-button
+                title="Sort"
+                @onPress="handleSort"
+            >
+                <sort-option :is-shown="shouldShowOptions2" />
+            </action-bar-button>
 
-      <action-bar-button
-        title="Filter"
-        @onPress="handleFilter"
-      >
-        <filter-option
-          :is-shown="shouldShowOptions3"
-        />
-      </action-bar-button>
+            <action-bar-button title="Filter" @onPress="handleFilter">
+                <filter-option :is-shown="shouldShowOptions3" />
+            </action-bar-button>
 
-      <!-- <action-bar-button
+            <!-- <action-bar-button
         title="Share View"
         @onPress="handleShareView"
       >
@@ -40,16 +31,13 @@
         />
       </action-bar-button> -->
 
-      <action-bar-button
-        title="Trash"
-        @onPress="handleTrash"
-      >
-        <modal-wrapper :is-shown="shouldShowOptions5">
-          <view-trash @close="shouldShowOptions5 = false" />
-        </modal-wrapper>
-      </action-bar-button>
+            <action-bar-button title="Trash" @onPress="handleTrash">
+                <modal-wrapper :is-shown="shouldShowOptions5">
+                    <view-trash @close="shouldShowOptions5 = false" />
+                </modal-wrapper>
+            </action-bar-button>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -62,7 +50,14 @@ import ViewTrash from "@/components/ViewTrash.vue";
 
 export default {
     name: "TableActionBar",
-    components: { ActionBarButton, HideFieldsOption, SortOption, ViewTrash, ModalWrapper, FilterOption },
+    components: {
+        ActionBarButton,
+        HideFieldsOption,
+        SortOption,
+        ViewTrash,
+        ModalWrapper,
+        FilterOption,
+    },
     data () {
         return {
             shouldShowOptions1: false,
@@ -95,7 +90,6 @@ export default {
                 this.closeAllOptions();
                 this.shouldShowOptions2 = !this.shouldShowOptions2;
             }
-
         },
         handleFilter () {
             if (this.shouldShowOptions3) {
@@ -104,7 +98,6 @@ export default {
                 this.closeAllOptions();
                 this.shouldShowOptions3 = !this.shouldShowOptions3;
             }
-
         },
         // handleShareView () {
         //     if (this.shouldShowOptions4) {
@@ -126,7 +119,6 @@ export default {
             this.$store.commit("toggleStructureOpen");
         },
     },
-
 };
 </script>
 
@@ -138,12 +130,11 @@ export default {
     justify-content: space-between;
     flex-wrap: nowrap;
     border-bottom: 2px solid var(--background-light-hard);
-
 }
 .bar-inner-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
 }
 </style>
