@@ -79,10 +79,9 @@ export default {
                 commit("addOptionToSummary", "hide_fields");
             }
         },
-        lastFieldRemoved ({ state, commit, dispatch }) {
+        lastFieldRemoved ({ state, commit }) {
             if (state.options.hidden === 0) {
                 commit("removeOptionFromSummary", "hide_fields");
-                dispatch("sortFields");
             }
         },
         sortOptionRemove ({ state, commit }, payload) {
