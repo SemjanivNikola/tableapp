@@ -13,7 +13,7 @@ export default {
             required: true,
         },
         disabled: {
-            type: Number,
+            type: Boolean,
             required: true,
         },
     },
@@ -35,5 +35,11 @@ td {
 }
 td.hidden {
     display: none;
+}
+td input.c-input {
+    padding: 2px 4px;
+}
+input.c-input:focus {
+    outline: var(--background-default) auto 1px;
 }
 </style>

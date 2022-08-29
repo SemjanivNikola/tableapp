@@ -48,7 +48,7 @@ export default {
     },
     created () {
         if (this.viewId) {
-            this.readViewById(viewId);
+            this.readViewById(this.viewId);
         } else {
             this.isError = true;
         }

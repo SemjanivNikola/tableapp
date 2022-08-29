@@ -43,7 +43,15 @@ export default new Vuex.Store({
             return state.structureOpen;
         },
     },
-    actions: {},
+    actions: {
+        handleActiveFieldOpt ({ commit, state }, payload) {
+            if (payload === state.activeFieldOpt) {
+                commit("setActiveFieldOpt", null);
+            } else {
+                commit("setActiveFieldOpt", payload);
+            }
+        },
+    },
     modules: {
         workspace: {
             namespaced: true,

@@ -33,6 +33,7 @@ export default {
 
 <style scoped>
 th {
+    position: relative;
     padding: 8px 0;
     min-width: 160px;
     text-align: center;

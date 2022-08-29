@@ -2,30 +2,44 @@
     <div class="container">
         <span @click="showOptions">+</span>
 
-        <div class="wrapper" :class="{ show: shouldShowOptions }">
+        <div class="dropdown-wrapper" :class="{ show: shouldShowOptions }">
             <div v-if="!shouldCustomizeField">
-                <button
-                    class="btn"
-                    @click="shouldCustomizeField = !shouldCustomizeField"
-                >
-                    Customize field type
-                </button>
-                <button class="btn" @click="handleDelete">Delete field</button>
+                <div class="dropdown-item-wrap">
+                    <button
+                        class="dropdown-item"
+                        @click="shouldCustomizeField = !shouldCustomizeField"
+                    >
+                        Customize field type
+                    </button>
+                </div>
+                <div class="dropdown-item-wrap">
+                    <button class="dropdown-item" @click="handleDelete">
+                        Delete field
+                    </button>
+                </div>
             </div>
 
-            <div v-else>
-                <v-text-field v-model="name" />
+            <div v-else class="dropdown-form">
+                <v-text-field v-model="name" label="Title" style="font-weight: 400;" />
                 <v-select
                     v-model="selectedType"
                     :items="FIELD_TYPE"
                     item-value="id"
                     item-text="name"
+                    label="Field type"
+                    style="font-weight: 400;"
                 />
 
-                <button class="btn" @click="onCancel">Cancel</button>
-                <button class="btn" @click="submit" :disabled="!isValueChanged">
-                    Save
-                </button>
+                <v-row align="center" justify="space-between">
+                    <v-btn class="btn" @click="onCancel">Cancel</v-btn>
+                    <v-btn
+                        class="btn"
+                        @click="submit"
+                        :disabled="!isValueChanged"
+                    >
+                        Save
+                    </v-btn>
+                </v-row>
             </div>
         </div>
 
@@ -77,6 +91,7 @@ export default {
             selectedType: null,
             shouldCustomizeField: false,
             dialog: false,
+            activeFieldId: null,
             FIELD_TYPE,
         };
     },
@@ -97,7 +112,7 @@ export default {
             this.selectedType = { id: field.id, type: field.type };
         },
         showOptions () {
-            this.$store.commit("setActiveFieldOpt", this.id);
+            this.$store.dispatch("handleActiveFieldOpt", this.id);
         },
         onCancel () {
             this.$store.commit("setActiveFieldOpt", null);
@@ -138,28 +153,28 @@ export default {
 <style scoped>
 .container {
     display: inline-block;
-    position: relative;
     width: 22px;
     overflow: visible;
     cursor: pointer;
     padding: 0;
 }
-.wrapper {
-    display: none;
-    position: absolute;
-    top: 28px;
-    left: 2px;
-    width: 230px;
-    background-color: #fff;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    z-index: 9999;
-}
-.wrapper.show {
-    display: block;
+.container .dropdown-wrapper {
+    top: 41px;
+    left: 0;
+    min-width: 198px;
 }
 .btn {
     display: block;
     color: #000;
+}
+.dropdown-form {
+    min-width: 310px;
+    padding: 8px;
+}
+.dropdown-form .row {
+    margin: 0 !important;
+}
+.dropdown-form input {
+    font-weight: 400 !important;
 }
 </style>

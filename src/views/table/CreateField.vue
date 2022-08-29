@@ -2,13 +2,16 @@
     <th class="field-placeholder">
         <span @click="toggleShouldShowOptions">+</span>
 
-        <div class="wrapper" :class="{ show: shouldShowOptions }">
+        <div class="dropdown-wrapper" :class="{ show: shouldShowOptions }">
             <div
                 v-for="type in FIELD_TYPE"
                 :key="type.id"
                 @click="selectField(type)"
+                class="dropdown-item-wrap"
             >
-                <p style="color: black">{{ type.name }}</p>
+                <button class="dropdown-item">
+                    {{ type.name }}
+                </button>
             </div>
 
             <button class="btn" @click="createField" :disabled="!selectedType">
@@ -55,23 +58,19 @@ export default {
 th.field-placeholder {
     position: relative;
     min-width: 120px;
-    text-align: center;
-    border: 1px solid #fff;
-    color: white;
+    border: 1px solid rgb(229, 229, 229);
+}
+th.field-placeholder span {
+    display: block;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
 }
-.wrapper {
-    display: none;
-    position: absolute;
-    top: 28px;
-    left: 2px;
-    height: 430px;
-    background-color: #fff;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    z-index: 9999;
-}
-.wrapper.show {
-    display: block;
+th.field-placeholder div.dropdown-wrapper {
+    top: 32px;
+    right: 35px;
+    left: unset;
+    height: 270px;
+    min-width: 190px;
 }
 </style>

@@ -48,6 +48,9 @@ export default {
         setFieldsHidden (state, payload) {
             state.options.hidden = mathOperation[payload](state.options.hidden, 1);
         },
+        setFieldsHiddenByValue (state, payload) {
+            state.options.hidden = payload;
+        },
         addOptionToSummary (state, payload) {
             state.options.summary.push(payload);
         },

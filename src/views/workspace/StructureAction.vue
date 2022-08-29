@@ -1,16 +1,18 @@
 <template>
     <div id="bar">
-        <button @click="isAddNewOpen = !isAddNewOpen">
-            <icon name="add" :size="20" color="white" />
+        <button @click="toggleShouldShowOptions">
+            <icon name="add" :size="20" />
         </button>
-        <div class="dropdown-wrapper" :class="getIsAddNewOpen">
-            <div class="dropdown-item" @click="onClick('workspace')">
-                + Add workspace
+        <div class="dropdown-wrapper" :class="{ show: shouldShowOptions }">
+            <div class="dropdown-item-wrap" @click="onClick('workspace')">
+                <button class="dropdown-item">+ Add workspace</button>
             </div>
-            <div class="dropdown-item" @click="onClick('table')">
-                + Add table
+            <div class="dropdown-item-wrap" @click="onClick('table')">
+                <button class="dropdown-item">+ Add table</button>
             </div>
-            <div class="dropdown-item" @click="onClick('view')">+ Add view</div>
+            <div class="dropdown-item-wrap" @click="onClick('view')">
+                <button class="dropdown-item">+ Add view</button>
+            </div>
         </div>
     </div>
 </template>
@@ -26,18 +28,16 @@ export default {
     },
     data () {
         return {
-            isAddNewOpen: false,
+            shouldShowOptions: false,
         };
     },
     methods: {
         onClick (value) {
-            this.isAddNewOpen = false;
+            this.shouldShowOptions = false;
             this.onCreate(value);
         },
-    },
-    computed: {
-        getIsAddNewOpen () {
-            return this.isAddNewOpen ? "show" : "hidden";
+        toggleShouldShowOptions () {
+            this.shouldShowOptions = !this.shouldShowOptions;
         },
     },
 };
@@ -46,39 +46,7 @@ export default {
 <style scoped>
 #bar {
     position: relative;
-    color: white;
-    text-decoration: underline;
-    text-decoration-color: #6bd1ff;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-}
-.dropdown-wrapper {
-    position: absolute;
-    top: 20px;
-    left: 4px;
-    min-width: 180px;
-    padding-bottom: 8px;
-    background-color: purple;
-    border-radius: 6px;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    z-index: 9999;
-}
-.dropdown-wrapper.show {
-    display: block;
-}
-.dropdown-wrapper.hidden {
-    display: none;
-}
-.dropdown-item {
-    padding: 8px 16px;
-    border-bottom: 1px solid #211d43;
-    transition: all 300ms ease-out;
-    cursor: pointer;
-}
-.dropdown-item:hover {
-    background-color: #6bd1ff;
 }
 </style>

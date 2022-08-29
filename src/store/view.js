@@ -27,11 +27,11 @@ export default {
             state.view.header[payload.index].isShown = payload.isShown;
 
             state.view.body.forEach((row) => {
-                row.cells[payload.index + 1].isShown = payload.isShown;
+                row[payload.index + 1].isShown = payload.isShown;
             });
 
             state.recordList.forEach((row) => {
-                row.cells[payload.index + 1].isShown = payload.isShown;
+                row[payload.index + 1].isShown = payload.isShown;
             });
         },
         addHeaderField (state, payload) {
@@ -55,6 +55,9 @@ export default {
     getters: {
         getHeader: (state) => {
             return state.view ? state.view.header : [];
+        },
+        getHeaderLength: (state) => {
+            return state.view.header.length;
         },
         isViewSelected: (state) => (id) => {
             return id === state.view.id;
@@ -121,6 +124,18 @@ export default {
             } else {
                 commit("toggleFieldVisibility", { index: payload, isShown: true });
                 dispatch("options/handleFieldVisibility", "subtract", { root: false });
+            }
+        },
+        handleHideFieldsAllToggle ({ state, commit, dispatch }, payload) {
+            state.view.header.forEach((_item, index) => {
+                commit("toggleFieldVisibility", { index: index, isShown: payload });
+            });
+            if (payload) {
+                commit("options/setFieldsHiddenByValue", 0, { root: false });
+                dispatch("options/lastFieldRemoved", null, { root: false });
+            } else {
+                commit("options/setFieldsHiddenByValue", state.view.header.length, { root: false });
+                dispatch("options/firstFieldHidden", null, { root: false });
             }
         },
         async handleSort ({ state, commit, dispatch }, payload) {

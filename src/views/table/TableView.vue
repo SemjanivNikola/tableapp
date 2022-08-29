@@ -1,5 +1,5 @@
 <template>
-    <div style="overflow-x: scroll">
+    <div style="overflow-x: scroll; padding: 0 50px 16px 0;">
         <table>
             <header-list :header="tableHeader" />
             <table-record-list
