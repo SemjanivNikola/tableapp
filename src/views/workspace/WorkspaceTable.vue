@@ -1,8 +1,8 @@
 <template>
   <v-card id="view-wrapper-background">
-    <h1 v-if="isError" style="color: white">ERROR! View id -> {{errorData}} </h1>
+    <h1 v-if="isError">ERROR! View id is {{errorData}} </h1>
     <div v-else>
-      <h1 v-if="isLoading" style="color: white">LOADING</h1>
+      <h1 v-if="isLoading">LOADING</h1>
 
       <table-view v-else />
     </div>
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import TableView from "../table/TableView.vue";
 
 export default {
@@ -18,20 +19,13 @@ export default {
     data () {
         return {
             shouldShowHome: true,
-            tabHeaderList: [],
             errorData: null,
             isLoading: true,
             isError: false,
         };
     },
-    created () {
-        this.tabHeaderList = this.$store.getters["table/getMap"];
-        const viewId = this.$store.getters["table/getSelectedViewId"];
-        if (viewId) {
-            this.readViewById(viewId);
-        } else {
-            this.isError = true;
-        }
+    computed: {
+        ...mapGetters({ viewId: "table/getSelectedViewId" }),
     },
     methods: {
         readViewById (id) {
@@ -46,6 +40,18 @@ export default {
                     this.errorData = error.message;
                 });
         },
+    },
+    watch: {
+        viewId (val) {
+            this.readViewById(val);
+        },
+    },
+    created () {
+        if (this.viewId) {
+            this.readViewById(viewId);
+        } else {
+            this.isError = true;
+        }
     },
 };
 </script>
