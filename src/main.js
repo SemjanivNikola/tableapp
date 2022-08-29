@@ -6,7 +6,7 @@ import vuetify from "./plugins/vuetify";
 import router from "./router";
 import store from "./store";
 
-axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "https://runbookmanagerapp.herokuapp.com";
 
 Vue.component("Icon", Icon);
 
