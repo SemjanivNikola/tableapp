@@ -1,45 +1,48 @@
 <template>
-  <v-row
-    align="center"
-  >
-    <v-col
-      class="d-flex"
-      cols="12"
-      sm="6"
-    >
-      <div
-        class="flex-row"
-      >
-        <span v-if="logic === 'where'">{{ logic }}</span>
+    <div class="option-item-wrap">
+        <span v-if="logic === 'where'" class="base-logic">{{ logic }}</span>
         <v-select
-          v-else
-          v-model="logic"
-          :items="LOGIC_CONDITION_OPTIONS"
-          item-value="label"
-          item-text="label"
-          @change="onChange"
+            v-else
+            v-model="logic"
+            :items="LOGIC_CONDITION_OPTIONS"
+            item-value="label"
+            item-text="label"
+            hide-details
+            dense
+            @change="onChange"
+            class="select-input base-logic"
         />
+        <div class="spacer-md"></div>
         <v-select
-          v-model="field"
-          :items="fields"
-          item-value="id"
-          @change="onChange"
+            v-model="field"
+            :items="fields"
+            item-value="id"
+            hide-details
+            dense
+            @change="onChange"
+            class="select-input"
         />
+        <div class="spacer-md"></div>
         <v-select
-          v-model="condition"
-          :items="conditionOptions"
-          item-text="label"
-          @change="onChange"
+            v-model="condition"
+            :items="conditionOptions"
+            item-text="label"
+            hide-details
+            dense
+            @change="onChange"
+            class="select-input"
         />
+        <div class="spacer-md"></div>
         <v-text-field
-          v-model="value"
-          placeholder="Enter a value"
-          @blur="onChange"
+            v-model="value"
+            placeholder="Enter a value"
+            @blur="onChange"
+            hide-details
+            dense
         />
-        <button @click="removeOption">x</button>
-      </div>
-    </v-col>
-  </v-row>
+        <div class="spacer-md"></div>
+        <button @click="removeOption" class="remove-btn">x</button>
+    </div>
 </template>
 
 <script>
@@ -69,10 +72,7 @@ const STATUS_CONDITION_OPTIONS = [
     { value: 5, label: "is empty" },
     { value: 6, label: "is not empty" },
 ];
-const LOGIC_CONDITION_OPTIONS = [
-    { label: "and" },
-    { label: "or" },
-];
+const LOGIC_CONDITION_OPTIONS = [{ label: "and" }, { label: "or" }];
 
 const SortOption = Object.freeze({
     TEXT: "text",
@@ -145,12 +145,38 @@ export default {
                     condition: this.condition.label,
                     value: this.value,
                 },
-
             });
         },
         removeOption () {
-            this.$store.commit("view/options/removeFilterOption", this.index, { root: true });
+            this.$store.commit("view/options/removeFilterOption", this.index, {
+                root: true,
+            });
         },
     },
 };
 </script>
+
+<style scoped>
+.option-item-wrap {
+    display: flex;
+    align-items: baseline;
+    background-color: rgba(229, 229, 229, .46);
+    padding: 8px 8px 16px 8px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+.option-item-wrap .select-input {
+    max-width: 120px;
+}
+.remove-btn {
+    width: 16px;
+}
+.base-logic {
+    text-transform: capitalize;
+    font-weight: 600;
+}
+.select-input.base-logic {
+    text-transform: lowercase;
+    max-width: 61px;
+}
+</style>

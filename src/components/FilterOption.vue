@@ -1,23 +1,32 @@
 <template>
-  <div class="wrapper" :class="getStatus">
-    <div v-if="filterList.length === 0">
-      <p>No filter conditions are applied to this view</p>
-    </div>
+    <div
+        class="dropdown-wrapper option-wrap"
+        :class="{ show: isShown }"
+    >
+        <div class="wrap-scroll option-wrapper">
+            <div v-if="this.filterList.length === 0" class="empty-text">
+                <p>No filter conditions are applied to this view</p>
+            </div>
 
-    <div v-else>
-      <filter-option-item
-        v-for="(item, index) in filterList"
-        :key="item.id"
-        :index="index"
-        :initial="item"
-        :fields="getHeader"
-        @onChange="handleChange"
-      />
-    </div>
+            <div v-else>
+                <filter-option-item
+                    v-for="(item, index) in filterList"
+                    :key="item.id"
+                    :index="index"
+                    :initial="item"
+                    :fields="getHeader"
+                    @onChange="handleChange"
+                />
+            </div>
+        </div>
 
-    <button class="btn" @click="addFilter">+ Add condition</button>
-    <button class="btn" @click="handleFilter">Apply changes</button>
-  </div>
+        <div class="bottom-action">
+            <v-row align="center" justify="space-between">
+                <v-btn @click="addFilter">+ Add condition</v-btn>
+                <v-btn @click="handleFilter" :disabled="this.filterList.length === 0">Apply changes</v-btn>
+            </v-row>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -42,9 +51,6 @@ export default {
     computed: {
         ...mapGetters("view", ["getHeader"]),
         ...mapGetters({ optionList: "view/options/filterOptions" }),
-        getStatus () {
-            return this.isShown ? "show" : "hidden";
-        },
     },
     watch: {
         optionList: {
@@ -68,10 +74,14 @@ export default {
             );
         },
         handleChange (value) {
-            this.$store.commit("view/options/updateFilterOption", {
-                index: value.index,
-                value: value.option,
-            }, { root: true });
+            this.$store.commit(
+                "view/options/updateFilterOption",
+                {
+                    index: value.index,
+                    value: value.option,
+                },
+                { root: true },
+            );
         },
         handleFilter () {
             this.$store.dispatch("view/handleFilter", this.filterList);
@@ -81,25 +91,30 @@ export default {
 </script>
 
 <style scoped>
-.wrapper {
-  position: absolute;
-  top: 28px;
-  left: 2px;
-  width: 360px;
-  height: 430px;
-  padding: 16px;
-  background-color: #fff;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  z-index: 9999;
+.dropdown-wrapper.option-wrap {
+    top: 31px;
+    left: 2px;
+    width: auto;
+    height: auto;
 }
-.wrapper.show {
-  display: block;
+.option-wrapper {
+    position: relative;
+    width: 640px;
+    max-height: 330px;
+    padding: 8px 8px 56px 8px;
 }
-.wrapper.hidden {
-  display: none;
+.bottom-action {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px 16px;
+    background-color: #fff;
 }
-.btn {
-  display: block;
+.bottom-action .row {
+    margin: 0 !important;
+}
+.empty-text {
+    padding-top: 16px;
 }
 </style>

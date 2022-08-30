@@ -1,6 +1,6 @@
 <template>
     <div class="dropdown-wrapper option-wrap" :class="{ show: isShown }">
-        <div class="option-wrapper">
+        <div class="wrap-scroll option-wrapper">
             <div
                 v-for="(header, index) in getHeader"
                 :key="header.id"
@@ -19,10 +19,10 @@
 
         <div class="bottom-action">
             <v-row align="center" justify="space-between">
-                <v-btn class="btn" @click="handleAllToggle(true)"
+                <v-btn @click="handleAllToggle(true)"
                     >Show all</v-btn
                 >
-                <v-btn class="btn" @click="handleAllToggle(false)">
+                <v-btn @click="handleAllToggle(false)">
                     Hide all
                 </v-btn>
             </v-row>
@@ -72,7 +72,6 @@ export default {
     width: 270px;
     max-height: 430px;
     padding: 0 8px 76px 8px;
-    overflow-y: scroll;
 }
 .option-wrapper .option-item-wrap {
     height: 25px;
