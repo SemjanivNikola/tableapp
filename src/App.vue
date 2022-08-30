@@ -18,6 +18,9 @@ export default {
 #app {
     background-color: var(--background-default);
 }
+.no-padding {
+    padding: 0 !important;
+}
 /* ****** DROPDOWN ****** */
 .dropdown-wrapper {
     display: none;
@@ -28,12 +31,14 @@ export default {
     padding: 0 8px 8px 8px;
     background-color: #fff;
     border-radius: 6px;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    overflow: visible;
     -webkit-box-shadow: 10px 10px 23px -10px rgba(0, 0, 0, 0.45);
     -moz-box-shadow: 10px 10px 23px -10px rgba(0, 0, 0, 0.45);
     box-shadow: 10px 10px 23px -10px rgba(0, 0, 0, 0.45);
     z-index: 999;
+}
+.wrap-scroll {
+    overflow-y: scroll;
 }
 .dropdown-wrapper.show {
     display: block;

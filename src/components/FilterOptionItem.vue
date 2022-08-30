@@ -17,6 +17,7 @@
             v-model="field"
             :items="fields"
             item-value="id"
+            label="Field title"
             hide-details
             dense
             @change="onChange"

@@ -6,6 +6,9 @@
           v-model="selected"
           :items="fields"
           item-value="id"
+          label="Field title"
+          dense
+          hide-details
           @change="onChange"
         />
       </div>
@@ -17,6 +20,8 @@
           v-model="sortSelect"
           :items="sortOptions"
           label="Options"
+          dense
+          hide-details
           @change="onChange"
         />
       </div>

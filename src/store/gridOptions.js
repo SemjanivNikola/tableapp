@@ -28,6 +28,9 @@ export default {
         removeSortOption (state, payload) {
             state.options.sort.splice(payload, 1);
         },
+        clearSort (state) {
+            state.options.sort = [];
+        },
 
         setFilter (state, payload) {
             state.options.filter = payload;

@@ -157,6 +157,11 @@ export default {
                 dispatch("options/sortFields", { header: state.view.header, body: state.recordList }, { root: false });
             }
         },
+        handleSortRemoveAll ({ state, commit, dispatch }) {
+            commit("options/clearSort", null, { root: false });
+            commit("options/removeOptionFromSummary", "sort", { root: false });
+            dispatch("options/sortFields", { header: state.view.header, body: state.recordList }, { root: false });
+        },
         handleDeleteField ({ state, commit, dispatch, rootGetters }, payload) {
             const index = state.view.header.findIndex((field) => field.id === payload);
             const options = rootGetters["view/options/get"];
