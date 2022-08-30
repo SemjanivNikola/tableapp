@@ -57,12 +57,8 @@ export default {
     padding: 8px;
     font-weight: 400;
     border-radius: 6px;
-    transition: all 300ms ease-out;
 }
 .dropdown-item-wrap:hover {
-    padding: 4px;
-}
-.dropdown-item-wrap:hover .dropdown-item {
     background-color: rgba(4, 217, 57, 0.511);
 }
 </style>
