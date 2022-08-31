@@ -4,9 +4,10 @@
     :class="getStatus"
   >
     <h6>Sort by</h6>
+    <p>After every change you make be sure to apply those changes. Otherwise it won't be visible.</p>
     <div v-if="select.length === 0">
       <table-field-picker
-        :fields="fields"
+        :fields="getHeader"
         :handle-field-pick="handleFieldPick"
       />
     </div>
@@ -14,9 +15,11 @@
     <div v-else>
       <sort-option-item
         v-for="(item, index) in select"
-        :key="index"
+        :key="item.id"
+        :index="index"
         :initial="item"
-        :fields="fields"
+        :fields="getHeader"
+        @onChange="handleChange"
       />
 
       <div style="position: relative;">
@@ -29,7 +32,7 @@
 
         <table-field-picker
           v-if="showPicker"
-          :fields="fields"
+          :fields="getHeader"
           :handle-field-pick="handleFieldPick"
         />
       </div>
@@ -45,7 +48,7 @@
 </template>
 
 <script>
-import tableData from "../../mock-data/grid_view_one.json";
+import { mapGetters } from "vuex";
 import SortOptionItem from "./SortOptionItem.vue";
 
 const TableFieldPicker = {
@@ -61,9 +64,9 @@ const TableFieldPicker = {
         },
     },
     template: `<div><div
-        v-for="(header, index) in fields"
+        v-for="header in fields"
         :key="header.id"
-        @click="handleFieldPick(index)"
+        @click="handleFieldPick(header.id)"
       >
         {{ header.text }}
       </div></div>`,
@@ -80,35 +83,44 @@ export default {
     },
     data () {
         return {
-            fields: tableData.header,
             select: [],
             showPicker: false,
         };
     },
     computed: {
+        ...mapGetters("view", ["getHeader"]),
+        ...mapGetters({ optionList: "view/options/sortOptions" }),
         getStatus () {
             return this.isShown ? "show" : "hidden";
         },
     },
-    beforeMount () {
-        tableData.options.sort.forEach(item => {
-            this.select.push(item);
-        }, this);
+    watch: {
+        optionList: {
+            handler (val) {
+                this.select = val;
+            },
+            deep: true,
+        },
     },
     methods: {
         handleFieldPick (index) {
-            this.select.push({
-                field: index,
-                sort: 1,
-            });
+            this.$store.commit("view/options/addSortOption", {
+                id: index,
+                direction: 1,
+            }, { root: true });
 
             if (this.showPicker) {
                 this.showPicker = false;
             }
         },
+        handleChange (value) {
+            this.$store.commit("view/options/updateSortOption", {
+                index: value.index,
+                value: value.option,
+            }, { root: true });
+        },
         handleSort () {
-            // TODO: sort
-            console.log(this.select);
+            this.$store.dispatch("view/handleSort", this.select);
         },
     },
 };

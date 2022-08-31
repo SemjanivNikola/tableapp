@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Workspace from "../screens/Workspace.vue";
+import WorkspaceScreen from "../screens/WorkspaceScreen.vue";
+import RecentTables from "../screens/WorkspaceScreen.vue";
 
 Vue.use(VueRouter);
 
@@ -9,7 +10,37 @@ const routes = [
         path: "/",
         alias: "/workspace=:id",
         name: "Workspace",
-        component: Workspace,
+        component: WorkspaceScreen,
+    },
+    {
+        path: "/my_workspace",
+        alias: "/workspace=:id",
+        name: "Workspace",
+        component: WorkspaceScreen,
+        components: {
+        default: () => import('@/views/MyWorkspace.vue'),
+        sidebar: () => import('@/components/SideBar.vue')
+        },
+    },
+    {
+        path: '/recent_tables',
+        alias: "/workspace=:id",
+        name: "Workspace",
+        component: WorkspaceScreen,
+        components: {
+        default: () => import('@/views/RecentTables.vue'),
+        sidebar: () => import('@/components/SideBar.vue')
+        },
+    },
+    {
+        path: '/profile',
+        alias: "/workspace=:id",
+        name: "Workspace",
+        component: WorkspaceScreen,
+        components: {
+        default: () => import('@/views/Profile.vue'),
+        sidebar: () => import('@/components/SideBar.vue')
+        },
     },
     // {
     //   path: "/about",

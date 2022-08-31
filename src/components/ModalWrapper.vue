@@ -13,7 +13,7 @@
 
 <script>
 export default {
-    name: "Modal",
+    name: "ModalWrapper",
     props: {
         isShown: {
             type: Boolean,

@@ -1,91 +1,55 @@
 <template>
-  <div>
-    <table-action-bar />
-    <!-- <table-header :header="mockData.header" />
-    <table-body :body="mockData.body" /> -->
+    <div style="overflow-x: scroll">
+        <table>
+            <header-list :header="tableHeader" />
+            <table-record-list
+                :record-list="getRecordList"
+                @onRecordCreate="onRecordCreate"
+            />
+        </table>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Placeholder</th>
-          <th
-            v-for="(header, index) in tableHeader"
-            :key="index"
-          >
-            {{ header.text }}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="(row, rowIndex) in tableBody"
-          :key="rowIndex"
-        >
-          <td>{{ rowIndex }}</td>
-          <td
-            v-for="(cell, cellIndex) in row"
-            :key="cellIndex"
-          >
-            {{ cell.value }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    TABLE
-  </div>
+        <modal-wrapper :is-shown="isRecordExpandShown">
+            <record-expand
+                :fields="tableHeader"
+                @close="isRecordExpandShown = false"
+            />
+        </modal-wrapper>
+    </div>
 </template>
 
 <script>
-import tableData from "../../../mock-data/grid_view_one.json";
-import TableActionBar from "./TableActionBar.vue";
+import ModalWrapper from "@/components/ModalWrapper.vue";
+import { mapState } from "vuex";
+import HeaderList from "./HeaderList.vue";
+import TableRecordList from "./TableRecordList.vue";
+import RecordExpand from "./RecordExpand.vue";
 
 export default {
     name: "TableView",
-    components: { TableActionBar },
+    components: {
+        HeaderList,
+        TableRecordList,
+        ModalWrapper,
+        RecordExpand,
+    },
     data () {
         return {
-            mockData: tableData,
-            activeOptions: tableData.options.summary,
-            tableHeader: tableData.header,
-            tableBody: tableData.body,
+            tableHeader: [],
+            isRecordExpandShown: false,
         };
     },
-    computed: {
-        modifyHeader () {
-            if (!this.mockData.options.summary.includes("hide_fileds")) {
-                return this.mockData.header;
-            }
-
-            const clone = [...this.mockData.header];
-            this.mockData.options.hideFields.forEach((field) => {
-                clone.splice(field, 1);
-            }, this);
-            return clone;
-        },
-
-        modifyBody () {
-            if (!this.mockData.options.summary.includes("hide_fileds")) {
-                return this.mockData.body;
-            }
-
-            const clone = [...this.mockData.body];
-            this.mockData.options.hideFields.forEach((field) => {
-                clone.forEach((row) => {
-                    row.splice(field, 1);
-                });
-            }, this);
-            return clone;
+    created () {
+        this.tableHeader = this.$store.getters["view/getHeader"];
+    },
+    methods: {
+        onRecordCreate () {
+            this.isRecordExpandShown = true;
         },
     },
-    watch: {
-        activeOptions: {
-            handler (val) {
-                console.log(val);
-                this.tableHeader = this.modifyHeader;
-                this.tableBody = this.modifyBody;
-            },
-            deep: true,
+    computed: {
+        ...mapState(["view"]),
+        getRecordList () {
+            return this.view.recordList;
         },
     },
 };
@@ -95,8 +59,11 @@ export default {
 table {
     border-collapse: collapse;
 }
-th, td {
-  border: 1px solid #fff;
-  color: white;
+.new-col-wrapper {
+    display: inline-block;
+    width: 56px;
+    height: 20px;
+    background-color: gray;
+    color: black;
 }
 </style>

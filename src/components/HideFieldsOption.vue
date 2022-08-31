@@ -1,28 +1,22 @@
 <template>
-  <div
-    class="wrapper"
-    :class="getStatus"
-  >
-    <div
-      v-for="(header, index) in mockData.header"
-      :key="header.id"
-    >
-      <v-switch
-        v-model="header.isHidden"
-        :label="header.text"
-        dense
-        color="green"
-        @change="handleHideFields(index)"
-      />
+    <div class="wrapper" :class="getStatus">
+        <div v-for="(header, index) in getHeader" :key="header.id">
+            <v-switch
+                :input-value="header.isShown"
+                :label="header.text"
+                dense
+                color="green"
+                @click="handleHideFields(index)"
+            />
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
-import tableData from "../../mock-data/grid_view_one.json";
+import { mapGetters } from "vuex";
 
 export default {
-    name: "ActionOptions",
+    name: "HideFieldsOption",
     props: {
         optionType: {
             type: String,
@@ -34,37 +28,15 @@ export default {
             required: true,
         },
     },
-    data () {
-        return {
-            mockData: tableData,
-        };
-    },
     computed: {
+        ...mapGetters("view", ["getHeader"]),
         getStatus () {
             return this.isShown ? "show" : "hidden";
         },
     },
     methods: {
         handleHideFields (index) {
-            if (!this.mockData.header[index].isHidden) {
-                this.mockData.header[index].isHidden = true;
-                this.mockData.options.hideFields.push(index);
-
-                // If it's first field to be hidden add hide_fields option to summary
-                if (!this.mockData.options.summary.includes("hide_fileds")) {
-                    this.mockData.options.summary.push("hide_fileds");
-                }
-            } else this.mockData.header[index].isHidden = false;
-
-            // If the last index is removed, remove the hide_fileds option
-            if (this.mockData.options.hideFields.length === 0) {
-                this.mockData.options.summary.splice(
-                    this.mockData.options.summary.indexOf("hide_fileds"),
-                    1,
-                );
-            }
-
-            console.log("hideFields", this.mockData.options);
+            this.$store.dispatch("view/handleHideFields", index);
         },
     },
 };

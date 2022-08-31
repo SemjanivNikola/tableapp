@@ -17,22 +17,26 @@
           :items="LOGIC_CONDITION_OPTIONS"
           item-value="label"
           item-text="label"
+          @change="onChange"
         />
         <v-select
           v-model="field"
           :items="fields"
           item-value="id"
+          @change="onChange"
         />
         <v-select
           v-model="condition"
           :items="conditionOptions"
-          item-value="value"
           item-text="label"
+          @change="onChange"
         />
         <v-text-field
           v-model="value"
           placeholder="Enter a value"
+          @blur="onChange"
         />
+        <button @click="removeOption">x</button>
       </div>
     </v-col>
   </v-row>
@@ -87,11 +91,15 @@ export default {
             type: Array,
             required: true,
         },
+        index: {
+            type: Number,
+            required: true,
+        },
     },
     data () {
         return {
             logic: this.initial.logic,
-            field: this.initial.field,
+            field: this.initial.id,
             condition: this.initial.condition,
             value: this.initial.value,
             conditionOptions: [],
@@ -109,11 +117,11 @@ export default {
             deep: true,
         },
     },
-    beforeMount () {
-        if (!this.initial.field) {
-            this.field = this.fields[0].id;
+    created () {
+        if (this.initial.id) {
+            this.selectSortOptByType(this.fields[this.initial.id - 1].type);
         } else {
-            this.selectSortOptByType(this.fields[this.initial.field - 1].type);
+            this.field = this.fields[0].id;
         }
     },
     methods: {
@@ -127,6 +135,21 @@ export default {
             }
 
             this.condition = this.conditionOptions[0];
+        },
+        onChange () {
+            this.$emit("onChange", {
+                index: this.index,
+                option: {
+                    logic: this.logic,
+                    id: this.field,
+                    condition: this.condition.label,
+                    value: this.value,
+                },
+
+            });
+        },
+        removeOption () {
+            this.$store.commit("view/options/removeFilterOption", this.index, { root: true });
         },
     },
 };

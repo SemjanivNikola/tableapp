@@ -1,6 +1,6 @@
 <template>
-  <div class="header-wrapper">
-    <h5>{{ title }}</h5>
+  <div class="header-wrapper" :class="isSelected">
+    <h5>{{ header.title }}</h5>
     <icon
       name="close"
       :size="16"
@@ -12,9 +12,15 @@
 export default {
     name: "TabHeader",
     props: {
-        title: {
-            type: String,
+        header: {
+            type: Object,
             required: true,
+        },
+    },
+    computed: {
+        isSelected () {
+            const selected = this.$store.getters["table/isTableSelected"];
+            return selected(this.header.id) ? "selected" : "";
         },
     },
 };
@@ -29,6 +35,9 @@ export default {
   align-items: center;
   justify-content: space-between;
   text-transform: none;
+}
+.header-wrapper.selected {
+  background-color: red;
 }
 .close {
   position: relative;
