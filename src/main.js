@@ -5,7 +5,7 @@ import Icon from "./components/Icon";
 import vuetify from "./plugins/vuetify";
 import router from "./router";
 import store from "./store";
-import "./directives/clickOutside";
+// import "./directives/clickOutside";
 
 
 axios.defaults.baseURL = "https://runbookmanagerapp.herokuapp.com";

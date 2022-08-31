@@ -37,7 +37,7 @@ const routes = [
         name: "Workspace",
         component: WorkspaceScreen,
         components: {
-            default: () => import("@/views/Profile.vue"),
+            default: () => import("@/views/ProfileScreen.vue"),
             sidebar: () => import("@/components/SideBar.vue"),
         },
     },
