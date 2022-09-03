@@ -102,7 +102,7 @@ export default {
                     text: `Field ${headerLen}`,
                     isShown: true });
 
-                commit("addRecordCell", payload.id);
+                commit("addRecordCell", payload.fieldType);
                 commit("setAppFeedback", "Field created successfully", { root: true });
                 // dispatch("syncView"); // Should we put this here?
                 return true;
