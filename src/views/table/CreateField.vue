@@ -8,7 +8,7 @@
                     v-for="type in FIELD_TYPE"
                     :key="type.id"
                     @click="selectField(type)"
-                    :class="[{ selected: selectedField === type.id}, 'dropdown-item-wrap']"
+                    class="dropdown-item-wrap"
                 >
                     <button class="dropdown-item">
                         {{ type.name }}
@@ -16,10 +16,6 @@
                 </div>
 
                 <div class="spacer-md"></div>
-
-                <v-btn @click="createField" :disabled="!selectedType">
-                    Create
-                </v-btn>
             </div>
         </div>
     </th>
@@ -33,23 +29,17 @@ export default {
     data () {
         return {
             shouldShowOptions: false,
-            selectedType: null,
-            selectedField: null,
             FIELD_TYPE,
         };
     },
     methods: {
-        selectField (field) {
-            this.selectedField = field.id;
-            this.selectedType = { fieldType: field.id, type: field.type };
-        },
-        async createField () {
+        async selectField (field) {
+            const selectedField = { fieldType: field.id, type: field.type };
             const res = await this.$store.dispatch(
                 "view/createField",
-                this.selectedType,
+                selectedField,
             );
             if (res) {
-                this.selectedType = null;
                 this.shouldShowOptions = false;
             }
         },
@@ -80,8 +70,5 @@ th.field-placeholder div.dropdown-wrapper {
 th.field-placeholder .dropdown-wrapper .wrap-scroll {
     height: 270px;
     min-width: 190px;
-}
-th.field-placeholder div.dropdown-wrapper .dropdown-item-wrap.selected {
-     background-color: rgba(4, 217, 57, 0.511);
 }
 </style>
