@@ -13,6 +13,7 @@ export default new Vuex.Store({
         showFeedback: false,
         activeFieldOpt: null,
         structureOpen: true,
+        activeCellCoordinates: [],
     },
     mutations: {
         setAppFeedback: (state, payload) => {
@@ -28,6 +29,13 @@ export default new Vuex.Store({
         toggleStructureOpen: (state) => {
             state.structureOpen = !state.structureOpen;
         },
+        updateCellCoordinates: (state, payload) => {
+            if (payload.type === "cell") {
+                state.activeCellCoordinates[1] = payload.index;
+            } else {
+                state.activeCellCoordinates[0] = payload.index;
+            }
+        },
     },
     getters: {
         getAppFeedback: (state) => {
@@ -41,6 +49,9 @@ export default new Vuex.Store({
         },
         isStructureOpen: (state) => {
             return state.structureOpen;
+        },
+        getActiveCellCoordinates: (state) => {
+            return state.activeCellCoordinates;
         },
     },
     actions: {

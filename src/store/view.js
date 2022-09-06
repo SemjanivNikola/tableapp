@@ -51,6 +51,9 @@ export default {
                 row.splice(payload + 1, 1);
             });
         },
+        setRecordCellValue (state, payload) {
+            state.recordList[payload.recordIndex][payload.cellIndex] = payload.value;
+        },
     },
     getters: {
         getHeader: (state) => {
@@ -61,6 +64,9 @@ export default {
         },
         isViewSelected: (state) => (id) => {
             return id === state.view.id;
+        },
+        getRecordList: (state) => {
+            return state.recordList;
         },
     },
     actions: {
@@ -82,6 +88,11 @@ export default {
                     throw err;
                 });
         },
+        readViewRecords (payload) {
+            return axios.get(`/view/${payload}/records`).then((res) => {
+                return res.data;
+            });
+        },
         createView ({ commit }, payload) {
             return axios.post("/view", payload).then((res) => {
                 commit("table/addNewView", res.data, { root: true });
@@ -96,11 +107,13 @@ export default {
         createField ({ state, commit }, payload) {
             try {
                 const headerLen = state.view.header.length + 1;
-                commit("addHeaderField", { id: headerLen,
+                commit("addHeaderField", {
+                    id: headerLen,
                     type: payload.type,
                     fieldType: payload.fieldType,
                     text: `Field ${headerLen}`,
-                    isShown: true });
+                    isShown: true,
+                });
 
                 commit("addRecordCell", payload.fieldType);
                 commit("setAppFeedback", "Field created successfully", { root: true });
@@ -111,6 +124,12 @@ export default {
                 commit("setAppFeedback", `Error:  ${err}`, { root: true });
                 return false;
             }
+        },
+        handleRecordCellUpdate ({ commit, rootGetters }, payload) {
+            const cellCoordinates = rootGetters.getActiveCellCoordinates;
+
+            commit("setRecordCellValue", { recordIndex: cellCoordinates[0], cellIndex: cellCoordinates[1],
+                value: payload });
         },
         async handleBodyModification ({ state, commit, dispatch }) {
             const viewClone = await dispatch("options/modifyBody", state.view);

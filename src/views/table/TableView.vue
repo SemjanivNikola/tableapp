@@ -3,7 +3,6 @@
         <table>
             <header-list :header="tableHeader" />
             <table-record-list
-                :record-list="getRecordList"
                 @onRecordCreate="onRecordCreate"
             />
         </table>
@@ -18,11 +17,10 @@
 </template>
 
 <script>
-import ModalWrapper from "@/components/ModalWrapper.vue";
-import { mapState } from "vuex";
 import HeaderList from "./HeaderList.vue";
-import TableRecordList from "./TableRecordList.vue";
+import ModalWrapper from "@/components/ModalWrapper.vue";
 import RecordExpand from "./RecordExpand.vue";
+import TableRecordList from "./TableRecordList.vue";
 
 export default {
     name: "TableView",
@@ -44,12 +42,6 @@ export default {
     methods: {
         onRecordCreate () {
             this.isRecordExpandShown = true;
-        },
-    },
-    computed: {
-        ...mapState(["view"]),
-        getRecordList () {
-            return this.view.recordList;
         },
     },
 };
