@@ -4,13 +4,13 @@
             v-for="(cell, index) in record"
             :key="index"
             :cell="cell"
-            :disabled="index === 0"
+            @onIndexSave="handleIndexSave(index)"
         />
     </tr>
 </template>
 
 <script>
-import RecordCell from "./RecordCell.vue";
+import RecordCell from "../record-cell/RecordCell.vue";
 
 export default {
     components: { RecordCell },
@@ -19,6 +19,12 @@ export default {
         record: {
             type: Array,
             required: true,
+        },
+    },
+    methods: {
+        handleIndexSave (index) {
+            this.$store.commit("updateCellCoordinates", { type: "cell", index: index });
+            this.$emit("onIndexSave");
         },
     },
 };

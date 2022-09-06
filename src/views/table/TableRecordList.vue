@@ -1,9 +1,10 @@
 <template>
     <tbody>
         <record-list-item
-            v-for="record in recordList"
+            v-for="(record, index) in recordList"
             :key="record.id"
             :record="record"
+            @onIndexSave="handleIndexSave(index)"
         />
         <tr class="new-record">
             <td :colspan="headerLenght">
@@ -22,14 +23,13 @@ import RecordListItem from "./RecordListItem.vue";
 export default {
     components: { RecordListItem },
     name: "TableRecordList",
-    props: {
-        recordList: {
-            type: Array,
-            required: true,
+    methods: {
+        handleIndexSave (index) {
+            this.$store.commit("updateCellCoordinates", { type: "record", index: index });
         },
     },
     computed: {
-        ...mapGetters({ headerLenght: "view/getHeaderLength" }),
+        ...mapGetters({ headerLenght: "view/getHeaderLength", recordList: "view/getRecordList" }),
     },
 };
 </script>
