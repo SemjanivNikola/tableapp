@@ -22,8 +22,6 @@ import HeaderList from "./HeaderList.vue";
 import ModalWrapper from "@/components/ModalWrapper.vue";
 import RecordExpand from "./RecordExpand.vue";
 import TableRecordList from "./TableRecordList.vue";
-import RecordExpand from "./RecordExpand.vue";
-
 
 export default {
     name: "TableView",
