@@ -1,6 +1,6 @@
 <template>
   <v-card id="view-wrapper-background">
-    <h1 v-if="isError">ERROR! View id is {{errorData}} </h1>
+    <h1 v-if="isError">ERROR! View id is {{ errorData }}</h1>
     <div v-else>
       <h1 v-if="isLoading">LOADING</h1>
 
@@ -31,9 +31,13 @@ export default {
         readViewById (id) {
             this.isLoading = true;
 
-            this.$store.dispatch("view/readView", id, { root: true }).then(async () => {
-                this.isLoading = !await this.$store.dispatch("view/handleBodyModification");
-            }).
+            this.$store.
+                dispatch("view/readView", id, { root: true }).
+                then(async () => {
+                    this.isLoading = !await this.$store.dispatch(
+                        "view/handleBodyModification",
+                    );
+                }).
                 catch((error) => {
                     this.isError = true;
                     this.isLoading = false;
@@ -66,5 +70,4 @@ export default {
   flex-shrink: 0;
   background: inherit;
 }
-
 </style>

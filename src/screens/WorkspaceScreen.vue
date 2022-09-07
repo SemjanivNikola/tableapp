@@ -1,10 +1,12 @@
 <template>
     <div id="screen-wrapper">
+                        <SideBar/>
+
+
         <div id="screen-info">
             <div class="hover-action">
                 <icon name="file" :size="28" />
                 <div class="menu-wrapper">
-                    <icon name="menu" color="rgb(0, 0, 0)" :size="16" />
                 </div>
             </div>
             <div class="spacer-md"></div>
@@ -66,6 +68,8 @@ import WorkspaceTable from "../views/workspace/WorkspaceTable.vue";
 import Icon from "@/components/Icon.vue";
 import TableActionBar from "../views/table/TableActionBar.vue";
 import StructureAction from "../views/workspace/StructureAction.vue";
+import SideBar from "@/components/SideBar.vue";
+
 
 export default {
     name: "WorkspaceScreen",
@@ -77,6 +81,7 @@ export default {
         TableActionBar,
         StructureAction,
         CreateStructure,
+        SideBar,
     },
     data () {
         return {
@@ -84,6 +89,7 @@ export default {
             workspace: null,
             isCreateModalShown: false,
             createStructure: null,
+
         };
     },
     created () {

@@ -1,63 +1,66 @@
 SIDE BAR
 
 <template>
-    <div>
-        <v-navigation-drawer
-            class="deep-purple accent-4"
-            dark
-            permanent
-            height="595px"
+  <v-sheet
+    height="400"
+    width="900"
+    class="overflow-hidden"
+    style="position: relative;"
+  >
+    <v-container class="fill-height">
+      <v-row
+        align="center"
+        justify="center"
+      >
+        <v-btn
+          color="pink"
+          dark
+          @click.stop="drawer = !drawer"
         >
-            <v-list>
-                <v-list-item
-                    v-for="item in items"
-                    :key="item.title"
-                    link
-                    :to="item.path"
-                >
-                    <v-list-item-icon>
-                        <v-icon>{{ item.icon }}</v-icon>
-                    </v-list-item-icon>
+          OPEN / CLOSE
+        </v-btn>
+      </v-row>
+    </v-container>
 
-                    <v-list-item-content>
-                        <v-list-item-title>{{ item.title }}</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-            </v-list>
+    <v-navigation-drawer
+      v-model="drawer"
+      absolute
+      temporary
+    >
 
-            <template v-slot:append>
-                <div class="pa-2">
-                    <v-btn block> Sign out </v-btn>
-                </div>
-            </template>
-        </v-navigation-drawer>
-    </div>
+
+      <v-divider></v-divider>
+
+      <v-list dense>
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          link
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+  </v-sheet>
 </template>
 
 <script>
 export default {
     data () {
         return {
-            drawer: true,
+            drawer: null,
             items: [
-                {
-                    title: "My Workspace",
-                    icon: "mdi-view-dashboard",
-                    path: "/my_workspace",
-                },
-                {
-                    title: "Recent Tables",
-                    icon: "mdi-animation-outline",
-                    path: "/recent_tables",
-                },
-                {
-                    title: "Profile",
-                    icon: "mdi-account-tie ",
-                    path: "/profile",
-                },
+                { title: "(Home -) My Workspace", icon: "mdi-view-dashboard" },
+                { title: "(About -) Recent Tables", icon: "mdi-animation" },
+                { title: "Profile", icon: "mdi-account" },
             ],
         };
     },
 };
 </script>
-
