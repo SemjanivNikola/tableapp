@@ -1,11 +1,12 @@
 <template>
-    <div style="overflow-x: scroll; padding: 0 50px 16px 0;">
-        <table>
-            <header-list :header="tableHeader" />
-            <table-record-list
-                @onRecordCreate="onRecordCreate"
-            />
-        </table>
+  <div style="overflow-x: scroll; padding: 0 50px 16px 0">
+    <table>
+      <header-list :header="tableHeader" />
+      <table-record-list
+        :record-list="getRecordList"
+        @onRecordCreate="onRecordCreate"
+      />
+    </table>
 
     <modal-wrapper :is-shown="isRecordExpandShown">
       <record-expand
@@ -21,6 +22,8 @@ import HeaderList from "./HeaderList.vue";
 import ModalWrapper from "@/components/ModalWrapper.vue";
 import RecordExpand from "./RecordExpand.vue";
 import TableRecordList from "./TableRecordList.vue";
+import RecordExpand from "./RecordExpand.vue";
+
 
 export default {
     name: "TableView",
