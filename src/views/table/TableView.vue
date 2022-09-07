@@ -3,7 +3,6 @@
     <table>
       <header-list :header="tableHeader" />
       <table-record-list
-        :record-list="getRecordList"
         @onRecordCreate="onRecordCreate"
       />
     </table>
