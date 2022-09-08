@@ -49,12 +49,19 @@ export default {
         },
     },
     actions: {
-        process ({ dispatch, getters, commit }, payload) {
-            const { table_list, ...otherProps } = getters.workspaceById(payload);
+        process ({ dispatch, commit }, payload) {
+            return axios.get(`/workspace/${payload}`).then((res) => {
+                const { table_list, ...otherProps } = res.data;
 
-            commit("setSelected", otherProps);
-            dispatch("table/process", { map: table_list, selected: otherProps.selected_table_id },
-                { root: true });
+                commit("setSelected", otherProps);
+                dispatch("table/process", { map: table_list, selected: otherProps.selected_table_id },
+                    { root: true });
+                return true;
+            }).
+                catch((err) => {
+                    commit("setAppFeedback", `Error: ${err.message}`, { root: true });
+                    return false;
+                });
         },
         readWorkspaceList ({ commit }) {
             const map = tabledata;
@@ -74,11 +81,8 @@ export default {
              */
         },
         createWorkspace ({ commit }, payload) {
-            return axios.get("/api/workspace", payload).then((res) => {
-                const { table_list, ...otherProps } = res.data;
-
-                commit("addNewWorkspace", otherProps);
-                commit("table/addNew", table_list, { root: true });
+            return axios.post("/workspace", payload).then((res) => {
+                commit("addNewWorkspace", res.data);
 
                 commit("setAppFeedback", "Workspace created successfully", { root: true });
                 return true;

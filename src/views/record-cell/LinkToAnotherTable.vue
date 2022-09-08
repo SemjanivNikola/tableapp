@@ -1,40 +1,70 @@
 <template>
     <div>
-        <input @click="toggle" type="text" :value="cellValue" readonly>
+        <input @click="toggle" type="text" :value="cellValue" readonly />
 
         <modal-wrapper :is-shown="shouldShowModal">
-            <v-btn @click="toggle">Zatvori</v-btn>
-            <div style="position: relative">
-                <div v-for="item in tableList" :key="item.id">
-                    <div>{{ item.title }}</div>
-                    <ul>
-                        <li
-                            v-for="view in item.view_list"
-                            :key="view.id"
-                            @click="handleRecordListView(item.id, view.id)"
-                        >
-                            <div>{{ view.title }}</div>
-                        </li>
-                    </ul>
-                </div>
+            <div class="header">
+                <v-btn @click="toggle">Zatvori</v-btn>
+            </div>
 
-                <!-- VIEW RECORD VIEW -->
-                <div :class="[{ active: isRecordListActive }, 'list-wrapper']">
-                    <v-btn @click="isRecordListActive = false">Vrati se</v-btn>
-                    <ul>
-                        <li
-                            v-for="item in mock"
-                            :key="item.id"
-                            @click="addLink(item)"
-                        >
-                            <h4>{{ item.header }}</h4>
-                            <div>{{ item.value }}</div>
-                        </li>
-                    </ul>
-                    <v-btn @click="save" :disabled="!selectedItem"
-                        >Spremi</v-btn
+            <div class="content-header">
+                <h5>TABLE</h5>
+                <span class="vertical-divider"></span>
+                <h5>VIEW</h5>
+                <span class="vertical-divider"></span>
+                <h5>RECORD</h5>
+            </div>
+
+            <div class="content-wrapper">
+                <!-- TABLE ITESM -->
+                <ul class="content-item">
+                    <li
+                        v-for="(item, index) in tableList"
+                        :key="item.id"
+                        :class="[
+                            { active: activeTableIndex === index },
+                            'content-item-background',
+                        ]"
+                        @click="handleActiveTable(index)"
                     >
-                </div>
+                        {{ item.title }}
+                    </li>
+                </ul>
+
+                <!-- VIEW ITEMS -->
+                <ul class="content-item">
+                    <li
+                        v-for="view in viewList"
+                        :key="view.id"
+                        :class="[
+                            { active: activeViewId === view.id },
+                            'content-item-background',
+                        ]"
+                        @click="handleRecordListView(item.id, view.id)"
+                    >
+                        <div>{{ view.title }}</div>
+                    </li>
+                </ul>
+
+                <!-- VIEW RECORD ITEMS -->
+                <ul class="content-item">
+                    <li
+                        v-for="(item, index) in mock"
+                        :key="index"
+                        @click="addLink(item, index)"
+                        :class="[
+                            { active: activeRecordIndex === index },
+                            'content-item-background',
+                        ]"
+                    >
+                        <h4>{{ item.header }}</h4>
+                        <div>{{ item.value }}</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="header">
+                <v-btn @click="save" :disabled="!selectedItem">Spremi</v-btn>
             </div>
         </modal-wrapper>
     </div>
@@ -55,6 +85,9 @@ export default {
     // eslint-disable-next-line max-lines-per-function
     data () {
         return {
+            activeTableIndex: 0,
+            activeViewId: null,
+            activeRecordIndex: null,
             cellValue: null,
             shouldShowModal: false,
             isRecordListActive: false,
@@ -126,8 +159,12 @@ export default {
             (item) => item.id !== selectedTableId,
         );
         this.cellValue = this.cell.value.value;
+        this.activeViewId = this.tableList[this.activeTableIndex].view_list[0].id;
     },
     methods: {
+        handleActiveTable (index) {
+            this.activeTableIndex = index;
+        },
         toggle () {
             this.shouldShowModal = !this.shouldShowModal;
         },
@@ -139,8 +176,9 @@ export default {
             //     view: viewId,
             // });
         },
-        addLink (item) {
+        addLink (item, index) {
             this.selectedItem = item;
+            this.activeRecordIndex = index;
             this.$parent.$emit("onIndexSave");
         },
         save () {
@@ -152,6 +190,11 @@ export default {
             this.isRecordListActive = false;
             this.toggle();
             this.cellValue = this.selectedItem.value;
+        },
+    },
+    computed: {
+        viewList () {
+            return this.tableList[this.activeTableIndex].view_list;
         },
     },
 };
@@ -169,14 +212,57 @@ input.c-input:focus {
     outline: var(--background-default) auto 1px;
 }
 .list-wrapper {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: block;
     width: 100%;
     height: 100%;
 }
-.list-wrapper.active {
-    display: block;
+.header {
+    text-align: end;
+    padding: 0 16px;
+}
+.content-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-right: 2px solid rgb(229, 229, 229);
+    padding: 8px 0;
+}
+.content-header:last-child {
+    border-right: none;
+}
+.content-header h5 {
+    width: 100%;
+    text-align: center;
+}
+.vertical-divider {
+    display: inline-block;
+    height: 22px;
+    width: 2px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    background-color: rgb(229, 229, 229);
+}
+.content-wrapper {
+    display: flex;
+    align-items: flex-start;
+    padding: 0 16px;
+}
+.content-item {
+    position: relative;
+    width: 100%;
+    height: 360px;
+    padding-left: 16px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.content-item-background {
+    padding: 4px 8px;
+    margin: 4px 0;
+}
+.content-item-background.active {
+    background-color: rgb(243, 133, 133);
+}
+ul.content-item {
+    list-style-type: none;
 }
 </style>
