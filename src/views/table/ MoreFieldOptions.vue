@@ -1,6 +1,8 @@
 <template>
     <div class="container">
-        <span @click="showOptions">+</span>
+        <span @click="showOptions">
+             <icon name="chevron-down" color="rgb(0, 0, 0)" :size="16" />
+        </span>
 
         <div class="dropdown-wrapper" :class="{ show: shouldShowOptions }">
             <div v-if="!shouldCustomizeField">
@@ -68,9 +70,11 @@
 <script>
 import { mapGetters } from "vuex";
 import FIELD_TYPE from "../../types/FieldType";
+import Icon from "@/components/Icon.vue";
 
 export default {
     name: "MoreFieldOptions",
+    components: { Icon },
     props: {
         id: {
             type: Number,

@@ -1,10 +1,10 @@
 <!-- eslint-disable vue/no-v-html -->
 <template>
-  <div
-    class="icon-wrapper"
-    :style="{ width: size + 'px', height: size + 'px' }"
-    v-html="iconName()"
-  />
+    <div
+        class="icon-wrapper"
+        :style="{ width: size + 'px', height: size + 'px' }"
+        v-html="iconName()"
+    />
 </template>
 
 <script>
@@ -53,6 +53,11 @@ export default {
         <path fill="${this.color}" d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
       </svg>`;
         },
+        chevronDown () {
+            return `<svg viewBox="0 0 24 24">
+                        <path fill="${this.color}" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                    </svg>`;
+        },
     },
     methods: {
         iconName () {
@@ -69,6 +74,9 @@ export default {
                 case "add": {
                     return this.add;
                 }
+                case "chevron-down": {
+                    return this.chevronDown;
+                }
                 default: {
                     // file
                     return this.file;
@@ -84,7 +92,7 @@ export default {
     flex-shrink: 0;
 }
 .icon-wrapper svg {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 </style>

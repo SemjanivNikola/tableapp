@@ -1,7 +1,7 @@
 <template>
     <div id="bar">
         <button @click="toggleShouldShowOptions">
-            <icon name="add" :size="20" />
+            <icon name="chevron-down" :size="20" />
         </button>
         <div class="dropdown-wrapper" :class="{ show: shouldShowOptions }">
             <div class="dropdown-item-wrap" @click="onClick('workspace')">
