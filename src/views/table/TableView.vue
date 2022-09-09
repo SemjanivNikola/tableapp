@@ -1,5 +1,5 @@
 <template>
-    <div style="overflow-x: scroll; padding: 0 50px 16px 0">
+    <div class="table-view-wrapper">
         <table>
             <header-list :header="tableHeader" />
             <table-record-list @onRecordCreate="onRecordCreate" />
@@ -64,5 +64,11 @@ table {
     height: 20px;
     background-color: gray;
     color: black;
+}
+.table-view-wrapper {
+    overflow-x: scroll;
+    overflow-y: scroll;
+    padding: 0 50px 16px 0;
+    height: calc(100vh - 126px);
 }
 </style>
