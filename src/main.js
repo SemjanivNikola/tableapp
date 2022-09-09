@@ -7,8 +7,8 @@ import router from "./router";
 import store from "./store";
 
 
-// axios.defaults.baseURL = "https://runbookmanagerapp.herokuapp.com";
-axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "https://runbookmanagerapp.herokuapp.com";
+// axios.defaults.baseURL = "http://localhost:3000";
 
 Vue.component("Icon", Icon);
 
