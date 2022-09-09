@@ -1,6 +1,7 @@
+<!-- eslint-disable vue/no-mutating-props -->
 <template>
     <div>
-        <input @click="toggle" type="text" :value="cellValue" readonly />
+        <input @click="toggle" type="text" v-model="cellValue" readonly />
 
         <modal-wrapper :is-shown="shouldShowModal">
             <div class="header">

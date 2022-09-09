@@ -1,5 +1,6 @@
+<!-- eslint-disable vue/no-mutating-props -->
 <template>
-        <textarea :value="cell.value" type="text" class="c-input"></textarea>
+        <textarea v-model="cell.value" type="text" class="c-input"></textarea>
 </template>
 
 <script>

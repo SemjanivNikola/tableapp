@@ -1,5 +1,6 @@
+<!-- eslint-disable vue/no-mutating-props -->
 <template>
-        <input :value="cell.value" type="date" class="c-input" />
+        <input v-model="cell.value" type="date" class="c-input" />
 </template>
 
 <script>
