@@ -1,15 +1,14 @@
 <template>
-    <div style="overflow-x: scroll; padding: 0 50px 16px 0;">
+    <div style="overflow-x: scroll; padding: 0 50px 16px 0">
         <table>
             <header-list :header="tableHeader" />
-            <table-record-list
-                @onRecordCreate="onRecordCreate"
-            />
+            <table-record-list @onRecordCreate="onRecordCreate" />
         </table>
 
         <modal-wrapper :is-shown="isRecordExpandShown">
             <record-expand
                 :fields="tableHeader"
+                :record="newRecord"
                 @close="isRecordExpandShown = false"
             />
         </modal-wrapper>
@@ -34,13 +33,21 @@ export default {
         return {
             tableHeader: [],
             isRecordExpandShown: false,
+            newRecord: null,
         };
     },
     created () {
         this.tableHeader = this.$store.getters["view/getHeader"];
     },
     methods: {
-        onRecordCreate () {
+        onRecordCreate (record) {
+            const helper = JSON.parse(JSON.stringify(record));
+            // Remove first element that contains row number
+            this.newRecord = helper.slice(1);
+            this.newRecord.forEach((cell) => {
+                cell.value = "";
+            });
+
             this.isRecordExpandShown = true;
         },
     },

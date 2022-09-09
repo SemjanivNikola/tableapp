@@ -34,6 +34,9 @@ export default {
                 row[payload.index + 1].isShown = payload.isShown;
             });
         },
+        addRecord (state, payload) {
+            state.recordList.push(payload);
+        },
         addHeaderField (state, payload) {
             state.view.header.push(payload);
         },
@@ -75,8 +78,8 @@ export default {
          * TODO: How to read correct view, if every table within it's own view_list has items id start form 1?
          * Do we need to pass workspace id and table id as well?
          */
-        readView ({ commit }, payload) {
-            return axios.get(`/view?id=${payload}`).then((res) => {
+        readView ({ commit }) {
+            return axios.get("/viewtest").then((res) => {
                 const { options, ...otherprops } = res.data;
 
                 commit("setView", otherprops);

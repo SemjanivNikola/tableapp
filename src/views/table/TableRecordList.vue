@@ -10,7 +10,7 @@
             <td :colspan="headerLenght">
                 <span
                     class="indicator-wrapper"
-                    @click="$emit('onRecordCreate')"
+                    @click="$emit('onRecordCreate', recordList[0])"
                 >
                     <span class="indicator">+</span>
                 </span>
