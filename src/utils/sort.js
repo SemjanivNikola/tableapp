@@ -31,7 +31,6 @@ const comparison = (rowA, rowB, fields) => {
 const sortByMultipleFields = (payload, fields) => {
     payload.sort((rowA, rowB) => {
         index = 0;
-
         return comparison(rowA, rowB, fields);
     });
 

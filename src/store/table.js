@@ -27,7 +27,8 @@ export default {
             state.map.push(payload);
         },
         addNewView (state, payload) {
-            state.selectedTable.view_list.push(payload);
+            const index = state.map.findIndex((item) => item.id === payload.tableId);
+            state.map[index].view_list.push({ id: payload.id, title: payload.title });
         },
     },
     getters: {
@@ -51,12 +52,13 @@ export default {
         process ({ commit }, payload) {
             commit("setMap", payload.map);
 
-            const table = payload.map[payload.selected - 1];
+            const table = payload.map[0];
+
             commit("setSelected", table.id);
             commit("setSelectedViewId", table.selected_view_id);
         },
         createTable ({ commit }, payload) {
-            return axios.post("/api/table", payload).then((res) => {
+            return axios.post("/table", payload).then((res) => {
                 commit("addNew", res.data);
                 commit("setAppFeedback", "Table created successfully", { root: true });
                 return true;

@@ -16,7 +16,9 @@ export default {
 <style lang="css">
 @import "./style/constants.css";
 #app {
+    height: 100vh;
     background-color: var(--background-default);
+    overflow: hidden;
 }
 .no-padding {
     padding: 0 !important;

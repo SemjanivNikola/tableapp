@@ -14,7 +14,14 @@
         </div>
         <table-action-bar />
 
-        <div id="screen-content">
+        <div v-if="isLoading || isError" class="status-wrapper">
+            <div v-if="isLoading" class="loader-wrapper">Loading</div>
+            <div v-else class="error-wrapper">
+                Error happened when trying to fetch workspace data
+            </div>
+        </div>
+
+        <div v-else id="screen-content">
             <workspace-structure />
             <workspace-table />
             <modal-wrapper :is-shown="shouldShowHome">
@@ -84,6 +91,8 @@ export default {
             workspace: null,
             isCreateModalShown: false,
             createStructure: null,
+            isLoading: false,
+            isError: false,
         };
     },
     created () {
@@ -91,14 +100,26 @@ export default {
         this.$store.dispatch("workspace/readWorkspaceList");
 
         this.shouldShowHome = false; // TODO: Uncomment this when HOME is done -> !this.$route.params.id;
-        this.$watch(() => this.$route.params.id, this.getWorkspace(3));
+        this.$watch(() => this.$route.params.id, this.getWorkspace(2));
     },
     methods: {
         getWorkspace (id) {
+            this.isError = false;
+            this.isLoading = true;
+
             if (!id) {
+                this.isError = true;
                 return;
             }
-            this.$store.dispatch("workspace/process", id);
+            this.$store.
+                dispatch("workspace/process", id).
+                then(() => {
+                    this.isLoading = false;
+                }).
+                catch(() => {
+                    this.isLoading = false;
+                    this.isError = true;
+                });
         },
         navigate () {
             this.$router.push({ path: `/workspace=${1}` });
@@ -147,7 +168,7 @@ export default {
     display: flex;
     flex-basis: 100%;
     justify-content: flex-start;
-    background-color: 	rgb(245,245,245);
+    background-color: rgb(245, 245, 245);
 }
 .menu-wrapper {
     position: absolute;
@@ -160,5 +181,8 @@ export default {
     transition: opacity 300ms ease-out;
     cursor: pointer;
     z-index: 100;
+}
+.error-wrapper, .loader-wrapper {
+    color: #fff;
 }
 </style>

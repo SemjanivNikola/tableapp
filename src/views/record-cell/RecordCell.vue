@@ -1,7 +1,7 @@
 <template>
     <td :class="{ hidden: !cell.isShown }">
         <component v-if="cell.type" :is="component" :cell="cell" />
-        <div v-else>{{cell.value}}</div>
+        <div v-else style="padding-left: 8px;">{{cell.value}}</div>
     </td>
 </template>
 

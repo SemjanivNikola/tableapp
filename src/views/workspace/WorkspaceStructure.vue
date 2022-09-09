@@ -84,7 +84,9 @@ export default {
 
 <style scoped>
 .structure-wrapper {
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: calc(100vh - 126px);
 }
 #container {
     display: flex;

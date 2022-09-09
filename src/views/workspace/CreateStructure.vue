@@ -31,7 +31,7 @@
         <v-text-field
           v-model="title"
           :rules="stringRule"
-          :counter="17"
+          :counter="25"
           label="Title"
           requred
         ></v-text-field>
@@ -47,11 +47,13 @@
           rows="2"
         ></v-textarea>
 
+        <div class="spacer-md"></div>
+
         <v-text-field
           v-if="structure === 'table'"
           v-model="viewTitle"
           :rules="stringRule"
-          :counter="17"
+          :counter="25"
           label="View title"
           :requred="structure === 'table'"
         ></v-text-field>
@@ -108,7 +110,7 @@ export default {
             stringRule: [
                 (str) => Boolean(str) || "Title is required",
                 (str) => (/^[A-Za-z0-9 ]*$/u).test(str) || "Use only letters and numbers",
-                (str) => str.length <= 17 || "Title must be less than 10 characters",
+                (str) => str.length <= 25 || "Title must be less than 25 characters",
             ],
             selectRule: [(val) => Boolean(val) || "Field is required"],
         };
@@ -149,7 +151,8 @@ export default {
         fillTableSelect () {
             this.tableList = this.$store.getters["table/getMap"];
             const id = this.$store.getters["table/getSelectedId"];
-            this.selectedTable = this.tableList[id - 1].id;
+            const helper = this.tableList.filter((item) => item.id === id);
+            this.selectedTable = helper[0].id;
         },
     },
     computed: {

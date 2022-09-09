@@ -78,8 +78,8 @@ export default {
          * TODO: How to read correct view, if every table within it's own view_list has items id start form 1?
          * Do we need to pass workspace id and table id as well?
          */
-        readView ({ commit }) {
-            return axios.get("/viewtest").then((res) => {
+        readView ({ commit }, payload) {
+            return axios.get(`/view/${payload}`).then((res) => {
                 const { options, ...otherprops } = res.data;
 
                 commit("setView", otherprops);
@@ -131,8 +131,10 @@ export default {
         handleRecordCellUpdate ({ commit, rootGetters }, payload) {
             const cellCoordinates = rootGetters.getActiveCellCoordinates;
 
-            commit("setRecordCellValue", { recordIndex: cellCoordinates[0], cellIndex: cellCoordinates[1],
-                value: payload });
+            commit("setRecordCellValue", {
+                recordIndex: cellCoordinates[0], cellIndex: cellCoordinates[1],
+                value: payload,
+            });
         },
         async handleBodyModification ({ state, commit, dispatch }) {
             const viewClone = await dispatch("options/modifyBody", state.view);

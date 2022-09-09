@@ -7,7 +7,7 @@
             @onIndexSave="handleIndexSave(index)"
         />
         <tr class="new-record">
-            <td :colspan="headerLenght">
+            <td :colspan="headerLenght + 1">
                 <span
                     class="indicator-wrapper"
                     @click="$emit('onRecordCreate', recordList[0])"

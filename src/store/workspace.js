@@ -1,5 +1,4 @@
 import axios from "axios";
-import tabledata from "../../mock-data/workspace_list.json";
 
 /**
  * TODO:
@@ -54,31 +53,23 @@ export default {
                 const { table_list, ...otherProps } = res.data;
 
                 commit("setSelected", otherProps);
-                dispatch("table/process", { map: table_list, selected: otherProps.selected_table_id },
+                dispatch("table/process", { map: table_list, selected: table_list[0].id },
                     { root: true });
                 return true;
             }).
                 catch((err) => {
                     commit("setAppFeedback", `Error: ${err.message}`, { root: true });
-                    return false;
+                    throw err;
                 });
         },
         readWorkspaceList ({ commit }) {
-            const map = tabledata;
-            commit("setMap", map);
+            return axios.get("/workspace").then((res) => {
 
-
-            /*
-             * TODO: Uncoment when backend is deployed
-             * await axios.get("/workspace").then((res) => {
-             *     console.warn("RES >> ", res);
-             *
-             *     commit("setMap", res.data);
-             * }).
-             *     catch((err) => {
-             *         console.warn(err);
-             *     });
-             */
+                commit("setMap", res.data);
+            }).
+                catch((err) => {
+                    console.warn(err);
+                });
         },
         createWorkspace ({ commit }, payload) {
             return axios.post("/workspace", payload).then((res) => {
