@@ -8,9 +8,12 @@
         />
         <tr class="new-record">
             <td :colspan="headerLenght">
-                <span class="indicator-wrapper" @click="$emit('onRecordCreate')"
-                    ><span class="indicator">+</span></span
+                <span
+                    class="indicator-wrapper"
+                    @click="$emit('onRecordCreate')"
                 >
+                    <span class="indicator">+</span>
+                </span>
             </td>
         </tr>
     </tbody>
@@ -25,11 +28,17 @@ export default {
     name: "TableRecordList",
     methods: {
         handleIndexSave (index) {
-            this.$store.commit("updateCellCoordinates", { type: "record", index: index });
+            this.$store.commit("updateCellCoordinates", {
+                type: "record",
+                index: index,
+            });
         },
     },
     computed: {
-        ...mapGetters({ headerLenght: "view/getHeaderLength", recordList: "view/getRecordList" }),
+        ...mapGetters({
+            headerLenght: "view/getHeaderLength",
+            recordList: "view/getRecordList",
+        }),
     },
 };
 </script>
