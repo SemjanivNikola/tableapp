@@ -31,15 +31,12 @@ export default {
         "single-line-text": () => import("./SingleLineTextInput"),
         "multiline-text": () => import("./MultilineTextInput"),
         "number": () => import("./NumberInput"),
-        "status": () => import("./SingleLineTextInput"), //
+        "status": () => import("./StatusInput"),
         "checkbox": () => import("./CheckboxInput"),
-        "select-input": () => import("./SingleLineTextInput"), //
         "date-input": () => import("./DateInput"),
         "email": () => import("./EmailInput"),
-        "duration": () => import("./SingleLineTextInput"), //
-        "created-at": () => import("./SingleLineTextInput"), //
-        "modified-at": () => import("./SingleLineTextInput"), //
-        "link-to-another-table": () => import("./LinkToAnotherTable"), //
+        "created-at": () => import("./CreatedAtCell"),
+        "link-to-another-table": () => import("./LinkToAnotherTable"),
     },
 };
 </script>
