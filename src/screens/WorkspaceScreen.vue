@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="spacer-md"></div>
-            <h1>Workspace title</h1>
+            <h1>{{title}}</h1>
             <div class="spacer-md"></div>
             <structure-action :onCreate="handleCreate" />
         </div>
@@ -88,7 +88,7 @@ export default {
     data () {
         return {
             shouldShowHome: false,
-            workspace: null,
+            title: "-",
             isCreateModalShown: false,
             createStructure: null,
             isLoading: false,
@@ -114,6 +114,7 @@ export default {
             this.$store.
                 dispatch("workspace/process", id).
                 then(() => {
+                    this.title = this.$store.getters["workspace/getTitle"];
                     this.isLoading = false;
                 }).
                 catch(() => {
