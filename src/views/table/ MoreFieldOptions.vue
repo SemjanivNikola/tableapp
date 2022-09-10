@@ -105,8 +105,8 @@ export default {
     methods: {
         async submit () {
             const res = await this.$store.dispatch(
-                "view/updateField",
-                this.selectedType,
+                "view/handleUpdateField",
+                { title: this.name, type: this.selectedType, id: this.id },
             );
             if (res) {
                 this.setToDefault();

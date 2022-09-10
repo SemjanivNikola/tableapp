@@ -41,9 +41,18 @@ export default {
             state.view.header.push(payload);
         },
         addRecordCell (state, payload) {
+            const newValue = { value: "", isShown: true, type: payload };
+            if (payload === 8) {
+                newValue.value = Date.now();
+            }
+
             state.recordList.forEach((row) => {
-                row.push({ value: "", isShown: true, type: payload });
+                row.push(newValue);
             });
+        },
+        updateField (state, payload) {
+            state.view.header[payload.index].text = payload.payload.title;
+            state.view.header[payload.index].fieldType = payload.payload.type;
         },
         deleteField (state, payload) {
             state.view.header.splice(payload, 1);
@@ -127,6 +136,13 @@ export default {
                 commit("setAppFeedback", `Error:  ${err}`, { root: true });
                 return false;
             }
+        },
+        handleUpdateField ({ commit, getters }, payload) {
+            const headerList = getters.getHeader;
+            const index = headerList.findIndex((item) => item.id === payload.id);
+
+            commit("updateField", { index, payload });
+            return true;
         },
         handleRecordCellUpdate ({ commit, rootGetters }, payload) {
             const cellCoordinates = rootGetters.getActiveCellCoordinates;
