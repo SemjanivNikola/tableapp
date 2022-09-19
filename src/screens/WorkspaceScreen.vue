@@ -1,12 +1,12 @@
 <template>
     <div id="screen-wrapper">
-                        <SideBar/>
 
 
-        <div id="screen-info">
-            <div class="hover-action">
+            <div id="screen-info">
+            <div class="hover-action" @click="shouldShowHome = true">
                 <icon name="file" :size="28" />
                 <div class="menu-wrapper">
+                    <icon name="menu" :size="16" color="#000" />
                 </div>
             </div>
             <div class="spacer-md"></div>
@@ -20,16 +20,10 @@
             <workspace-structure />
             <workspace-table />
             <modal-wrapper :is-shown="shouldShowHome">
-                OVO JE HOME MODAL
-                <button @click="shouldShowHome = false">Zatvori</button>
-                <div>
-                    <button @click="navigate">NAVIGIRAJ NA 1</button>
-                </div>
-                <div>
-                    <router-link :to="{ path: '/workspace=2' }">
-                        LINK NA 2
-                    </router-link>
-                </div>
+                <SideBar/>
+                <button class="btn info" id="close" icon dark  @click="shouldShowHome = false">
+                                <v-icon>mdi-close</v-icon>
+                </button>
             </modal-wrapper>
         </div>
 
@@ -166,5 +160,20 @@ export default {
     transition: opacity 300ms ease-out;
     cursor: pointer;
     z-index: 100;
+}
+.btn {
+        border: 2px solid black;
+        background-color: rgba(229, 229, 229);
+        color: black;
+        padding: 5px 5px;
+        font-size: 1px;
+        cursor: pointer;
+        margin-left: 885px;
+
+}
+.info:hover {
+        border-color: #e7e7e7;
+        color: black;
+
 }
 </style>

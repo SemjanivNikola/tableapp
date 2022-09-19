@@ -12,33 +12,27 @@ const routes = [
         component: WorkspaceScreen,
     },
     {
-        path: "/my_workspace",
-        alias: "/workspace=:id",
+        path: "/myworkspace",
         name: "Workspace",
         component: WorkspaceScreen,
         components: {
             default: () => import("@/views/MyWorkspace.vue"),
-            sidebar: () => import("@/components/SideBar.vue"),
         },
     },
     {
-        path: "/recent_tables",
-        alias: "/workspace=:id",
+        path: "/recenttables",
         name: "Workspace",
         component: WorkspaceScreen,
         components: {
             default: () => import("@/views/RecentTables.vue"),
-            sidebar: () => import("@/components/SideBar.vue"),
         },
     },
     {
         path: "/profile",
-        alias: "/workspace=:id",
         name: "Workspace",
         component: WorkspaceScreen,
         components: {
             default: () => import("@/views/ProfileScreen.vue"),
-            sidebar: () => import("@/components/SideBar.vue"),
         },
     },
     // {
