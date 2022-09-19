@@ -75,7 +75,7 @@
 import ModalWrapper from "@/components/ModalWrapper.vue";
 
 export default {
-    name: "CheckboxInput",
+    name: "LinkToAnotherTable",
     props: {
         cell: {
             type: Object,
@@ -156,7 +156,8 @@ export default {
     },
     created () {
         const selectedTableId = this.$store.getters["table/getSelectedId"];
-        this.tableList = this.$store.getters["table/getMap"].filter(
+        const helper = this.$store.getters["table/getMap"];
+        this.tableList = helper.filter(
             (item) => item.id !== selectedTableId,
         );
         this.cellValue = this.cell.value.value;
