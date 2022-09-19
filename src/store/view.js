@@ -8,20 +8,17 @@ export default {
     state: {
         view: null,
         recordList: [],
+        firstRecordlist: null,
     },
     mutations: {
         setView (state, payload) {
             state.view = payload;
         },
+        setFirstRecordList (state, payload) {
+            state.firstRecordlist = payload;
+        },
         setRecordList (state, payload) {
             state.recordList = payload;
-        },
-        setMap (state, payload) {
-            if (state.length > 0) {
-                state.map.length = 0;
-            }
-
-            state.map = payload;
         },
         toggleFieldVisibility (state, payload) {
             state.view.header[payload.index].isShown = payload.isShown;
@@ -184,12 +181,23 @@ export default {
                 { root: false });
         },
         async handleFilter ({ state, commit, dispatch }, payload) {
+            if (!state.firstRecordlist) {
+                commit("setFirstRecordList", state.recordList);
+            }
+
             commit("options/setFilter", payload, { root: false });
-            const clone = await dispatch("options/filterRecords", { header: state.view.header, body: state.view.body },
+            const jsonClone = JSON.parse(JSON.stringify(state.firstRecordlist));
+            const clone = await dispatch("options/filterRecords", { header: state.view.header, body: jsonClone },
                 { root: false });
             await dispatch("options/sortFields", { header: state.view.header, body: clone },
                 { root: false });
             commit("setRecordList", clone);
+        },
+        async handleFilterOptionRemove ({ state, dispatch, commit }, payload) {
+            const shouldShowAll = await dispatch("options/filterOptionRemove", payload, { root: false });
+            if (shouldShowAll) {
+                commit("setRecordList", state.firstRecordlist);
+            }
         },
         async handleSortOptionRemove ({ state, dispatch }, payload) {
             const shouldSort = await dispatch("options/sortOptionRemove", payload, { root: false });

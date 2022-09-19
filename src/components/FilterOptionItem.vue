@@ -27,6 +27,7 @@
         <v-select
             v-model="condition"
             :items="conditionOptions"
+            item-value="label"
             item-text="label"
             hide-details
             dense
@@ -143,13 +144,15 @@ export default {
                 option: {
                     logic: this.logic,
                     id: this.field,
-                    condition: this.condition.label,
+                    condition: this.condition.label
+                        ? this.condition.label
+                        : this.condition,
                     value: this.value,
                 },
             });
         },
         removeOption () {
-            this.$store.commit("view/options/removeFilterOption", this.index, {
+            this.$store.dispatch("view/handleFilterOptionRemove", this.index, {
                 root: true,
             });
         },
@@ -161,7 +164,7 @@ export default {
 .option-item-wrap {
     display: flex;
     align-items: baseline;
-    background-color: rgba(229, 229, 229, .46);
+    background-color: rgba(229, 229, 229, 0.46);
     padding: 8px 8px 16px 8px;
     border-radius: 6px;
     margin-bottom: 16px;
